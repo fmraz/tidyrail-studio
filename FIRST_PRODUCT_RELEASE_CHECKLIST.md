@@ -32,7 +32,7 @@ Product: Renewal Desk
 - [x] Domain purchase on VEDOS.
 - [x] GitHub Pages hosting setup.
 - [x] Root DNS public verification for `tidyrailstudio.com`.
-- [ ] GitHub HTTPS certificate provisioning and Enforce HTTPS.
+- [ ] GitHub HTTPS certificate provisioning and Enforce HTTPS. Current blocker: GitHub Pages still serves a certificate that does not match `tidyrailstudio.com`; Enforce HTTPS must remain off until the certificate is valid.
 - [x] Remove wildcard `*.tidyrailstudio.com` parking records in VEDOS.
 - [x] Public website copy aligned with free-first/no-account release path.
 - [x] Supabase setup checklist prepared without committing secrets.

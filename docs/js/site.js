@@ -21,6 +21,20 @@ document.querySelectorAll(".nav").forEach((nav) => {
     toggle.setAttribute("aria-expanded", String(isOpen));
   });
 
+  document.addEventListener("click", (event) => {
+    if (!nav.classList.contains("is-open")) return;
+    if (nav.contains(event.target)) return;
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !nav.classList.contains("is-open")) return;
+    nav.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.focus();
+  });
+
   links.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       nav.classList.remove("is-open");

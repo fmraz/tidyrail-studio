@@ -53,6 +53,8 @@ Public deployment target:
 - Do not commit Supabase service role keys or OAuth secrets.
 - Keep Renewal Desk usable without an account until sync is configured, tested, and approved.
 - Renewal Desk now includes a local sync adapter scaffold and a sync readiness export for future Supabase work.
+- The company website now uses an original iOS/macOS-inspired glass design direction with scroll-driven Three.js motion.
+- GitHub Pages custom domain is configured for `tidyrailstudio.com`; HTTPS enforcement must wait until GitHub finishes issuing a matching certificate.
 
 ## Operating Rules
 

@@ -15,6 +15,7 @@ Current status on 2026-06-25:
 - `http://tidyrailstudio.com/` returns the GitHub Pages site.
 - `https://tidyrailstudio.com/` is not ready yet because GitHub has not finished certificate provisioning for the custom domain.
 - Wildcard `*.tidyrailstudio.com` parking A records no longer resolve on the authoritative VEDOS nameserver.
+- Certificate provisioning was retriggered by safely re-applying the custom domain; wait for GitHub to issue the matching certificate before enabling Enforce HTTPS.
 
 ## Deployment Model
 

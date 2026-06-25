@@ -50,3 +50,7 @@
 - Retested the local website homepage and downloads page in the in-app browser on desktop and mobile widths. The pages rendered, the mobile menu opened, the download picker updated, and no console warnings or errors appeared.
 - Retested the Renewal Desk export view after the local-first/sync-status copy update. The Export navigation opened the expected panel and no console warnings or errors appeared.
 - Rechecked public domain status: `http://tidyrailstudio.com/` still serves GitHub Pages, while `https://tidyrailstudio.com/` and `https://www.tidyrailstudio.com/` still fail certificate host-name validation.
+- Updated the Tidyrail Studio website toward an original iOS/macOS-inspired glass interface with bright cool surfaces, blue primary actions, teal details, floating navigation, and refined responsive panels.
+- Added public-page metadata for strict-origin referrer handling, mobile theme color, and disabled automatic telephone detection where it could alter layout.
+- Improved mobile navigation behavior so the compact menu closes on outside click, link click, and Escape.
+- Re-triggered GitHub Pages certificate provisioning by safely re-applying the custom domain. The custom domain returned to `tidyrailstudio.com`, HTTP remains live, and Enforce HTTPS remains off until GitHub issues a matching certificate.

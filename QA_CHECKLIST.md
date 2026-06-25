@@ -14,6 +14,12 @@
 - [x] Mobile menu retested after account/download changes.
 - [x] Public website navigation and sitemap exclude account drafts until backend approval.
 - [x] Homepage and downloads page retested locally after free-first copy changes.
+- [x] iOS/macOS-inspired glass redesign checked on desktop homepage and downloads views.
+- [x] Mobile overflow guardrails added for hero, sections, CTA groups, 3D canvas, screenshots, and header.
+- [x] Mobile Chrome DevTools emulation verified `documentElement.scrollWidth` equals viewport width at 390px.
+- [x] Mobile menu closes on outside click, link click, and Escape.
+- [x] Referrer, theme-color, and mobile format-detection metadata added to public pages.
+- [x] GitHub Pages HTTPS certificate provisioning retriggered by safely re-applying the custom domain.
 
 ## Renewal Desk
 
@@ -24,6 +30,7 @@
 - [x] Export view retested after local-first/sync-status copy update.
 - [x] Local sync adapter scaffold tested in browser.
 - [x] Sync readiness report export tested locally.
+- [x] Source HTML metadata aligned with public web app HTML before rebuilding the ZIP.
 - [ ] Cloud sync tested after backend setup.
 
 ## Account System

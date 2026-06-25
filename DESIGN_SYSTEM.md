@@ -1,32 +1,35 @@
 # Design System
 
-Design direction: premium, calm, futuristic, privacy-respecting utility software.
+Design direction: premium, calm, iOS/macOS-inspired, privacy-respecting utility software.
 
 ## Visual Language
 
 - Liquid-glass inspired, but original to Tidyrail Studio.
-- Translucent panels with restraint.
-- Soft depth, subtle highlights, and clean spacing.
+- Bright cool-white surfaces, blue system accents, teal secondary accents, and soft silver gradients.
+- Translucent panels with restraint, readable contrast, and visible edges.
+- Soft depth, subtle highlights, compact spacing, and calm motion.
 - No Apple logos, no Apple assets, no affiliation claims.
 - Professional productivity tone, not playful or childish.
 
 ## Tokens
 
-- Background: cool white / pale blue-gray.
-- Primary accent: teal.
-- Secondary accent: amber for reminders.
+- Background: cool white / pale blue-gray with restrained blue light.
+- Primary accent: iOS-style blue for primary actions.
+- Secondary accent: teal for product identity and status details.
 - Text: deep graphite.
-- Radius: 8px for ordinary cards, 14-18px for glass surfaces and icons.
+- Radius: 12px for ordinary cards, 18-30px for glass surfaces and icons, pill radius for primary CTAs.
 - Motion: scroll-linked 3D rails, gentle transforms, reduced-motion support.
 
 ## Components
 
 - Compact sticky header.
 - Collapsible mobile navigation.
+- Outside-click and Escape close behavior for mobile navigation.
 - Touch-friendly buttons.
 - Glass panels for account/download surfaces.
 - Cards only for repeated product or platform items.
 - Full-width sections for page rhythm.
+- Referrer, theme-color, and mobile format-detection metadata on public pages.
 
 ## Accessibility
 
@@ -35,3 +38,4 @@ Design direction: premium, calm, futuristic, privacy-respecting utility software
 - Keep buttons at least 44px tall on touch devices.
 - Avoid text over busy 3D scenes.
 - Respect `prefers-reduced-motion`.
+- Prevent horizontal overflow on mobile and tablet breakpoints.

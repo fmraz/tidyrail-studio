@@ -80,6 +80,8 @@ HTTPS is pending GitHub certificate provisioning. Do not enable Enforce HTTPS un
 
 The authoritative VEDOS nameserver no longer returns wildcard `*.tidyrailstudio.com` A records.
 
+GitHub Pages certificate provisioning was retriggered on 2026-06-25 by safely re-applying the custom domain. The next action is to recheck HTTPS and enable Enforce HTTPS only after the certificate matches the custom domain.
+
 ## Hosting Options
 
 Selected first:

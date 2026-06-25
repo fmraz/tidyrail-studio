@@ -29,7 +29,7 @@ Pages:
 
 ## Technical Approach
 
-Static HTML/CSS/JavaScript with a small local Three.js-powered scroll scene on the homepage, Supabase-ready account UI, download platform detection, and localization scaffolding.
+Static HTML/CSS/JavaScript with a small local Three.js-powered scroll scene on the homepage, Supabase-ready account UI, download platform detection, localization scaffolding, and iOS/macOS-inspired responsive glass UI.
 
 Reason:
 
@@ -71,24 +71,26 @@ No paid newsletter service now. The first version includes a mailto-based update
 
 ## Visual Direction
 
-- White and soft gray background.
-- Charcoal text.
-- Muted teal accent.
-- Real product screenshots.
-- Scroll-driven 3D rail elements that support the product story without blocking text.
+- Cool white and pale silver background.
+- Deep graphite text.
+- iOS-style blue primary accent with teal identity details.
+- Original liquid-glass inspired panels, floating header, pill CTAs, and premium depth.
+- Real product screenshots and scroll-driven 3D rail elements that support the product story without blocking text.
 - No fake testimonials, fake metrics, or fake customer logos.
 
 ## Current Status
 
 - Homepage includes scroll-driven 3D presentation.
-- Mobile navigation is collapsible.
+- Mobile navigation is collapsible and closes on outside click, link click, and Escape.
 - Downloads page detects OS/device and offers honest platform status.
 - Account pages exist but are intentionally inactive until backend setup.
 - Language selector and language detection are scaffolded.
+- Public pages include referrer policy, theme-color, and mobile format-detection metadata.
+- GitHub Pages custom domain is configured, but HTTPS certificate provisioning is still pending at GitHub.
 
 ## Next Website Priorities
 
-1. Remove VEDOS wildcard DNS records and enable HTTPS after certificate provisioning.
+1. Recheck the GitHub Pages HTTPS certificate and enable Enforce HTTPS only after the certificate matches `tidyrailstudio.com`.
 2. Connect Supabase Auth in a controlled test setup.
 3. Add full localized copy files.
 4. Improve account dashboard once real backend exists.

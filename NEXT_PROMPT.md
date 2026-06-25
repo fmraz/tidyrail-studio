@@ -15,34 +15,28 @@ Aktuální stav:
 - GitHub repo: `fmraz/tidyrail-studio`.
 - GitHub Pages source: větev `main`, složka `/docs`.
 - Veřejný HTTP web funguje: `http://tidyrailstudio.com/`.
-- HTTPS zatím není připravené, protože certifikát pro `tidyrailstudio.com` stále neodpovídá vlastní doméně.
-- VEDOS DNS root a `www` záznamy míří na GitHub Pages.
+- HTTPS zatím není hotové, protože GitHub Pages stále nevrací certifikát odpovídající `tidyrailstudio.com`.
+- VEDOS DNS root A/AAAA a `www` CNAME míří na GitHub Pages.
 - VEDOS wildcard záznamy už autoritativní nameserver nevrací.
 - Produkty jsou zatím zdarma. Neimplementuj platby, subscriptions, Pro funkce ani umělá omezení.
 
 Co už je hotové:
 
-- Web má prémiovou scroll-driven Three.js homepage.
-- Web má responzivní mobilní menu jako kompaktní popover.
+- Web má nový originální iOS/macOS-inspired glass design: světlé cool-white pozadí, modré primární CTA, teal detaily, floating glass header, pill buttons a jemnou hloubku.
+- Homepage má scroll-driven Three.js prezentaci.
+- Mobilní layout byl opraven proti horizontálnímu přetečení; Chrome DevTools mobile emulation na 390px potvrdila `documentElement.scrollWidth === viewport width`.
+- Mobilní menu funguje jako kompaktní hamburger a zavírá se přes outside click, link click i Escape.
+- Public HTML stránky obsahují `strict-origin-when-cross-origin` referrer metadata, theme color a mobile format-detection metadata.
 - Downloads stránka má privacy-friendly detekci OS/zařízení a manuální výběr platformy.
 - Renewal Desk je dostupný jako free web app a statický balíček.
-- Renewal Desk source obsahuje PWA manifest a service worker.
+- Renewal Desk source obsahuje PWA manifest, service worker a sync adapter scaffold.
 - Renewal Desk je jasně označený jako local-first release: data zůstávají v browser storage, k dispozici je JSON backup/import a CSV export.
-- Renewal Desk export panel obsahuje informaci, že cloud sync není zatím připojený.
-- Account stránky existují jako připravené scaffold stránky:
-  - `/account/login/`
-  - `/account/register/`
-  - `/account/reset/`
-  - `/account/dashboard/`
-  - `/account/settings/`
+- Account stránky existují jako připravené scaffold stránky, ale nejsou hlavní veřejná release funkce bez Supabase konfigurace.
 - Auth JavaScript scaffold existuje pro Supabase, ale je záměrně neaktivní bez konfigurace.
 - Lokalizační scaffold existuje v `website/i18n/translations.json`.
-- Cookie policy stránka existuje.
 - Strategické dokumenty pro auth, databázi, packaging, store listingy, ikony, lokalizaci, patching, verzování, support a improvement backlog existují.
-- Nově existuje `SUPABASE_SETUP.md` s konkrétním setup checklistem.
-- Nově existuje `RENEWAL_DESK_SYNC_PLAN.md` s návrhem cloud syncu přes RLS.
-- Renewal Desk má nově `src/sync-adapter.js`, který drží lokální storage jako výchozí adapter, připravuje field mapping pro Supabase a umí exportovat sync readiness report.
-- Rebuilt ZIP je dostupný v `dist/renewal-desk-0.1.0-mvp.zip` a `website/downloads/renewal-desk-0.1.0-mvp.zip`.
+- Renewal Desk ZIP byl přebalen po HTML metadata update a je dostupný v `dist/renewal-desk-0.1.0-mvp.zip` a `website/downloads/renewal-desk-0.1.0-mvp.zip`.
+- `website/` a `docs/` mají být synchronizované po posledních úpravách.
 
 Důležité soubory:
 
@@ -54,37 +48,35 @@ Důležité soubory:
 - `website/downloads/renewal-desk-0.1.0-mvp.zip.sha256` - checksum.
 - `products/renewal-desk/src/sync-adapter.js` - local-first sync adapter scaffold.
 - `website/apps/renewal-desk/src/sync-adapter.js` - public app copy of the adapter scaffold.
-- `AUTH_STRATEGY.md`
-- `DATABASE_SCHEMA.md`
+- `DESIGN_SYSTEM.md`
+- `WEBSITE_PLAN.md`
+- `QA_CHECKLIST.md`
+- `FIRST_PRODUCT_RELEASE_CHECKLIST.md`
+- `CHANGELOG.md`
+- `DECISION_LOG.md`
 - `SUPABASE_SETUP.md`
 - `RENEWAL_DESK_SYNC_PLAN.md`
+- `AUTH_STRATEGY.md`
+- `DATABASE_SCHEMA.md`
 - `DOWNLOAD_STRATEGY.md`
-- `DESIGN_SYSTEM.md`
-- `ICON_SYSTEM.md`
-- `APP_ICON_SPEC.md`
 - `LOCALIZATION_PLAN.md`
 - `MAC_DMG_PACKAGING.md`
 - `WINDOWS_PACKAGING.md`
 - `LINUX_PACKAGING.md`
-- `MOBILE_WIDGET_PLAN.md`
-- `PATCH_PLAN.md`
-- `VERSIONING.md`
-- `BUG_FIX_PROCESS.md`
-- `RELEASE_NOTES_TEMPLATE.md`
-- `CHANGELOG.md`
+- `STORE_DISTRIBUTION_PLAN.md`
 - `SUPPORT_WORKFLOW.md`
 - `IMPROVEMENT_BACKLOG.md`
 
-Co bylo v poslední session otestováno:
+Co bylo naposledy otestováno:
 
-- DNS root A/AAAA a `www` CNAME míří na GitHub Pages.
-- HTTPS stále selhává na certifikátu, proto nezapínej Enforce HTTPS.
-- Lokální syntax check prošel pro `website/js/site.js`, `website/js/downloads.js`, `website/js/auth.js`, `website/apps/renewal-desk/src/app.js`, `website/apps/renewal-desk/sw.js`.
+- JavaScript syntax check prošel pro website scripts, Renewal Desk app, sync adapter a service worker.
 - `unzip -t website/downloads/renewal-desk-0.1.0-mvp.zip` prošel.
-- `website/` a `docs/` jsou synchronizované.
-- Lokální browser QA prošla: homepage, Three.js canvas, downloads, platform selector, Renewal Desk export panel, mobilní menu.
-- Lokální browser QA na čistém originu prošla pro Renewal Desk sync adapter: runtime adapter `local`, Export view obsahuje `Export sync readiness`, readiness export zobrazil success status, mobilní šířka neměla horizontální overflow.
-- Veřejné HTTP routy vrací 200: homepage, downloads, account stránky, Renewal Desk app, manifest, service worker, ZIP, sitemap, robots.
+- Lokální HTTP routy vrací 200: homepage, downloads, products, Renewal Desk product page, Renewal Desk app, sitemap, robots, PWA manifest, service worker, ZIP a checksum.
+- Desktop screenshot homepage vizuálně prošel.
+- Desktop screenshot downloads stránky vizuálně prošel.
+- Mobilní screenshot přes Chrome DevTools emulaci vizuálně prošel.
+- HTTPS kontrola stále selhává na certifikátu, proto nezapínej Enforce HTTPS.
+- GitHub Pages cert provisioning byl retriggernut bezpečným re-apply custom domain postupem, ale certifikát ještě není vydaný.
 
 Co není hotové:
 
@@ -98,12 +90,12 @@ Co není hotové:
 
 Další priorita:
 
-1. Znovu ověř HTTPS pro `https://tidyrailstudio.com/`.
+1. Znovu ověř `https://tidyrailstudio.com/`.
 2. Jakmile HTTPS funguje s validním certifikátem pro `tidyrailstudio.com`, zapni Enforce HTTPS v GitHub Pages.
-3. Pokud HTTPS stále nefunguje, nečekej pasivně: pokračuj ve first-product práci.
-4. Pokud founder schválí Supabase test project, vytvoř lokální test config workflow podle `SUPABASE_SETUP.md`; necommituj `auth-config.js`.
-5. Připrav Supabase adapter implementaci za config gate, ale nezapojuj produkční cloud writes bez RLS testů.
-6. Rozšiř/importuj testovací RLS SQL a připrav dvouuživatelský QA postup.
+3. Pokud HTTPS stále nefunguje, zkontroluj GitHub Pages Settings UI pro přesný certifikátový stav a případné tlačítko retry/remove custom domain.
+4. Nečekej pasivně na HTTPS: pokračuj v Renewal Desk first-product práci.
+5. Připrav Supabase test-safe konfiguraci podle `SUPABASE_SETUP.md`, ale necommituj `auth-config.js` ani žádné secrets.
+6. Připrav RLS dvouuživatelský QA postup a poté cloud sync adapter za config gate.
 7. Potom pokračuj desktop packaging přípravou pro macOS `.dmg`, Windows installer a Linux package.
 
 Omezení:
