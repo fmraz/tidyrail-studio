@@ -31,7 +31,9 @@ Product: Renewal Desk
 - [x] Company website QA.
 - [x] Domain purchase on VEDOS.
 - [x] GitHub Pages hosting setup.
-- [ ] DNS public verification for `tidyrailstudio.com`.
+- [x] Root DNS public verification for `tidyrailstudio.com`.
+- [ ] GitHub HTTPS certificate provisioning and Enforce HTTPS.
+- [ ] Remove wildcard `*.tidyrailstudio.com` parking records in VEDOS.
 - [ ] Public release approval.
 
 ## Free-First Requirements

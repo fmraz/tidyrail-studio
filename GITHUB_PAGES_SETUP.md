@@ -12,7 +12,8 @@ Current status on 2026-06-25:
 - Custom domain is set to `tidyrailstudio.com`.
 - HTTPS enforcement should wait until DNS and GitHub certificate provisioning are confirmed.
 - VEDOS root and `www` DNS records are correct on the authoritative nameserver.
-- Some public resolver checks still returned old VEDOS parking records during the first verification pass.
+- `http://tidyrailstudio.com/` returns the GitHub Pages site.
+- `https://tidyrailstudio.com/` is not ready yet because GitHub has not finished certificate provisioning for the custom domain.
 - Wildcard `*.tidyrailstudio.com` parking A records still need to be removed in VEDOS.
 
 ## Deployment Model
@@ -91,6 +92,8 @@ Manual VEDOS check before launch:
 dig tidyrailstudio.com +noall +answer -t A
 dig tidyrailstudio.com +noall +answer -t AAAA
 dig www.tidyrailstudio.com +noall +answer
+curl -I http://tidyrailstudio.com/
+curl -I https://tidyrailstudio.com/
 ```
 
 ## Current Free Product Routes

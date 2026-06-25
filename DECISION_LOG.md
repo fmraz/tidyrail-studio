@@ -43,3 +43,4 @@
 - Added a scroll-driven Three.js product presentation to the Tidyrail Studio homepage, using local static assets and no backend.
 - Configured GitHub Pages for `fmraz/tidyrail-studio` with source `main` branch `/docs` and custom domain `tidyrailstudio.com`.
 - Entered the GitHub Pages DNS target records in the VEDOS DNS editor. Authoritative VEDOS DNS returns the GitHub Pages root and `www` records, while public resolver cache and old wildcard parking records still need follow-up verification/removal.
+- Verified that `http://tidyrailstudio.com/` serves the GitHub Pages site. HTTPS remains pending until GitHub finishes certificate provisioning for the custom domain.
