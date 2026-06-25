@@ -40,3 +40,6 @@
 - Verified that VEDOS payment status for `tidyrailstudio.com` shows paid and the domain appears in the VEDOS domain list with provisioning pending.
 - Chose GitHub Pages as the first public hosting path. The first push uses the `main` branch `/docs` publishing source because the current GitHub token does not have `workflow` scope for publishing workflow files.
 - Added a public hosted Renewal Desk app route at `/apps/renewal-desk/` alongside the downloadable ZIP package.
+- Added a scroll-driven Three.js product presentation to the Tidyrail Studio homepage, using local static assets and no backend.
+- Configured GitHub Pages for `fmraz/tidyrail-studio` with source `main` branch `/docs` and custom domain `tidyrailstudio.com`.
+- Entered the GitHub Pages DNS target records in the VEDOS DNS editor, but public authoritative DNS still returned the previous VEDOS parking records during the first verification pass, so domain launch remains pending DNS verification.

@@ -4,6 +4,15 @@ Public-facing site: `https://tidyrailstudio.com`
 
 Repository target: `fmraz/tidyrail-studio`
 
+Current status on 2026-06-25:
+
+- GitHub repository exists.
+- GitHub Pages is built.
+- Publishing source is `main` branch, `/docs` folder.
+- Custom domain is set to `tidyrailstudio.com`.
+- HTTPS enforcement should wait until DNS and GitHub certificate provisioning are confirmed.
+- VEDOS DNS records were entered, but public DNS still returned old VEDOS parking records during the first verification pass.
+
 ## Deployment Model
 
 The website source is maintained in `website/` and mirrored into `docs/` for GitHub Pages.
@@ -65,6 +74,14 @@ www  CNAME  fmraz.github.io
 Do not add wildcard DNS records.
 
 DNS propagation can take up to 24 hours.
+
+Manual VEDOS check before launch:
+
+- Confirm the four GitHub Pages A records exist for the root/apex domain.
+- Confirm the four GitHub Pages AAAA records exist for the root/apex domain.
+- Confirm `www` is a CNAME pointing to `fmraz.github.io`.
+- Confirm no wildcard `*.tidyrailstudio.com` A records remain.
+- Save/apply any pending DNS change if VEDOS shows a separate confirmation state.
 
 ## Verification Commands
 

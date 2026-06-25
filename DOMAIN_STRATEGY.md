@@ -6,7 +6,7 @@ VEDOS account email: stored outside the public repository.
 
 Payment details and final purchase confirmation must be completed by the founder.
 
-Current VEDOS status on 2026-06-25: the `tidyrailstudio.com` domain registration order has been created without hosting or paid add-ons. VEDOS payment status now shows the order as paid, and the domain appears in the domain list with provisioning pending.
+Current VEDOS status on 2026-06-25: the `tidyrailstudio.com` domain registration order has been created and paid without hosting or paid add-ons. The domain is active in VEDOS and is being pointed to GitHub Pages.
 
 ## Recommended Domain
 
@@ -43,11 +43,12 @@ Availability risk scale: lower is better. Final availability must be checked in 
 
 - Domain order created on VEDOS.
 - Domain paid.
+- Domain active in the VEDOS domain list.
 - No paid hosting selected.
 - No paid monitoring selected.
 - No paid ownership certificate selected.
 - No domain insurance selected.
-- Next step: wait for provisioning to complete, then configure DNS for GitHub Pages.
+- Next step: verify that public DNS has propagated to the GitHub Pages records.
 
 ## DNS Plan After Purchase
 
@@ -70,6 +71,17 @@ Do not add wildcard DNS records.
 - TXT records only if needed for GitHub domain verification or future email.
 
 Do not configure paid email hosting until the website is live and support workflow is chosen.
+
+## Current DNS Verification Status
+
+As of 2026-06-25, GitHub Pages is configured for `tidyrailstudio.com` and VEDOS DNS records have been entered in the DNS editor. Public DNS still returned the previous VEDOS parking A records during the first verification pass:
+
+```text
+185.8.237.5
+185.8.237.6
+```
+
+Before considering the domain live, verify that authoritative DNS returns the GitHub Pages records listed above and that no wildcard `*.tidyrailstudio.com` A records remain.
 
 ## Hosting Options
 

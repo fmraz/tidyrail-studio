@@ -28,10 +28,10 @@ Product: Renewal Desk
 
 - [ ] Founder-machine fresh browser test.
 - [ ] Optional screen-reader spot check.
-- [ ] Company website QA.
+- [x] Company website QA.
 - [x] Domain purchase on VEDOS.
-- [ ] GitHub Pages hosting setup.
-- [ ] DNS records configured in VEDOS.
+- [x] GitHub Pages hosting setup.
+- [ ] DNS public verification for `tidyrailstudio.com`.
 - [ ] Public release approval.
 
 ## Free-First Requirements
