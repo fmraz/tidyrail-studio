@@ -12,7 +12,7 @@ Tidyrail Studio is an independent software studio building small, polished, priv
 
 ## Current Build Focus
 
-The first product is `products/renewal-desk`, currently prepared as a free static release candidate.
+The first product is `products/renewal-desk`, currently prepared as a free static release candidate with PWA scaffolding.
 
 Open `products/renewal-desk/index.html` in a browser to run the MVP.
 
@@ -38,10 +38,22 @@ Public deployment target:
 - GitHub Pages deployment path: `docs/`
 - Free web app route: `/apps/renewal-desk/`
 - Free download route: `/downloads/renewal-desk-0.1.0-mvp.zip`
+- Account routes: `/account/login/`, `/account/register/`, `/account/dashboard/`
+- Auth backend: prepared for Supabase, not connected yet
+
+## Architecture Notes
+
+- Static website on GitHub Pages.
+- Source website in `website/`.
+- Deploy mirror in `docs/`.
+- Renewal Desk remains local-first until backend setup is approved.
+- Account UI is prepared for sync, export, deletion, and privacy controls.
+- Do not commit Supabase service role keys or OAuth secrets.
 
 ## Operating Rules
 
-- No accounts or paid infrastructure by default.
+- Accounts are allowed as an optional sync/privacy layer, not as a paywall.
+- No paid infrastructure without explicit approval.
 - Necessary low-cost/no-cost setup accounts may be created under standing founder approval when no payment details or irreversible publication are required.
 - No public launch, external posting, marketplace submission, payment confirmation, or irreversible action without explicit approval for the concrete destination and action.
 - Product-facing copy is written in English.

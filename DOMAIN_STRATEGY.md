@@ -78,7 +78,7 @@ As of 2026-06-25, GitHub Pages is configured for `tidyrailstudio.com`, the autho
 
 HTTPS is pending GitHub certificate provisioning. Do not enable Enforce HTTPS until `https://tidyrailstudio.com/` presents a certificate valid for `tidyrailstudio.com`.
 
-The authoritative VEDOS nameserver still returned wildcard `*.tidyrailstudio.com` parking A records during verification. Before considering the domain clean, remove those wildcard records in VEDOS and verify that no wildcard A records remain.
+The authoritative VEDOS nameserver no longer returns wildcard `*.tidyrailstudio.com` A records.
 
 ## Hosting Options
 

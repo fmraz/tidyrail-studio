@@ -1,5 +1,35 @@
 # Store Distribution Plan
 
+## Current Distribution
+
+- Website: live over GitHub Pages.
+- Web app: available.
+- Static ZIP package: available.
+
+## Target Channels
+
+- Direct website download.
+- GitHub Releases.
+- Mac direct `.dmg`.
+- Windows direct installer.
+- Linux AppImage or `.deb`.
+- Apple App Store for iOS.
+- Mac App Store only if sandboxing and review make sense.
+- Google Play for Android.
+- Microsoft Store if Windows packaging quality is high enough.
+- Product Hunt launch page when public HTTPS is stable.
+
+## Do Not Submit Yet
+
+No app store submission should happen until:
+
+- accounts and privacy flows are reviewed,
+- production icons are exported,
+- screenshots are final,
+- platform builds are tested,
+- legal drafts are reviewed,
+- founder explicitly approves submission.
+
 This plan prepares future distribution only. Do not publish, submit, pay, or create paid developer accounts without founder approval.
 
 ## Product

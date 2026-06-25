@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Renewal Desk</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
@@ -25,7 +26,7 @@
         </nav>
         <div class="local-note">
           <strong>Stored locally on this device</strong>
-          <span>No account, server, or tracking in this MVP.</span>
+          <span>Account sync is planned. This MVP keeps data local.</span>
         </div>
       </aside>
 
@@ -229,5 +230,10 @@
     </dialog>
 
     <script src="./src/app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator && location.protocol !== "file:") {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      }
+    </script>
   </body>
 </html>

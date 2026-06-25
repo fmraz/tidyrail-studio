@@ -1,4 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Renewal Desk">
-  <rect width="64" height="64" rx="14" fill="#2d817b" />
-  <text x="32" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">R</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Renewal Desk icon">
+  <defs>
+    <linearGradient id="rd-bg" x1="18" y1="10" x2="112" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eefbff"/>
+      <stop offset="0.42" stop-color="#55b8b0"/>
+      <stop offset="1" stop-color="#163a44"/>
+    </linearGradient>
+    <linearGradient id="rd-glass" x1="36" y1="24" x2="94" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#rd-bg)"/>
+  <path d="M27 46c10-20 34-30 56-21 13 5 22 15 26 27" fill="none" stroke="#f5ffff" stroke-width="9" stroke-linecap="round"/>
+  <path d="M107 34l3 22-21-7" fill="none" stroke="#f5ffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="34" y="44" width="52" height="58" rx="12" fill="url(#rd-glass)" stroke="#ffffff" stroke-opacity="0.72"/>
+  <path d="M47 61h26M47 75h31M47 89h18" stroke="#1e6260" stroke-width="6" stroke-linecap="round" opacity="0.88"/>
+  <circle cx="88" cy="87" r="12" fill="#eab65a" stroke="#fff6dc" stroke-width="4"/>
+  <path d="M33 85c6 13 20 23 36 23 14 0 27-7 34-18" fill="none" stroke="#dff7f5" stroke-width="8" stroke-linecap="round" opacity="0.82"/>
 </svg>

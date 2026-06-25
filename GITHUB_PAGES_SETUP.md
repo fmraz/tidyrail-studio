@@ -14,7 +14,7 @@ Current status on 2026-06-25:
 - VEDOS root and `www` DNS records are correct on the authoritative nameserver.
 - `http://tidyrailstudio.com/` returns the GitHub Pages site.
 - `https://tidyrailstudio.com/` is not ready yet because GitHub has not finished certificate provisioning for the custom domain.
-- Wildcard `*.tidyrailstudio.com` parking A records still need to be removed in VEDOS.
+- Wildcard `*.tidyrailstudio.com` parking A records no longer resolve on the authoritative VEDOS nameserver.
 
 ## Deployment Model
 

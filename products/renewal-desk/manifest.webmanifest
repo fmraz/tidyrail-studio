@@ -1,0 +1,17 @@
+{
+  "name": "Renewal Desk",
+  "short_name": "Renewal Desk",
+  "description": "Track renewals, warranties, subscriptions, and expiry dates.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f7f7",
+  "theme_color": "#2d817b",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

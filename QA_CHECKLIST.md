@@ -1,5 +1,41 @@
 # QA Checklist
 
+## Website
+
+- [x] Homepage loads locally.
+- [x] Desktop screenshot checked.
+- [x] Mobile screenshot checked.
+- [x] 3D scene initializes locally.
+- [x] Scroll animation changes scene progress.
+- [x] ZIP download link returns a file.
+- [x] Public HTTP site returns GitHub Pages content.
+- [ ] Public HTTPS certificate completed.
+- [x] VEDOS wildcard DNS records removed.
+- [x] Mobile menu retested after account/download changes.
+
+## Renewal Desk
+
+- [x] Core local app flow tested.
+- [x] Export/import tested.
+- [x] ZIP integrity tested.
+- [ ] Cloud sync tested after backend setup.
+
+## Account System
+
+- [ ] Supabase project created.
+- [ ] RLS schema applied.
+- [ ] Email/password tested.
+- [ ] Password reset tested.
+- [ ] OAuth providers tested.
+- [ ] Export/delete cloud data tested.
+
+## Localization
+
+- [ ] Full English string inventory.
+- [ ] Full translation files.
+- [ ] RTL QA.
+- [ ] Mobile text expansion QA.
+
 ## General App QA
 
 - Core workflow works from empty state.
@@ -21,4 +57,3 @@
 - Responsive desktop and mobile pass.
 - Offline/local file usage pass where applicable.
 - Packaging/opening instructions verified.
-

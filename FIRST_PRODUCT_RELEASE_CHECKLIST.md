@@ -33,7 +33,7 @@ Product: Renewal Desk
 - [x] GitHub Pages hosting setup.
 - [x] Root DNS public verification for `tidyrailstudio.com`.
 - [ ] GitHub HTTPS certificate provisioning and Enforce HTTPS.
-- [ ] Remove wildcard `*.tidyrailstudio.com` parking records in VEDOS.
+- [x] Remove wildcard `*.tidyrailstudio.com` parking records in VEDOS.
 - [ ] Public release approval.
 
 ## Free-First Requirements

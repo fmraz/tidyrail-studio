@@ -1,5 +1,40 @@
 # Platform Strategy
 
+## Current Recommendation
+
+Use a phased cross-platform strategy:
+
+1. Static web app on GitHub Pages.
+2. Supabase-backed account sync after approval.
+3. Tauri desktop shell for macOS, Windows, and Linux.
+4. Capacitor or Expo evaluation for mobile after core web sync is stable.
+5. Native widgets only after mobile app value is proven.
+
+## Why
+
+- Web first keeps cost low and releases fastest.
+- Tauri can reuse the web UI while producing smaller desktop apps than Electron.
+- Supabase avoids a custom backend while still allowing RLS-protected per-user data.
+- Mobile should not be rushed before the reminder workflow and sync model are stable.
+
+## Current Availability
+
+- Web: available.
+- Static package: available.
+- macOS .dmg: in preparation.
+- Windows installer: in preparation.
+- Linux package: in preparation.
+- iOS: planned.
+- Android: planned.
+
+## Manual Approval Required
+
+- Apple Developer Program.
+- Google Play Console.
+- Microsoft Partner Center.
+- Code signing certificates.
+- App store submissions.
+
 Tidyrail Studio will ship products free-first and local-first. The goal is to earn trust, collect feedback, and build public credibility before monetization.
 
 ## Recommendation
@@ -56,4 +91,3 @@ Renewal Desk currently uses:
 - JSON/CSV export.
 
 This is acceptable for v1.0 free web release. Tauri packaging can be added after the website and direct download flow are complete.
-
