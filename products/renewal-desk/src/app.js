@@ -1,7 +1,10 @@
 const storageKey = "renewal-desk-items-v1";
+const syncAdapter =
+  window.RenewalDeskSync?.createAdapter({ storageKey }) || createFallbackSyncAdapter(storageKey);
+document.documentElement.dataset.syncAdapter = syncAdapter.adapterType || "fallback";
 
 const state = {
-  items: loadItems(),
+  items: syncAdapter.loadItems(normalizeItem),
   query: "",
   category: "all",
   view: "dashboard",
@@ -30,6 +33,7 @@ const elements = {
   exportStatus: document.querySelector("#exportStatus"),
   importJsonBtn: document.querySelector("#importJsonBtn"),
   importJsonInput: document.querySelector("#importJsonInput"),
+  syncReadinessBtn: document.querySelector("#syncReadinessBtn"),
   itemName: document.querySelector("#itemName"),
   itemCategory: document.querySelector("#itemCategory"),
   itemDate: document.querySelector("#itemDate"),
@@ -50,6 +54,7 @@ document.querySelector("#exportJsonBtn").addEventListener("click", exportJson);
 document.querySelector("#exportCsvBtn").addEventListener("click", exportCsv);
 elements.importJsonBtn.addEventListener("click", () => elements.importJsonInput.click());
 elements.importJsonInput.addEventListener("change", importJson);
+elements.syncReadinessBtn.addEventListener("click", exportSyncReadiness);
 
 elements.searchInput.addEventListener("input", (event) => {
   state.query = event.target.value.trim().toLowerCase();
@@ -80,19 +85,8 @@ elements.dialog.addEventListener("close", () => {
 
 render();
 
-function loadItems() {
-  try {
-    const stored = localStorage.getItem(storageKey);
-    if (!stored) return [];
-    const parsed = JSON.parse(stored);
-    return Array.isArray(parsed) ? parsed.map(normalizeItem).filter(Boolean) : [];
-  } catch {
-    return [];
-  }
-}
-
 function persistItems() {
-  localStorage.setItem(storageKey, JSON.stringify(state.items));
+  syncAdapter.saveItems(state.items);
 }
 
 function normalizeItem(item) {
@@ -451,6 +445,12 @@ function exportCsv() {
   setExportStatus("CSV exported.");
 }
 
+function exportSyncReadiness() {
+  const payload = syncAdapter.exportReadiness();
+  downloadFile("renewal-desk-sync-readiness.json", JSON.stringify(payload, null, 2), "application/json");
+  setExportStatus("Sync readiness report exported.");
+}
+
 function importJson(event) {
   const file = event.target.files?.[0];
   if (!file) return;
@@ -581,4 +581,38 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function createFallbackSyncAdapter(key) {
+  return {
+    adapterType: "fallback",
+    mode: {
+      key: "local_only",
+      label: "Local-first release",
+      description: "Renewal Desk is using browser storage on this device.",
+    },
+    isCloudReady: false,
+    loadItems(normalizeItem) {
+      try {
+        const stored = localStorage.getItem(key);
+        if (!stored) return [];
+        const parsed = JSON.parse(stored);
+        return Array.isArray(parsed) ? parsed.map(normalizeItem).filter(Boolean) : [];
+      } catch {
+        return [];
+      }
+    },
+    saveItems(items) {
+      localStorage.setItem(key, JSON.stringify(items));
+    },
+    exportReadiness() {
+      return {
+        app: "Renewal Desk",
+        generatedAt: new Date().toISOString(),
+        currentMode: "local_only",
+        cloudReady: false,
+        storage: "browser-local",
+      };
+    },
+  };
 }

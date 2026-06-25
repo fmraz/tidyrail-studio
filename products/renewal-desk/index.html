@@ -170,6 +170,7 @@
               <button class="button primary" id="exportJsonBtn" type="button">Export JSON</button>
               <button class="button secondary" id="exportCsvBtn" type="button">Export CSV</button>
               <button class="button secondary" id="importJsonBtn" type="button">Import JSON</button>
+              <button class="button secondary" id="syncReadinessBtn" type="button">Export sync readiness</button>
               <input class="visually-hidden" id="importJsonInput" type="file" accept="application/json,.json" />
             </div>
             <div class="status-note" id="exportStatus" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -241,6 +242,7 @@
       </form>
     </dialog>
 
+    <script src="./src/sync-adapter.js"></script>
     <script src="./src/app.js"></script>
     <script>
       if ("serviceWorker" in navigator && location.protocol !== "file:") {

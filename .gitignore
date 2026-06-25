@@ -3,6 +3,8 @@ node_modules/
 .env
 .env.*
 !.env.example
+website/js/auth-config.js
+docs/js/auth-config.js
 dist/tmp/
 tmp/
 *.log

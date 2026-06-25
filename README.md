@@ -52,6 +52,7 @@ Public deployment target:
 - Account UI is only a future draft, not a public release feature.
 - Do not commit Supabase service role keys or OAuth secrets.
 - Keep Renewal Desk usable without an account until sync is configured, tested, and approved.
+- Renewal Desk now includes a local sync adapter scaffold and a sync readiness export for future Supabase work.
 
 ## Operating Rules
 

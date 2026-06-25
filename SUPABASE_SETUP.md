@@ -57,6 +57,29 @@ window.TIDYRAIL_AUTH = {
 
 The anon key is designed to be public, but it is only safe with correct RLS policies. Never place the service role key in frontend files.
 
+## Test-Safe Auth Config Workflow
+
+Use this workflow to avoid committing project keys by accident:
+
+1. Keep `website/js/auth-config.example.js` committed as the only public template.
+2. Create `website/js/auth-config.js` locally only after a Supabase test project exists.
+3. Confirm `.gitignore` excludes:
+   - `website/js/auth-config.js`
+   - `docs/js/auth-config.js`
+4. Do not copy a local test config into `docs/` until production deploy is explicitly approved.
+5. Use a test Supabase project first, not the final production project.
+6. Test email/password only before enabling OAuth providers.
+7. Run the RLS two-user QA checklist before deploying any config.
+8. Delete local test users and test rows after validation.
+
+Production config should be committed or deployed only after a dedicated review confirms that:
+
+- the key is a public anon key,
+- RLS policies are enabled and tested,
+- HTTPS is enforced,
+- password reset redirects work,
+- the privacy policy and terms match the account behavior.
+
 ## Provider Setup Order
 
 1. Email/password
@@ -92,6 +115,26 @@ Auth can be enabled publicly only after:
 9. Log in as a second test user and verify no rows from the first user appear.
 10. Remove local test config before committing unless production connection is approved.
 
+## Two-User RLS Test
+
+Create two test users:
+
+- `qa-user-a@example.invalid`
+- `qa-user-b@example.invalid`
+
+Expected results:
+
+1. User A can create a Renewal Desk row.
+2. User B cannot read User A's row.
+3. User B can create a different Renewal Desk row.
+4. User A cannot read User B's row.
+5. Anonymous requests cannot read or write `renewal_items`.
+6. Updating a row with another user's `user_id` is rejected.
+7. Deleting another user's row is rejected.
+8. Export returns only the signed-in user's rows.
+9. Sign-out clears account-scoped in-memory state.
+10. Local-only mode still works when Supabase config is absent.
+
 ## Rollback Plan
 
 If auth causes errors after deploy:
@@ -100,4 +143,3 @@ If auth causes errors after deploy:
 2. Keep account pages visible with the not-configured message.
 3. Redeploy static files.
 4. Leave Renewal Desk local-first exports available.
-

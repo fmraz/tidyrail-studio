@@ -1,10 +1,11 @@
-const CACHE_NAME = "renewal-desk-0.1.0";
+const CACHE_NAME = "renewal-desk-0.1.1";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./favicon.svg",
   "./manifest.webmanifest",
   "./src/styles.css",
+  "./src/sync-adapter.js",
   "./src/app.js",
 ];
 

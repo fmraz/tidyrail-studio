@@ -41,6 +41,7 @@ Co už je hotové:
 - Strategické dokumenty pro auth, databázi, packaging, store listingy, ikony, lokalizaci, patching, verzování, support a improvement backlog existují.
 - Nově existuje `SUPABASE_SETUP.md` s konkrétním setup checklistem.
 - Nově existuje `RENEWAL_DESK_SYNC_PLAN.md` s návrhem cloud syncu přes RLS.
+- Renewal Desk má nově `src/sync-adapter.js`, který drží lokální storage jako výchozí adapter, připravuje field mapping pro Supabase a umí exportovat sync readiness report.
 - Rebuilt ZIP je dostupný v `dist/renewal-desk-0.1.0-mvp.zip` a `website/downloads/renewal-desk-0.1.0-mvp.zip`.
 
 Důležité soubory:
@@ -51,6 +52,8 @@ Důležité soubory:
 - `dist/renewal-desk-0.1.0-mvp.zip` - static release package.
 - `website/downloads/renewal-desk-0.1.0-mvp.zip` - veřejná download kopie.
 - `website/downloads/renewal-desk-0.1.0-mvp.zip.sha256` - checksum.
+- `products/renewal-desk/src/sync-adapter.js` - local-first sync adapter scaffold.
+- `website/apps/renewal-desk/src/sync-adapter.js` - public app copy of the adapter scaffold.
 - `AUTH_STRATEGY.md`
 - `DATABASE_SCHEMA.md`
 - `SUPABASE_SETUP.md`
@@ -80,6 +83,7 @@ Co bylo v poslední session otestováno:
 - `unzip -t website/downloads/renewal-desk-0.1.0-mvp.zip` prošel.
 - `website/` a `docs/` jsou synchronizované.
 - Lokální browser QA prošla: homepage, Three.js canvas, downloads, platform selector, Renewal Desk export panel, mobilní menu.
+- Lokální browser QA na čistém originu prošla pro Renewal Desk sync adapter: runtime adapter `local`, Export view obsahuje `Export sync readiness`, readiness export zobrazil success status, mobilní šířka neměla horizontální overflow.
 - Veřejné HTTP routy vrací 200: homepage, downloads, account stránky, Renewal Desk app, manifest, service worker, ZIP, sitemap, robots.
 
 Co není hotové:
@@ -97,9 +101,9 @@ Další priorita:
 1. Znovu ověř HTTPS pro `https://tidyrailstudio.com/`.
 2. Jakmile HTTPS funguje s validním certifikátem pro `tidyrailstudio.com`, zapni Enforce HTTPS v GitHub Pages.
 3. Pokud HTTPS stále nefunguje, nečekej pasivně: pokračuj ve first-product práci.
-4. Připrav Renewal Desk sync adapter design v kódu, ale nezapojuj produkční Supabase bez schválených config hodnot.
-5. Připrav test-safe `auth-config.js` workflow bez commitování secrets.
-6. Rozšiř QA checklist pro dvouuživatelský RLS test.
+4. Pokud founder schválí Supabase test project, vytvoř lokální test config workflow podle `SUPABASE_SETUP.md`; necommituj `auth-config.js`.
+5. Připrav Supabase adapter implementaci za config gate, ale nezapojuj produkční cloud writes bez RLS testů.
+6. Rozšiř/importuj testovací RLS SQL a připrav dvouuživatelský QA postup.
 7. Potom pokračuj desktop packaging přípravou pro macOS `.dmg`, Windows installer a Linux package.
 
 Omezení:

@@ -37,6 +37,7 @@ Product: Renewal Desk
 - [x] Public website copy aligned with free-first/no-account release path.
 - [x] Supabase setup checklist prepared without committing secrets.
 - [x] Renewal Desk cloud sync plan prepared with RLS gates.
+- [x] Local sync adapter scaffold added and tested without enabling cloud writes.
 - [ ] Public release approval.
 
 ## Free-First Requirements

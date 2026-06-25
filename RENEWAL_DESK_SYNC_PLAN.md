@@ -1,6 +1,6 @@
 # Renewal Desk Sync Plan
 
-Status: design ready, implementation pending Supabase approval.
+Status: local adapter scaffold added, Supabase implementation pending backend approval.
 
 Renewal Desk 0.1.x remains local-first. Cloud sync will be added only after Supabase is configured, RLS is verified, and HTTPS is enforced for the production domain.
 
@@ -76,14 +76,36 @@ Required before public sync:
 
 ## Implementation Sequence
 
-1. Add a sync adapter module with local and Supabase implementations.
-2. Keep local storage as the default adapter.
+1. Add a sync adapter module with local mapping and readiness export. Done.
+2. Keep local storage as the default adapter. Done.
 3. Add Supabase adapter behind a configuration check.
-4. Add a sync status panel inside Renewal Desk.
+4. Add a sync status panel inside Renewal Desk. Partially done with local-first status and readiness export.
 5. Add first-import flow.
 6. Add per-user CRUD through RLS.
 7. Add export/delete account data controls.
 8. QA with two test users before public release.
+
+## Current Code Scaffold
+
+Files:
+
+- `products/renewal-desk/src/sync-adapter.js`
+- `website/apps/renewal-desk/src/sync-adapter.js`
+
+Current behavior:
+
+- Reads and writes Renewal Desk rows through the local adapter.
+- Exposes local-to-cloud and cloud-to-local field mapping helpers.
+- Detects whether a frontend auth config exists, but does not write cloud rows.
+- Exports a sync readiness JSON report for QA and implementation review.
+- Keeps the app usable if the adapter fails to load by using a local fallback inside `app.js`.
+
+Local QA status:
+
+- Runtime adapter marker shows `local` on a clean local origin.
+- Export view shows the sync readiness action on desktop and mobile.
+- Sync readiness export shows a success status without enabling cloud writes.
+- Console warnings/errors were clear in the tested flow.
 
 ## QA Gates
 
@@ -93,4 +115,4 @@ Required before public sync:
 - Sign-out clears sensitive in-memory state.
 - Local-only mode still works when Supabase is unavailable.
 - Import/export still works without an account.
-
+- Sync readiness export does not include secrets.

@@ -8,6 +8,7 @@
 - Added browser-local storage with JSON backup, JSON import, and CSV export.
 - Added PWA manifest and service worker scaffold.
 - Clarified that cloud sync is not connected in the first public release.
+- Added a sync adapter scaffold for future Supabase-backed sync without enabling cloud writes.
 
 ## 0.1.0 - MVP Release Candidate
 

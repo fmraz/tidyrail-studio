@@ -12,3 +12,4 @@
 - Added localization scaffolding and language selector.
 - Clarified Renewal Desk as a local-first free release with JSON backup and CSV export.
 - Added Supabase setup and Renewal Desk sync planning docs for the future account layer.
+- Added a Renewal Desk sync adapter scaffold that keeps local storage as the default and exports a sync readiness report.

@@ -22,16 +22,24 @@
 - [x] ZIP integrity tested.
 - [x] Download ZIP rebuilt and checksum verified after app-shell copy update.
 - [x] Export view retested after local-first/sync-status copy update.
+- [x] Local sync adapter scaffold tested in browser.
+- [x] Sync readiness report export tested locally.
 - [ ] Cloud sync tested after backend setup.
 
 ## Account System
 
 - [ ] Supabase project created.
 - [ ] RLS schema applied.
+- [ ] Local `website/js/auth-config.js` created only for approved testing and not committed.
 - [ ] Email/password tested.
 - [ ] Password reset tested.
 - [ ] OAuth providers tested.
 - [ ] Export/delete cloud data tested.
+- [ ] User A cannot read, update, or delete User B Renewal Desk rows.
+- [ ] User B cannot read, update, or delete User A Renewal Desk rows.
+- [ ] Anonymous users cannot read or write `renewal_items`.
+- [ ] Export returns only the signed-in user's rows.
+- [ ] Sign-out clears account-scoped in-memory state.
 
 ## Localization
 
