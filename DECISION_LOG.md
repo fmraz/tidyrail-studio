@@ -1,0 +1,42 @@
+# Decision Log
+
+## 2026-06-25
+
+- Chose **Tidyrail Studio** as the working company name after evaluating 20 candidates and doing a preliminary web collision check.
+- Selected a local-first utility portfolio instead of a SaaS platform to minimize infrastructure cost and maintenance burden.
+- Selected **Renewal Desk** as the first product because it is broad-market, useful without network effects, privacy-respecting, and realistic to finish quickly.
+- Chose a static web MVP for Renewal Desk to make it downloadable, inspectable, and easy to run without accounts or paid services.
+- Set rule that no external publishing, account creation, spending, or irreversible action happens without explicit founder approval.
+- Created the Codex automation `tidyrail-3-hour-work-loop` to run the studio work loop every 3 hours.
+- Fixed Renewal Desk product formatting to use English dates and USD currency formatting regardless of the system locale.
+- Fixed Renewal Desk mobile table overflow by switching upcoming rows into a stacked layout on narrow screens.
+- Chose Renewal Desk accessibility and release-candidate QA as the next primary focus because the MVP feature set was already implemented and the release checklist still had accessibility, product page, and packaging gaps.
+- Added basic accessibility polish to Renewal Desk: contextual action labels, dialog focus management, active navigation state, and live export/import status messaging.
+- Chose Renewal Desk export/import release-candidate QA as the next primary focus because the release checklist was otherwise complete but the QA report still had unclosed backup and CSV verification gaps.
+- Verified Renewal Desk JSON export/import and CSV export content in a fresh browser context; no product code change was needed, so the product remains in founder-approval hold before any public release.
+- Treated the founder's broad approval to "handle everything not done" as permission to finish local, reversible release-readiness work, not as permission to spend money, create accounts, publish publicly, submit marketplaces, or perform irreversible external actions without a concrete target.
+
+## 2026-06-25 Permission Update
+
+- Founder granted standing approval to create necessary accounts and prepare cheap essential purchases.
+- Payment details and final payment confirmation remain founder-only actions.
+- Public posting, marketplace submission, and product publication remain concrete approval actions unless explicitly approved for the specific destination.
+- Domain spot check: `tidyrail.com` resolves, while `tidyrail.studio`, `tidyrailstudio.com`, and `gettidyrail.com` did not resolve via DNS; registrar availability still needs checkout verification before purchase.
+- RDAP check found `tidyrail.com` registered via IONOS and expiring 2026-12-22; `tidyrail.studio`, `tidyrailstudio.com`, and `gettidyrail.com` returned not-found style responses.
+- Recommended `tidyrail.studio` as the first domain purchase attempt, with `tidyrailstudio.com` as the fallback.
+- Verified the packaged Renewal Desk zip from a fresh extracted `file://` run in a clean local Chrome profile; no local product QA blockers remain for the static MVP release candidate.
+- Chose Renewal Desk release-channel preparation as the primary focus for this run because the product itself has no local release-candidate blocker and the remaining release checklist item is founder approval for a concrete external destination.
+- Prepared a release channel decision brief recommending Gumroad as the first paid download channel and Product Hunt only after a live sales/download URL exists; no external accounts were created, no product was published, and no marketplace submission was made.
+
+## 2026-06-25 Free-First Strategy Update
+
+- Founder changed strategy to free products first under one central Tidyrail Studio website.
+- Payment processing, paid downloads, subscriptions, locked Pro features, and artificial limits are paused.
+- Renewal Desk remains the first product and must be finished before starting CleanClip Local.
+- Recommended platform direction: static web first, Tauri desktop packaging later, mobile shell later after validation.
+- Created the first static company website under `website/`.
+- Switched the practical VEDOS purchase target from `tidyrail.studio` to `tidyrailstudio.com` after checkout showed `.studio` at 1252.35 CZK with VAT and `.com` at 413.82 CZK with VAT for one year.
+- Created the VEDOS `tidyrailstudio.com` domain order with no hosting, no paid monitoring, no paid certificate, and no domain insurance. Registration remains pending until the founder pays the VEDOS payment request.
+- Verified that VEDOS payment status for `tidyrailstudio.com` shows paid and the domain appears in the VEDOS domain list with provisioning pending.
+- Chose GitHub Pages as the first public hosting path. The first push uses the `main` branch `/docs` publishing source because the current GitHub token does not have `workflow` scope for publishing workflow files.
+- Added a public hosted Renewal Desk app route at `/apps/renewal-desk/` alongside the downloadable ZIP package.

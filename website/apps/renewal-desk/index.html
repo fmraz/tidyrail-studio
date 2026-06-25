@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Renewal Desk</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">R</div>
+          <div>
+            <strong>Renewal Desk</strong>
+            <span>Tidyrail Studio</span>
+          </div>
+        </div>
+        <nav class="nav-list">
+          <button class="nav-item is-active" data-view="dashboard" type="button" aria-current="page">Dashboard</button>
+          <button class="nav-item" data-view="items" type="button">Items</button>
+          <button class="nav-item" data-view="calendar" type="button">Calendar</button>
+          <button class="nav-item" data-view="export" type="button">Export</button>
+        </nav>
+        <div class="local-note">
+          <strong>Stored locally on this device</strong>
+          <span>No account, server, or tracking in this MVP.</span>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="section-label">Private renewal tracker</p>
+            <h1 id="view-title">Dashboard</h1>
+          </div>
+          <div class="topbar-actions">
+            <label class="search-box">
+              <span class="visually-hidden">Search items</span>
+              <input id="searchInput" type="search" placeholder="Search renewals, notes, vendors..." />
+            </label>
+            <button class="button secondary" id="sampleDataBtn" type="button">Load Sample</button>
+            <button class="button primary" id="addItemBtn" type="button">Add Item</button>
+          </div>
+        </header>
+
+        <section class="view is-active" id="dashboardView" data-view-panel="dashboard">
+          <div class="stats-grid" aria-label="Renewal summary">
+            <article class="stat-card">
+              <span>Due in 30 days</span>
+              <strong id="statDueSoon">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Annual estimate</span>
+              <strong id="statAnnual">$0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Missing receipts</span>
+              <strong id="statMissingReceipts">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Total tracked</span>
+              <strong id="statTotal">0</strong>
+            </article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel wide">
+              <div class="panel-header">
+                <div>
+                  <p class="section-label">Next 90 days</p>
+                  <h2>Upcoming renewals</h2>
+                </div>
+                <select id="categoryFilter" aria-label="Filter by category">
+                  <option value="all">All categories</option>
+                  <option value="Subscription">Subscription</option>
+                  <option value="Warranty">Warranty</option>
+                  <option value="Document">Document</option>
+                  <option value="Service">Service</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Category</th>
+                      <th scope="col">Next date</th>
+                      <th scope="col">Cost</th>
+                      <th scope="col">Status</th>
+                      <th scope="col" aria-label="Actions"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="upcomingTable"></tbody>
+                </table>
+              </div>
+              <div class="empty-state" id="dashboardEmpty">
+                <strong>No renewals yet</strong>
+                <span>Add subscriptions, warranties, documents, or services you want to remember.</span>
+              </div>
+            </section>
+
+            <aside class="panel">
+              <p class="section-label">Timeline</p>
+              <h2>Next checkpoints</h2>
+              <div class="timeline" id="timelineList"></div>
+            </aside>
+
+            <aside class="panel">
+              <p class="section-label">Cleanup</p>
+              <h2>Receipts to find</h2>
+              <div id="receiptList" class="receipt-list"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="itemsView" data-view-panel="items">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="section-label">All records</p>
+                <h2>Tracked items</h2>
+              </div>
+              <button class="button secondary" id="clearAllBtn" type="button">Clear All</button>
+            </div>
+            <div id="itemCards" class="item-grid"></div>
+            <div class="empty-state" id="itemsEmpty">
+              <strong>Your tracker is empty</strong>
+              <span>Start with the next thing you do not want to miss.</span>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="calendarView" data-view-panel="calendar">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="section-label">Month view</p>
+                <h2>Renewal calendar</h2>
+              </div>
+              <span class="hint">Grouped by upcoming month</span>
+            </div>
+            <div id="calendarBuckets" class="calendar-buckets"></div>
+          </section>
+        </section>
+
+        <section class="view" id="exportView" data-view-panel="export">
+          <section class="panel export-panel">
+            <div>
+              <p class="section-label">Backup and portability</p>
+              <h2>Export your data</h2>
+              <p class="body-copy">Your tracker data is stored in this browser on this device. Export a backup before clearing browser data or switching machines.</p>
+            </div>
+            <div class="export-actions">
+              <button class="button primary" id="exportJsonBtn" type="button">Export JSON</button>
+              <button class="button secondary" id="exportCsvBtn" type="button">Export CSV</button>
+              <button class="button secondary" id="importJsonBtn" type="button">Import JSON</button>
+              <input class="visually-hidden" id="importJsonInput" type="file" accept="application/json,.json" />
+            </div>
+            <div class="status-note" id="exportStatus" role="status" aria-live="polite" aria-atomic="true"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="itemDialog" aria-labelledby="dialogTitle">
+      <form method="dialog" id="itemForm" class="item-form">
+        <div class="dialog-header">
+          <div>
+            <p class="section-label">Renewal record</p>
+            <h2 id="dialogTitle">Add item</h2>
+          </div>
+          <button class="icon-button" value="cancel" type="submit" aria-label="Close dialog">×</button>
+        </div>
+        <input type="hidden" id="itemId" name="id" />
+        <div class="form-grid">
+          <label>
+            Name
+            <input id="itemName" name="name" required placeholder="Internet plan, laptop warranty..." />
+          </label>
+          <label>
+            Category
+            <select id="itemCategory" name="category">
+              <option>Subscription</option>
+              <option>Warranty</option>
+              <option>Document</option>
+              <option>Service</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            Next date
+            <input id="itemDate" name="date" type="date" required />
+          </label>
+          <label>
+            Cost
+            <input id="itemCost" name="cost" type="number" min="0" step="0.01" placeholder="0.00" />
+          </label>
+          <label>
+            Renewal cycle
+            <select id="itemCycle" name="cycle">
+              <option>Monthly</option>
+              <option>Quarterly</option>
+              <option>Yearly</option>
+              <option>One-time</option>
+              <option>Custom</option>
+            </select>
+          </label>
+          <label>
+            Receipt status
+            <select id="itemReceipt" name="receipt">
+              <option>Missing</option>
+              <option>Saved</option>
+              <option>Not needed</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          Notes
+          <textarea id="itemNotes" name="notes" rows="4" placeholder="Where to find the receipt, cancellation notes, account owner..."></textarea>
+        </label>
+        <div class="dialog-actions">
+          <button class="button secondary" value="cancel" type="submit">Cancel</button>
+          <button class="button primary" id="saveItemBtn" value="default" type="submit">Save Item</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./src/app.js"></script>
+  </body>
+</html>
