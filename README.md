@@ -38,21 +38,24 @@ Public deployment target:
 - GitHub Pages deployment path: `docs/`
 - Free web app route: `/apps/renewal-desk/`
 - Free download route: `/downloads/renewal-desk-0.1.0-mvp.zip`
-- Account routes: `/account/login/`, `/account/register/`, `/account/dashboard/`
-- Auth backend: prepared for Supabase, not connected yet
+- Account route drafts: kept out of public navigation and sitemap until a backend is approved
+- Auth backend: not connected
+- Supabase setup checklist: `SUPABASE_SETUP.md`
+- Renewal Desk sync plan: `RENEWAL_DESK_SYNC_PLAN.md`
 
 ## Architecture Notes
 
 - Static website on GitHub Pages.
 - Source website in `website/`.
 - Deploy mirror in `docs/`.
-- Renewal Desk remains local-first until backend setup is approved.
-- Account UI is prepared for sync, export, deletion, and privacy controls.
+- Renewal Desk remains local-first for the current free release.
+- Account UI is only a future draft, not a public release feature.
 - Do not commit Supabase service role keys or OAuth secrets.
+- Keep Renewal Desk usable without an account until sync is configured, tested, and approved.
 
 ## Operating Rules
 
-- Accounts are allowed as an optional sync/privacy layer, not as a paywall.
+- Future sync or accounts must remain optional and must not become a paywall.
 - No paid infrastructure without explicit approval.
 - Necessary low-cost/no-cost setup accounts may be created under standing founder approval when no payment details or irreversible publication are required.
 - No public launch, external posting, marketplace submission, payment confirmation, or irreversible action without explicit approval for the concrete destination and action.

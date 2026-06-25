@@ -74,3 +74,16 @@ The website includes account UI routes:
 - `/account/settings/`
 
 These pages are prepared for Supabase but intentionally show a clear not-configured message until the backend is approved and connected.
+
+The first public Renewal Desk release should still be described as local-first. Account sync is a prepared next step, not a live feature.
+
+## Implementation Gate
+
+Before connecting auth in production:
+
+- Confirm `https://tidyrailstudio.com` has a valid GitHub Pages certificate.
+- Enable Enforce HTTPS in GitHub Pages.
+- Complete `SUPABASE_SETUP.md`.
+- Apply and test `DATABASE_SCHEMA.md`.
+- Test two separate users against Row Level Security.
+- Update the privacy policy and terms from local-only language to account-data language.

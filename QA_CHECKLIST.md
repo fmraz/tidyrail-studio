@@ -12,12 +12,16 @@
 - [ ] Public HTTPS certificate completed.
 - [x] VEDOS wildcard DNS records removed.
 - [x] Mobile menu retested after account/download changes.
+- [x] Public website navigation and sitemap exclude account drafts until backend approval.
+- [x] Homepage and downloads page retested locally after free-first copy changes.
 
 ## Renewal Desk
 
 - [x] Core local app flow tested.
 - [x] Export/import tested.
 - [x] ZIP integrity tested.
+- [x] Download ZIP rebuilt and checksum verified after app-shell copy update.
+- [x] Export view retested after local-first/sync-status copy update.
 - [ ] Cloud sync tested after backend setup.
 
 ## Account System

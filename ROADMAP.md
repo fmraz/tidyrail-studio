@@ -39,4 +39,4 @@
 
 ## Current Priority
 
-Primary focus: finish Renewal Desk as a free product, finish the Tidyrail Studio website, buy/configure the domain through founder-controlled VEDOS approval, and prepare public free distribution.
+Primary focus: finish Renewal Desk as a free product, finish the Tidyrail Studio website, complete GitHub Pages HTTPS provisioning, and prepare public free distribution. Account drafts stay out of public navigation and discovery until a backend is approved.

@@ -44,3 +44,9 @@
 - Configured GitHub Pages for `fmraz/tidyrail-studio` with source `main` branch `/docs` and custom domain `tidyrailstudio.com`.
 - Entered the GitHub Pages DNS target records in the VEDOS DNS editor. Authoritative VEDOS DNS returns the GitHub Pages root and `www` records, while public resolver cache and old wildcard parking records still need follow-up verification/removal.
 - Verified that `http://tidyrailstudio.com/` serves the GitHub Pages site. HTTPS remains pending until GitHub finishes certificate provisioning for the custom domain.
+- Chose company website free-first alignment as the primary focus because Renewal Desk is already a local release candidate and public copy still exposed account previews too prominently.
+- Removed account links from the public website navigation and sitemap, added `/account/` to robots disallow, and rewrote homepage/product/download copy around the actual free local-first release with JSON/CSV export.
+- Rebuilt the Renewal Desk ZIP package after the app shell local-storage note changed, and verified the new SHA-256 checksum.
+- Retested the local website homepage and downloads page in the in-app browser on desktop and mobile widths. The pages rendered, the mobile menu opened, the download picker updated, and no console warnings or errors appeared.
+- Retested the Renewal Desk export view after the local-first/sync-status copy update. The Export navigation opened the expected panel and no console warnings or errors appeared.
+- Rechecked public domain status: `http://tidyrailstudio.com/` still serves GitHub Pages, while `https://tidyrailstudio.com/` and `https://www.tidyrailstudio.com/` still fail certificate host-name validation.

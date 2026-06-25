@@ -4,7 +4,7 @@
 
 Headline: Useful software for everyday loose ends.
 
-Supporting copy: Tidyrail Studio makes free tools that help people track renewals, clean up admin work, and keep practical information close with privacy-first data controls.
+Supporting copy: Tidyrail Studio makes free local-first tools that help people track renewals, clean up admin work, and keep practical information close without accounts or tracking.
 
 Primary CTA: Try Renewal Desk
 
@@ -38,15 +38,15 @@ For support, feedback, or press questions, contact Tidyrail Studio through the p
 
 ## Privacy Summary
 
-Tidyrail Studio avoids unnecessary tracking and paid lock-in. Renewal Desk stores records locally in the browser in the current free version. Account sync is being prepared for export, deletion, and cross-device use after backend approval.
+Tidyrail Studio avoids unnecessary tracking and paid lock-in. Renewal Desk stores records locally in the browser in the current free version and provides JSON backup plus CSV export.
 
-## Account Positioning
+## Future Sync Positioning
 
 Approved language:
 
-- "Accounts are being designed for sync, not lock-in."
-- "Until the backend is approved and configured, Renewal Desk remains local-first."
-- "Free today. Account sync is being prepared with privacy-first export and deletion controls."
+- "The current release stores data locally and does not require an account."
+- "Future sync will only be added after the local-first release is stable and the backend is approved."
+- "Free today. No accounts, analytics, paid features, or artificial limits in the first public version."
 
 Avoid:
 

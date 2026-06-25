@@ -34,6 +34,9 @@ Product: Renewal Desk
 - [x] Root DNS public verification for `tidyrailstudio.com`.
 - [ ] GitHub HTTPS certificate provisioning and Enforce HTTPS.
 - [x] Remove wildcard `*.tidyrailstudio.com` parking records in VEDOS.
+- [x] Public website copy aligned with free-first/no-account release path.
+- [x] Supabase setup checklist prepared without committing secrets.
+- [x] Renewal Desk cloud sync plan prepared with RLS gates.
 - [ ] Public release approval.
 
 ## Free-First Requirements

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-mvp
+
+- Built the first local-first Renewal Desk web app.
+- Added renewal, warranty, subscription, and expiry tracking.
+- Added dashboard stats, upcoming renewals, monthly calendar, receipt status, search, filters, and sample data.
+- Added browser-local storage with JSON backup, JSON import, and CSV export.
+- Added PWA manifest and service worker scaffold.
+- Clarified that cloud sync is not connected in the first public release.
+
 ## 0.1.0 - MVP Release Candidate
 
 - Added local renewal tracker dashboard.

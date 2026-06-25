@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /account/
 
 Sitemap: https://tidyrailstudio.com/sitemap.xml

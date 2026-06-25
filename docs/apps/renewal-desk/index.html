@@ -26,7 +26,7 @@
         </nav>
         <div class="local-note">
           <strong>Stored locally on this device</strong>
-          <span>Account sync is planned. This MVP keeps data local.</span>
+          <span>Use JSON backup or CSV export to keep a copy outside this browser.</span>
         </div>
       </aside>
 
@@ -153,6 +153,18 @@
               <p class="section-label">Backup and portability</p>
               <h2>Export your data</h2>
               <p class="body-copy">Your tracker data is stored in this browser on this device. Export a backup before clearing browser data or switching machines.</p>
+            </div>
+            <div class="sync-readiness" aria-label="Cloud sync status">
+              <div>
+                <span class="status-pill">Local-first release</span>
+                <h3>Cloud sync is not connected yet.</h3>
+                <p>Renewal Desk keeps the first public release simple and private. Optional sync will be considered only after the backend is configured, tested with row-level security, and approved for public use.</p>
+              </div>
+              <ul class="feature-list compact">
+                <li>Current version: browser storage, JSON backup, CSV export</li>
+                <li>Future research: optional login, private cloud rows, data export, deletion controls</li>
+                <li>No analytics, paid locks, or forced account in this release</li>
+              </ul>
             </div>
             <div class="export-actions">
               <button class="button primary" id="exportJsonBtn" type="button">Export JSON</button>
