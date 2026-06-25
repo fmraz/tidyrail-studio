@@ -74,14 +74,14 @@ Do not configure paid email hosting until the website is live and support workfl
 
 ## Current DNS Verification Status
 
-As of 2026-06-25, GitHub Pages is configured for `tidyrailstudio.com` and VEDOS DNS records have been entered in the DNS editor. Public DNS still returned the previous VEDOS parking A records during the first verification pass:
+As of 2026-06-25, GitHub Pages is configured for `tidyrailstudio.com` and the authoritative VEDOS nameserver returns the GitHub Pages A, AAAA, and `www` CNAME records for the root domain. Some public resolver checks still returned the previous VEDOS parking A records during the first verification pass:
 
 ```text
 185.8.237.5
 185.8.237.6
 ```
 
-Before considering the domain live, verify that authoritative DNS returns the GitHub Pages records listed above and that no wildcard `*.tidyrailstudio.com` A records remain.
+The authoritative VEDOS nameserver still returned wildcard `*.tidyrailstudio.com` parking A records during verification. Before considering the domain clean, remove those wildcard records in VEDOS and verify that no wildcard A records remain.
 
 ## Hosting Options
 

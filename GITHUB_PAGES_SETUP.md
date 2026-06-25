@@ -11,7 +11,9 @@ Current status on 2026-06-25:
 - Publishing source is `main` branch, `/docs` folder.
 - Custom domain is set to `tidyrailstudio.com`.
 - HTTPS enforcement should wait until DNS and GitHub certificate provisioning are confirmed.
-- VEDOS DNS records were entered, but public DNS still returned old VEDOS parking records during the first verification pass.
+- VEDOS root and `www` DNS records are correct on the authoritative nameserver.
+- Some public resolver checks still returned old VEDOS parking records during the first verification pass.
+- Wildcard `*.tidyrailstudio.com` parking A records still need to be removed in VEDOS.
 
 ## Deployment Model
 
