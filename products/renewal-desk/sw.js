@@ -1,4 +1,4 @@
-const CACHE_NAME = "renewal-desk-0.1.1";
+const CACHE_NAME = "renewal-desk-0.1.3";
 const APP_SHELL = [
   "./",
   "./index.html",
