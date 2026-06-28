@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: blob: https://tidyrailstudio.com; script-src 'self' https://esm.sh; style-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co; font-src 'self' data:; worker-src 'self'; manifest-src 'self'" />
     <meta name="theme-color" content="#f7faff" />
     <meta name="format-detection" content="telephone=no" />
     <title>Tidyrail Studio | Free local-first productivity tools</title>
@@ -42,13 +43,32 @@
           <div class="actions">
             <a class="button primary" href="./downloads/renewal-desk-0.1.0-mvp.zip">Download Renewal Desk</a>
             <a class="button secondary" href="./apps/renewal-desk/index.html">Try the free web app</a>
-            <a class="button ghost" href="./roadmap/index.html">View roadmap</a>
+            <a class="button ghost" href="./security/index.html">Security posture</a>
           </div>
-          <p class="hero-note">Free today. No accounts, analytics, paid features, or artificial limits in the first public version.</p>
+          <p class="hero-note">Free today. No account requirement, analytics scripts, paid features, or artificial limits in the first public version.</p>
         </div>
         <div class="screenshot-frame hero-device">
           <img src="./assets/renewal-desk-dashboard.png" alt="Renewal Desk dashboard showing upcoming renewals and receipt status" />
         </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Trust and security summary">
+        <article class="trust-item">
+          <strong>Local-first by default</strong>
+          <span>Renewal Desk records stay in browser storage unless a future sync feature is explicitly enabled.</span>
+        </article>
+        <article class="trust-item">
+          <strong>No ad tracking</strong>
+          <span>The public site ships without advertising pixels, invasive analytics, or third-party tracking scripts.</span>
+        </article>
+        <article class="trust-item">
+          <strong>Portable data</strong>
+          <span>Users can export JSON backups and CSV files instead of being locked into one app surface.</span>
+        </article>
+        <article class="trust-item">
+          <strong>Security documented</strong>
+          <span>Public security, privacy, cookie, and support pages explain the current operating model.</span>
+        </article>
       </section>
 
       <section class="motion-principles" aria-label="Product principles">
@@ -142,7 +162,8 @@
           <p class="lead">The current release stores data in your browser and gives you portable exports. Future sync will only be added after the local-first release is stable and the backend is approved.</p>
           <div class="actions">
             <a class="button primary" href="./downloads/index.html">Get Renewal Desk</a>
-            <a class="button secondary" href="./privacy/index.html">Read privacy draft</a>
+            <a class="button secondary" href="./privacy/index.html">Read privacy policy</a>
+            <a class="button secondary" href="./security/index.html">Review security</a>
           </div>
         </div>
         <div class="card">
@@ -163,7 +184,7 @@
           </div>
           <div class="actions">
             <a class="button primary" href="./roadmap/index.html">View roadmap</a>
-            <a class="button secondary" href="./contact/index.html">Send feedback</a>
+            <a class="button secondary" href="./support/index.html">Get support</a>
           </div>
         </div>
       </section>
@@ -174,6 +195,7 @@
         <p>© <span data-current-year></span> Tidyrail Studio. Free local-first tools.</p>
         <div class="footer-links">
           <a href="./privacy/index.html">Privacy</a>
+          <a href="./security/index.html">Security</a>
           <a href="./terms/index.html">Terms</a>
           <a href="./contact/index.html">Contact</a>
           <a href="./press/index.html">Press</a>

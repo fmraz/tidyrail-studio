@@ -34,7 +34,7 @@ It runs locally in your browser, stores data on your device, and lets you export
 
 ## Reddit Draft
 
-I built a small local-first renewal tracker for subscriptions, warranties, service dates, and document expiry reminders. It runs in the browser, stores data locally, and exports JSON/CSV. I am looking for feedback on whether the core workflow is clear and what would make it worth paying for as a polished download.
+I built a small local-first renewal tracker for subscriptions, warranties, service dates, and document expiry reminders. It runs in the browser, stores data locally, and exports JSON/CSV. I am looking for feedback on whether the core workflow is clear, what feels confusing, and which free local-first improvements should come next.
 
 ## Short Video Script
 
@@ -42,4 +42,3 @@ I built a small local-first renewal tracker for subscriptions, warranties, servi
 2. "Add a subscription, warranty, service, or document date."
 3. "Renewal Desk shows what is due soon and which receipts are missing."
 4. "Everything stays local in your browser, and you can export a backup."
-

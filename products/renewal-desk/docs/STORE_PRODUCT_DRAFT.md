@@ -54,15 +54,15 @@ Current internal package:
 
 Before upload, create a final release-candidate zip and smoke test the extracted package.
 
-## Refund Policy Draft
+## Support Policy Draft
 
-If Renewal Desk does not run on your device, or if you bought it by mistake, contact support within 14 days. We will either help fix the issue or provide a refund where the storefront allows it.
+If Renewal Desk does not run on your device, contact support with the product version, browser, operating system, and a short description of what happened. The current release is free, so refund language should not be used.
 
 ## Customer Email Draft
 
 Subject: Your Renewal Desk download
 
-Thanks for buying Renewal Desk.
+Thanks for downloading Renewal Desk.
 
 Download the zip file, unzip it, and open `products/renewal-desk/index.html` in a modern browser. Your data is stored locally in that browser on your device, so use Export JSON to keep a backup.
 

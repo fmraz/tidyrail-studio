@@ -248,6 +248,7 @@ a {
   position: relative;
   min-height: calc(100vh - 82px);
   isolation: isolate;
+  overflow: clip;
   padding: 72px 0 68px;
 }
 
@@ -434,6 +435,40 @@ h3 {
   line-height: 1.45;
 }
 
+.trust-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  width: min(1180px, calc(100% - 32px));
+  max-width: calc(100vw - 32px);
+  margin: 18px auto 0;
+}
+
+.trust-item {
+  min-height: 112px;
+  border: 1px solid rgba(125, 148, 170, 0.18);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  box-shadow: 0 16px 44px rgba(30, 48, 72, 0.07), inset 0 1px rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px) saturate(1.24);
+  -webkit-backdrop-filter: blur(18px) saturate(1.24);
+}
+
+.trust-item strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.trust-item span {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .product-image img {
   max-height: 620px;
   object-fit: cover;
@@ -558,6 +593,44 @@ h3 {
   background: rgba(255, 255, 255, 0.7);
   color: var(--text);
   font-weight: 650;
+}
+
+.security-list {
+  display: grid;
+  gap: 12px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.security-list li {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid rgba(125, 148, 170, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.security-list strong {
+  color: var(--text);
+}
+
+.link-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.link-list a {
+  color: var(--accent-dark);
+  font-weight: 760;
+  text-decoration: none;
+}
+
+.link-list a:hover,
+.link-list a:focus-visible {
+  text-decoration: underline;
 }
 
 .band {
@@ -797,12 +870,17 @@ h3 {
   -webkit-backdrop-filter: blur(18px);
 }
 
+.notice-spaced {
+  margin-top: 16px;
+}
+
 @media (max-width: 1100px) {
   .hero,
   .product-spotlight,
   .grid.three,
   .grid.two,
-  .motion-principles {
+  .motion-principles,
+  .trust-strip {
     grid-template-columns: 1fr;
   }
 
@@ -952,7 +1030,8 @@ h3 {
 
   .hero,
   .section,
-  .motion-principles {
+  .motion-principles,
+  .trust-strip {
     width: calc(100% - 24px);
     max-width: calc(100vw - 24px);
   }

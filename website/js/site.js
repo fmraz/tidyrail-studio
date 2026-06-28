@@ -14,7 +14,13 @@ document.querySelectorAll(".nav").forEach((nav) => {
   toggle.type = "button";
   toggle.setAttribute("aria-controls", links.id);
   toggle.setAttribute("aria-expanded", "false");
-  toggle.innerHTML = "<span></span><span></span><span></span><span class=\"sr-only\">Menu</span>";
+  for (let index = 0; index < 3; index += 1) {
+    toggle.append(document.createElement("span"));
+  }
+  const toggleLabel = document.createElement("span");
+  toggleLabel.className = "sr-only";
+  toggleLabel.textContent = "Menu";
+  toggle.append(toggleLabel);
 
   toggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("is-open");
@@ -112,7 +118,9 @@ function mountLanguageSelector() {
   if (!footer || document.querySelector("[data-language-select]")) return;
   const label = document.createElement("label");
   label.className = "language-select";
-  label.innerHTML = "<span>Language</span>";
+  const labelText = document.createElement("span");
+  labelText.textContent = "Language";
+  label.append(labelText);
   const select = document.createElement("select");
   select.setAttribute("data-language-select", "");
   supportedLanguages.forEach((code) => {

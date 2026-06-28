@@ -161,3 +161,98 @@ Environment: local zip tooling and Node syntax check.
 - The rebuilt archive passed integrity checks.
 - The rebuilt archive contains 23 files including the release channel decision brief.
 - No external account, public release, sales setup, marketplace submission, or posting action was performed.
+
+## 2026-06-26 Supabase Gate and Package Refresh
+
+Environment: local Node syntax checks, browser-like adapter mock, local HTTP server at `http://127.0.0.1:4322/`, and zip tooling.
+
+## Checks Run
+
+- Added gated Supabase adapter methods while keeping local storage as the default.
+- Added a test-safe two-user RLS QA runner outside the packaged app.
+- Checked JavaScript syntax for the Renewal Desk app, sync adapter, service worker, and website scripts.
+- Ran a browser-like sync adapter smoke test for local mode, configured-but-disabled mode, enabled gate mode, local persistence, and cloud row mapping.
+- Served the website locally and confirmed the homepage, Renewal Desk app, sync adapter, ZIP, checksum, and auth-config example routes returned HTTP 200.
+- Rebuilt the release ZIP and verified archive integrity.
+- Verified the release ZIP checksum.
+
+## Results
+
+- Local-first mode remains the default when no auth config is present.
+- A present auth config does not enable cloud writes unless `enableRenewalDeskCloudSync: true` is set.
+- The enabled gate exposes Supabase methods for future local QA but does not automatically sync local records.
+- No JavaScript syntax errors were found.
+- The rebuilt archive passed integrity and checksum checks.
+- Cloud sync was not tested against Supabase because no approved test project is configured yet.
+
+## 2026-06-26 Free-First Distribution Alignment and HTTPS Recheck
+
+Environment: local documentation review, GitHub Pages API, public DNS, HTTP, and TLS checks.
+
+## Checks Run
+
+- Replaced active paid-release channel language with the current free-first distribution path.
+- Rebuilt `dist/renewal-desk-0.1.0-mvp.zip` from `products/renewal-desk`.
+- Copied the rebuilt ZIP to `website/downloads/` and `docs/downloads/`.
+- Regenerated SHA-256 checksum files for all three package locations.
+- Verified archive integrity and checksum validation for all package copies.
+- Rechecked public `http://tidyrailstudio.com/`.
+- Rechecked public `https://tidyrailstudio.com/`.
+- Checked the live TLS certificate subject and subject alternative names.
+- Checked GitHub Pages API status for `fmraz/tidyrail-studio`.
+- Attempted a GitHub Pages custom-domain remove/re-add reset through the API while keeping `https_enforced` disabled.
+- Rechecked DNS records for root `A`/`AAAA` and `www` CNAME targets.
+
+## Results
+
+- HTTP still returned GitHub Pages content with status 200.
+- HTTPS still failed host-name validation because the served certificate is for GitHub domains, not `tidyrailstudio.com`.
+- GitHub Pages API still reports `https_certificate.state: bad_authz` with description `The ACME authorization is in a bad state. We need to start over.`
+- The API reset attempt returned `The certificate has not finished being issued`; custom domain configuration remained `tidyrailstudio.com`.
+- Root `A`/`AAAA` records and `www` CNAME still point at GitHub Pages targets.
+- The rebuilt package checksums were regenerated in the external `.sha256` files next to each ZIP copy.
+
+## Remaining QA Before Public Release
+
+- Retry the custom-domain certificate reset from GitHub Pages Settings UI.
+- Enable HTTPS only after GitHub serves a certificate valid for `tidyrailstudio.com`.
+
+## 2026-06-26 Service Worker Cache Hardening QA
+
+Environment: local static website served from `http://127.0.0.1:4324/`, in-app Browser DOM/console checks, local Google Chrome headless screenshots, Node syntax checks, sync-adapter smoke test, and zip tooling.
+
+## Checks Run
+
+- Found that a previously used local origin could still show an older app shell through the old cache-first service worker.
+- Changed the Renewal Desk service worker to network-first with cached fallback and bumped the cache to `renewal-desk-0.1.4`.
+- Added immediate service worker activation and client claiming.
+- Removed remaining paid-validation wording from the launch draft.
+- Removed negative letter spacing from product, website, and docs app CSS copies.
+- Checked JavaScript syntax for app, sync adapter, and service worker files across product, website, and docs copies.
+- Ran the Renewal Desk sync-adapter smoke test.
+- Rebuilt `dist/renewal-desk-0.1.0-mvp.zip`, copied it to website/docs download folders, verified archive integrity, and verified SHA-256 checksums.
+- Tested a fresh local origin in the in-app Browser at desktop width: page identity, non-empty dashboard, local sync-adapter marker, add item, search, export readiness status, and console health.
+- Tested mobile width at 390px in the in-app Browser and checked document width stayed within the viewport.
+- Captured local Chrome screenshots for desktop and mobile visual evidence.
+
+## Results
+
+- No JavaScript syntax errors were found.
+- Sync adapter tests passed in local mode, configured-disabled mode, enabled-gate mode, and cloud-row mapping.
+- Fresh-origin browser QA reported `data-sync-adapter="local"`.
+- Add item and search returned the expected Renewal Desk record.
+- Export sync readiness showed the expected live status message.
+- No relevant browser console warnings or errors were captured during the tested flows.
+- Mobile document width stayed within the 390px viewport.
+- External `.sha256` files were regenerated next to each rebuilt ZIP copy.
+
+## Tooling Notes
+
+- In-app Browser screenshot capture timed out on `Page.captureScreenshot`, matching an earlier local tooling limitation.
+- Local Google Chrome headless wrote desktop and mobile screenshot files, but the Chrome helper process needed timeout handling after writing the mobile screenshot.
+
+## Remaining QA Before Public Release
+
+- Retry the custom-domain certificate reset from GitHub Pages Settings UI.
+- Enable HTTPS only after GitHub serves a certificate valid for `tidyrailstudio.com`.
+- Optional assistive-technology screen-reader spot check if available.

@@ -2,69 +2,57 @@
 
 Prepared: 2026-06-25
 
-Status: founder approval needed before any public release, sales setup, account creation, marketplace submission, or external posting.
+Status: founder approval needed before any public release, account creation, marketplace submission, or external posting.
 
 ## Recommendation
 
-Use a two-step release path:
+Use a free-first release path:
 
-1. **Primary sales channel:** Gumroad paid digital download for the packaged Renewal Desk zip.
-2. **Awareness channel after the sales/download URL exists:** Product Hunt launch page.
+1. **Primary channel:** Tidyrail Studio website with the hosted Renewal Desk web app and a direct free ZIP download.
+2. **Secondary channel after HTTPS is stable:** GitHub Releases for transparent free downloads if the repository is approved for public release.
+3. **Awareness channel after the website/download URL is final:** Product Hunt or relevant communities only after founder approval.
 
-This is the simplest path for a first small paid utility because Gumroad can host a downloadable product, has no monthly fee, and currently presents itself as a merchant of record. Product Hunt should be treated as a traffic and feedback channel, not as the place where the product is sold.
+This matches the current Tidyrail Studio strategy: free products first under one central website, no payment processing, no subscriptions, no locked Pro features, and no artificial limits. Product Hunt should be treated as a traffic and feedback channel, not as a release host.
 
 ## Why This Path
 
 - Renewal Desk is already packaged as `dist/renewal-desk-0.1.0-mvp.zip`.
 - The package checksum for founder review is stored next to the zip in `dist/renewal-desk-0.1.0-mvp.zip.sha256`.
-- The product is a small downloadable static utility, so a hosted checkout/download page is enough for the first release.
-- A direct sales channel avoids building custom commerce, licensing, hosting, analytics, or account systems before demand is proven.
-- Product Hunt requires a live URL before launch submission, so it should come after the product page or checkout page exists.
+- The public website already has routes for the hosted web app, download page, ZIP package, and checksum.
+- A direct free download avoids custom commerce, licensing, paid storefronts, analytics, and account systems before demand is proven.
+- Product Hunt requires a live URL before launch submission, so it should come after the product page and download URL are stable.
 
-## Current External Facts Checked
+## Current External State
 
-- Gumroad's official pricing page currently lists **10% + $0.50** per direct/profile transaction and **30%** when customers find and buy through Gumroad Discover.
-- Gumroad currently describes itself as a merchant of record for tax management.
-- Lemon Squeezy's official pricing page currently lists **5% + $0.50** platform pricing, with possible additional payment-method, international, and subscription-related fees in its docs.
-- Lemon Squeezy also describes itself as a merchant of record.
-- Product Hunt's official launch guide says products are submitted with a product URL, can be scheduled ahead, and newly created accounts may need time before posting.
-- GitHub Releases can package release notes and downloadable binary files, but it is better suited to free/open-source distribution than a first paid checkout.
-
-Sources checked on 2026-06-25:
-
-- https://gumroad.com/pricing
-- https://gumroad.com/help/article/66-gumroads-fees
-- https://www.lemonsqueezy.com/pricing
-- https://docs.lemonsqueezy.com/help/getting-started/fees
-- https://www.producthunt.com/launch
-- https://www.producthunt.com/launch/preparing-for-launch
-- https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+- `tidyrailstudio.com` is configured for GitHub Pages.
+- HTTP has served the GitHub Pages site in prior QA.
+- HTTPS enforcement remains blocked until GitHub Pages issues a matching certificate for the custom domain.
+- As of 2026-06-26, GitHub Pages API still reports `https_certificate.state: bad_authz`, HTTPS still serves a GitHub wildcard certificate, and an API remove/re-add retry returned `The certificate has not finished being issued`.
+- No public launch submission, external posting, marketplace submission, or paid storefront setup has been approved.
 
 ## Alternatives Considered
 
 | Channel | Fit | Main Tradeoff | Recommendation |
 |---|---|---|---|
-| Gumroad | Strong fit for a first digital download | Higher direct-sale platform fee than some alternatives | Use first if founder approves |
-| Lemon Squeezy | Strong fit for software sales and merchant-of-record flow | More setup complexity for a tiny first MVP | Keep as backup if Gumroad is rejected |
-| Product Hunt | Useful launch/feedback surface | Needs a live URL and is not a checkout channel | Use after checkout/download page exists |
-| GitHub Releases | Good for free downloadable releases | Weak fit for paid distribution and non-technical buyers | Use only for free/open-source distribution |
-| Itch.io | Can host downloadable digital products | Audience and positioning skew less business-utility focused | Defer |
-| Ko-fi Shop | Lightweight digital sales option | Less purpose-built for software product releases | Defer |
+| Tidyrail Studio website | Best first fit for the free-first strategy | Needs stable HTTPS before broad public sharing | Use first |
+| GitHub Releases | Good for transparent free downloadable releases | Requires approval for public repository/release workflow | Use after approval if public repo is desired |
+| Product Hunt | Useful launch/feedback surface | Needs final live URL and founder approval before submission | Prepare only after HTTPS is stable |
+| App stores | Useful later for native/mobile distribution | Requires platform builds, review, possible fees, and more QA | Defer |
+| Paid storefronts | Not aligned with current strategy | Adds payments and paid-download copy | Do not use now |
 
 ## Founder Approval Needed
 
-Approve one concrete path before any external action:
+Approve one concrete path before any external launch action:
 
-1. Create a Gumroad product page for Renewal Desk.
-2. Set the launch price: recommended **$12** for the MVP release candidate.
-3. Use `dist/renewal-desk-0.1.0-mvp.zip` as the downloadable file.
-4. Publish the Gumroad page only after founder review.
-5. Prepare Product Hunt only after a live sales/download URL exists.
+1. Publicly announce the Tidyrail Studio website and Renewal Desk download after HTTPS is valid.
+2. Create a public GitHub Release for `dist/renewal-desk-0.1.0-mvp.zip` if transparent versioned downloads are desired.
+3. Prepare Product Hunt only after the final website/download URL exists and launch copy is reviewed.
 
 ## Do Not Do Yet
 
 - Do not create external accounts in automation unless the founder explicitly approves that exact action.
 - Do not enter payment details.
+- Do not add payment processing, paid downloads, subscriptions, locked Pro features, or artificial limits.
 - Do not publish a product page.
 - Do not submit to Product Hunt, Reddit, marketplaces, directories, or social media.
 - Do not claim users, revenue, downloads, reviews, testimonials, or outcomes.

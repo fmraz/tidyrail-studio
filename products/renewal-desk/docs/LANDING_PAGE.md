@@ -30,13 +30,11 @@ Renewal dates often live in inboxes, receipts, calendars, notes, and memory. Tha
 
 Renewal Desk stores MVP data locally in your browser on your device. It does not require an account, send tracker data to a server, or include analytics scripts.
 
-## Pricing Draft
+## Availability
 
-Suggested launch price: $12-19 one-time.
+Renewal Desk is free in the current release strategy.
 
-Launch discount idea: $9 early version while the product is still being polished.
-
-Do not publish pricing or accept payment until the founder approves the sales channel.
+Do not add paid downloads, subscriptions, locked Pro features, artificial limits, checkout links, or payment processing.
 
 ## FAQ
 
@@ -55,4 +53,3 @@ No. The MVP is local to the browser and device where it is used.
 **Is it a financial tool?**
 
 No. It is a date and record organizer. It does not provide financial advice.
-

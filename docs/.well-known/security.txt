@@ -1,0 +1,5 @@
+Contact: https://tidyrailstudio.com/contact/
+Policy: https://tidyrailstudio.com/security/
+Preferred-Languages: en, cs
+Canonical: https://tidyrailstudio.com/.well-known/security.txt
+Expires: 2027-06-28T00:00:00Z

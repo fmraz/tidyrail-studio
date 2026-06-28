@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: blob: https://tidyrailstudio.com; script-src 'self' https://esm.sh; style-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co; font-src 'self' data:; worker-src 'self'; manifest-src 'self'" />
     <meta name="theme-color" content="#f7faff" />
     <meta name="format-detection" content="telephone=no" />
     <title>Renewal Desk</title>
@@ -247,10 +248,6 @@
 
     <script src="./src/sync-adapter.js"></script>
     <script src="./src/app.js"></script>
-    <script>
-      if ("serviceWorker" in navigator && location.protocol !== "file:") {
-        navigator.serviceWorker.register("./sw.js").catch(() => {});
-      }
-    </script>
+    <script src="./src/register-sw.js"></script>
   </body>
 </html>

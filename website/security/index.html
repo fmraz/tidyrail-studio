@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; img-src 'self' data: blob: https://tidyrailstudio.com; script-src 'self' https://esm.sh; style-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co; font-src 'self' data:; worker-src 'self'; manifest-src 'self'" />
+    <meta name="theme-color" content="#f7faff" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Security | Tidyrail Studio</title>
+    <meta name="description" content="Security posture and vulnerability reporting for Tidyrail Studio." />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="../index.html" aria-label="Tidyrail Studio home">
+          <span class="brand-mark">T</span>
+          <span><strong>Tidyrail Studio</strong><span>Free local-first tools</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="../products/index.html">Products</a>
+          <a href="../downloads/index.html">Downloads</a>
+          <a href="../roadmap/index.html">Roadmap</a>
+          <a href="../support/index.html">Support</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <h1>Security posture.</h1>
+        <p class="lead">Tidyrail Studio keeps the current release intentionally small: static pages, local-first product data, no advertising scripts, and no active cloud account system until the backend is approved and tested.</p>
+      </section>
+
+      <section class="section product-spotlight">
+        <div>
+          <h2>Current website baseline</h2>
+          <p class="lead">The public site is built as static HTML, CSS, and JavaScript. Browser-side protections are included in every HTML page, while HTTPS enforcement depends on GitHub Pages finishing a valid certificate for the custom domain.</p>
+          <div class="actions">
+            <a class="button primary" href="../privacy/index.html">Read privacy policy</a>
+            <a class="button secondary" href="../support/index.html">Get support</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Security controls</h3>
+          <ul class="security-list">
+            <li><strong>Content Security Policy</strong><span>Pages restrict scripts, forms, images, workers, and connection targets to the site and approved future Supabase endpoints.</span></li>
+            <li><strong>Local-first storage</strong><span>Renewal Desk records are stored in this browser by default and can be exported by the user.</span></li>
+            <li><strong>No service keys in frontend code</strong><span>Future cloud sync is gated and must not expose privileged Supabase service role keys in public assets.</span></li>
+            <li><strong>No ad or tracking pixels</strong><span>The public release does not include advertising networks or invasive analytics scripts.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="text-page">
+        <h2>Report a vulnerability</h2>
+        <p>Please avoid posting sensitive exploit details publicly. For non-sensitive product issues, use the public repository issue tracker. A dedicated security email will be published only after mail handling for the domain is ready.</p>
+        <div class="link-list">
+          <a href="https://github.com/fmraz/tidyrail-studio/issues" target="_blank" rel="noopener noreferrer">Open a public GitHub issue</a>
+          <a href="../contact/index.html">Contact and support guidance</a>
+        </div>
+
+        <h2>HTTPS status</h2>
+        <p>The DNS records point to GitHub Pages. HTTPS enforcement should be enabled in GitHub Pages only after the certificate presented for <strong>tidyrailstudio.com</strong> is valid for that hostname.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© <span data-current-year></span> Tidyrail Studio.</p>
+        <div class="footer-links">
+          <a href="../privacy/index.html">Privacy</a>
+          <a href="./index.html">Security</a>
+          <a href="../terms/index.html">Terms</a>
+          <a href="../contact/index.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/site.js"></script>
+  </body>
+</html>

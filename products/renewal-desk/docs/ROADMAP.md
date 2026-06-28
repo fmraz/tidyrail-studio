@@ -24,8 +24,10 @@
 ## Current Release Candidate Gaps
 
 - No local product QA blockers remain for the static MVP release candidate.
+- Returning-browser stale-cache behavior was fixed by switching the service worker to network-first with cached fallback.
 - Release channel decision brief is prepared in `docs/RELEASE_CHANNEL_DECISION.md`.
-- Public release, payment setup, account creation, marketplace submission, or external posting still require a concrete approved destination and action.
+- Public release, account creation, marketplace submission, or external posting still require a concrete approved destination and action.
+- Payment setup, paid downloads, subscriptions, locked Pro features, and artificial limits are out of scope for the current free-first strategy.
 
 ## Later Ideas
 
