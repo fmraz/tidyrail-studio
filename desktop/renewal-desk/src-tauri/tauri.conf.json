@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Renewal Desk",
+  "version": "0.1.0",
+  "identifier": "com.tidyrailstudio.renewaldesk",
+  "build": {
+    "frontendDist": "../../../products/renewal-desk"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Renewal Desk",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 960,
+        "minHeight": 640,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["dmg", "nsis", "appimage", "deb"],
+    "publisher": "Tidyrail Studio",
+    "shortDescription": "Local-first renewal tracker",
+    "longDescription": "Renewal Desk helps track subscriptions, warranties, renewals, service dates, and document expiry reminders with local-first storage.",
+    "category": "Productivity"
+  }
+}

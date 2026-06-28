@@ -1,0 +1,14 @@
+{
+  "name": "renewal-desk-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Desktop packaging scaffold for Renewal Desk.",
+  "scripts": {
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "qa:desktop": "node ../../scripts/qa-desktop-packaging.mjs"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.3"
+  }
+}
