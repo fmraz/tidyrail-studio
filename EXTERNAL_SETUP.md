@@ -4,7 +4,7 @@ Current strategy: free products first. Do not set up paid storefronts, payment p
 
 Founder instruction: domain purchase should happen through the founder's existing VEDOS account. Account credentials and payment details are stored outside the public repository.
 
-VEDOS status on 2026-06-25: the `tidyrailstudio.com` domain order was created without hosting or paid add-ons. VEDOS now shows the order as paid, and the domain appears in the domain list with provisioning pending.
+VEDOS status on 2026-06-26: the `tidyrailstudio.com` domain is active and its root plus `www` DNS records point to GitHub Pages. Public HTTP works. HTTPS is still blocked by GitHub Pages certificate provisioning, not by VEDOS DNS.
 
 ## Recommended Setup Order
 
@@ -29,11 +29,11 @@ Notes:
 - VEDOS checkout on 2026-06-25 showed `tidyrail.studio` at 1252.35 CZK with VAT for one year, which is too high for the current "cheap essentials only" rule.
 - Cloudflare Registrar markets at-cost registration and renewal with no add-on fees, but checkout availability and exact price must be confirmed in account.
 
-Recommendation: buy `tidyrailstudio.com` first through VEDOS if the checkout remains at the confirmed low price and no paid add-ons are selected.
+The current domain choice is complete: use `tidyrailstudio.com` and do not rename Tidyrail Studio.
 
-Payment approval is required before buying any future domain. For the current VEDOS order, the next step is waiting for provisioning to complete, then configuring DNS/hosting.
+Payment approval is required before buying any future domain. For the current VEDOS domain, the next external setup blocker is GitHub Pages HTTPS certificate recovery.
 
-## Domain Purchase Handoff
+## Future Domain Purchase Handoff
 
 Recommended registrar:
 
@@ -69,7 +69,7 @@ Current distribution should use:
 - GitHub release if a public repository is approved later.
 - Product Hunt page only after the website is live.
 
-## Storefront Setup Handoff
+## Free Download Setup Handoff
 
 Recommended free product settings for first draft:
 
@@ -78,7 +78,7 @@ Recommended free product settings for first draft:
 - Product type: Digital download
 - Price: Free
 - Fulfillment file: `dist/renewal-desk-0.1.0-mvp.zip` only after final release-candidate QA
-- Refund policy draft: 14-day refund for technical issues or accidental purchase, subject to storefront capabilities
+- Support policy draft: ask users to include product version, browser, operating system, and a short issue description
 - Public launch: disabled/unpublished until founder gives concrete approval
 - Product draft file: `products/renewal-desk/docs/STORE_PRODUCT_DRAFT.md`
 
@@ -88,7 +88,7 @@ Stop before:
 - Publishing the product.
 - Activating paid plans or paid marketing features.
 - Sending launch emails.
- - Adding payment processing.
+- Adding payment processing.
 
 ### 3. GitHub
 

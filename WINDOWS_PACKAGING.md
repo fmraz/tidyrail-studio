@@ -1,6 +1,8 @@
 # Windows Packaging
 
-Status: planned, not built.
+Status: Tauri scaffold prepared, not built.
+
+See `DESKTOP_PACKAGING_READINESS.md` for shared identity, QA gates, and copy rules.
 
 ## Target
 
@@ -10,6 +12,8 @@ Professional Windows installer after the desktop shell is ready.
 
 - `.exe` installer through Tauri bundler
 - `.msi` if store or enterprise distribution benefits from it
+
+Current scaffold: `desktop/renewal-desk`.
 
 ## Signing
 
@@ -23,3 +27,12 @@ Code signing certificate is recommended for trust and SmartScreen reputation. Ce
 - release notes
 - privacy policy URL
 - Microsoft Store draft if store distribution is pursued
+- AppUserModelID: `TidyrailStudio.RenewalDesk`
+
+## Local Preflight
+
+```sh
+node scripts/qa-desktop-packaging.mjs
+```
+
+The first real Windows build still requires Rust, Windows Tauri prerequisites, final icon assets, installer smoke testing, uninstall testing, and a signing decision.

@@ -1,6 +1,8 @@
 # macOS DMG Packaging
 
-Status: planned, not built.
+Status: Tauri scaffold prepared, not built.
+
+See `DESKTOP_PACKAGING_READINESS.md` for shared identity, QA gates, and copy rules.
 
 ## Target
 
@@ -10,6 +12,8 @@ Renewal Desk should ship as a professional `.dmg`, not a ZIP, when the macOS des
 
 Tauri desktop shell with the existing web app core.
 
+Current scaffold: `desktop/renewal-desk`.
+
 ## DMG Requirements
 
 - `.app` bundle inside `.dmg`
@@ -18,6 +22,7 @@ Tauri desktop shell with the existing web app core.
 - checksum
 - release notes
 - privacy policy URL
+- bundle identifier: `com.tidyrailstudio.renewaldesk`
 
 ## Signing and Notarization
 
@@ -31,3 +36,11 @@ Manual requirements:
 - Hardened runtime settings
 
 Do not distribute unsigned macOS builds as the primary public download.
+
+## Local Preflight
+
+```sh
+node scripts/qa-desktop-packaging.mjs
+```
+
+The first real `.dmg` build still requires Rust, macOS Tauri prerequisites, final icon assets, Developer ID signing, notarization, and a clean-machine Gatekeeper test.

@@ -54,3 +54,19 @@
 - Added public-page metadata for strict-origin referrer handling, mobile theme color, and disabled automatic telephone detection where it could alter layout.
 - Improved mobile navigation behavior so the compact menu closes on outside click, link click, and Escape.
 - Re-triggered GitHub Pages certificate provisioning by safely re-applying the custom domain. The custom domain returned to `tidyrailstudio.com`, HTTP remains live, and Enforce HTTPS remains off until GitHub issues a matching certificate.
+- Chose Renewal Desk free-first release alignment as the primary focus because active planning docs still contained paid-storefront and Gumroad guidance that conflicted with the current strategy.
+- Rewrote Renewal Desk portfolio, landing, store draft, roadmap, and release-channel docs around the free central website/download path; monetization remains deferred and no payment, subscription, Pro, or artificial limit path is active.
+- Rebuilt the Renewal Desk release ZIP after documentation changes and copied it to website/docs download locations; later visual alignment work updated the package again, with current SHA-256 `cd6142cc6c693e0fcd81949be6c7f800041a0c0e7aa2204a9dceb60db8f76886`.
+- Rechecked public HTTP, HTTPS, DNS, TLS, and GitHub Pages API state for `tidyrailstudio.com`: HTTP still works, DNS points to GitHub Pages, HTTPS still serves a GitHub wildcard certificate, and Pages API still reports `bad_authz`.
+- Attempted a GitHub Pages custom-domain remove/re-add reset through the API after consulting the Pages API contract for `cname: null`; GitHub returned `The certificate has not finished being issued`, so the next certificate reset should be done manually in GitHub Pages Settings UI.
+- Aligned the Renewal Desk app UI with the Tidyrail Studio website glass visual system and refreshed the website/deploy product screenshot assets so the website no longer displays the older green-gray app style.
+- Chose Renewal Desk release-candidate cache hardening as the primary focus because a browser QA pass showed the old cache-first service worker could keep serving a stale app shell on a previously used origin.
+- Changed the Renewal Desk service worker from cache-first to network-first with cached fallback, bumped the cache to `renewal-desk-0.1.4`, and added immediate activation/claiming for returning-browser updates.
+- Removed the remaining paid-validation sentence from the Renewal Desk launch copy and removed negative letter spacing from the app CSS in product, website, and docs copies.
+- Rebuilt the Renewal Desk ZIP and copied it to the website/docs download folders; current SHA-256 is `5940ea020f2e8137f67f3e34d767084599b0d59d4b947090a9857123113ba3c4`.
+- Rechecked `tidyrailstudio.com` HTTPS on 2026-06-28: DNS root and `www` still point to GitHub Pages, HTTP routes work, GitHub Pages API still reports `bad_authz`, and TLS still serves a `*.github.io` certificate, so Enforce HTTPS remains off.
+- Chose Renewal Desk design unification as the primary focus because the company website already had the Tidyrail Studio glass direction but the product app needed the same system applied throughout.
+- Generated a Renewal Desk dashboard concept as implementation reference, then implemented the design in code-native CSS rather than shipping a static UI image.
+- Updated Renewal Desk sidebar, navigation, topbar, search, stat cards, panels, table rows, empty states, item cards, sync readiness panel, dialogs, focus states, and mobile/tablet breakpoints to match the Tidyrail Studio Liquid Glass system.
+- Replaced the narrow mobile horizontal nav with a 2x2 glass command grid after QA showed the previous mobile nav could visually clip the last item.
+- Rebuilt the Renewal Desk ZIP and copied it to the website/docs download folders; current SHA-256 is `7dfaee16ddef59f2013800d269911e81d55fb37b9780f9ffbd525e20ec4c21bb`.

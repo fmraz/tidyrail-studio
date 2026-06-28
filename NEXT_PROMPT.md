@@ -5,7 +5,7 @@ Nezačínej od nuly. Nepřejmenovávej Tidyrail Studio. Neopouštěj Renewal Des
 Komunikační pravidla:
 
 - S founderem komunikuj pouze česky.
-- Veškeré veřejné produktové texty, UI, dokumentace, web copy, changelogy, policies a marketingové materiály piš nejdříve anglicky.
+- Veškeré veřejné produktové texty, UI, dokumentace, web copy, changelogy, policies a marketingové materiály piš anglicky.
 
 Aktuální stav:
 
@@ -14,69 +14,68 @@ Aktuální stav:
 - Doména: `tidyrailstudio.com`.
 - GitHub repo: `fmraz/tidyrail-studio`.
 - GitHub Pages source: větev `main`, složka `/docs`.
-- Veřejný HTTP web funguje: `http://tidyrailstudio.com/`.
-- HTTPS zatím není hotové, protože GitHub Pages stále nevrací certifikát odpovídající `tidyrailstudio.com`.
-- VEDOS DNS root A/AAAA a `www` CNAME míří na GitHub Pages.
-- VEDOS wildcard záznamy už autoritativní nameserver nevrací.
+- Source webu: `website/`.
+- Deploy mirror: `docs/`.
+- Renewal Desk source: `products/renewal-desk/`.
+- Veřejný HTTP web funguje.
+- HTTPS stále není hotové: GitHub Pages API naposledy hlásilo `bad_authz` a TLS stále servíruje certifikát pro `*.github.io`, proto Enforce HTTPS zůstává vypnuté.
 - Produkty jsou zatím zdarma. Neimplementuj platby, subscriptions, Pro funkce ani umělá omezení.
 
 Co už je hotové:
 
-- Web má nový originální iOS/macOS-inspired glass design: světlé cool-white pozadí, modré primární CTA, teal detaily, floating glass header, pill buttons a jemnou hloubku.
-- Homepage má scroll-driven Three.js prezentaci.
-- Mobilní layout byl opraven proti horizontálnímu přetečení; Chrome DevTools mobile emulation na 390px potvrdila `documentElement.scrollWidth === viewport width`.
-- Mobilní menu funguje jako kompaktní hamburger a zavírá se přes outside click, link click i Escape.
-- Public HTML stránky obsahují `strict-origin-when-cross-origin` referrer metadata, theme color a mobile format-detection metadata.
-- Downloads stránka má privacy-friendly detekci OS/zařízení a manuální výběr platformy.
-- Renewal Desk je dostupný jako free web app a statický balíček.
-- Renewal Desk source obsahuje PWA manifest, service worker a sync adapter scaffold.
-- Renewal Desk je jasně označený jako local-first release: data zůstávají v browser storage, k dispozici je JSON backup/import a CSV export.
-- Account stránky existují jako připravené scaffold stránky, ale nejsou hlavní veřejná release funkce bez Supabase konfigurace.
-- Auth JavaScript scaffold existuje pro Supabase, ale je záměrně neaktivní bez konfigurace.
-- Lokalizační scaffold existuje v `website/i18n/translations.json`.
-- Strategické dokumenty pro auth, databázi, packaging, store listingy, ikony, lokalizaci, patching, verzování, support a improvement backlog existují.
-- Renewal Desk ZIP byl přebalen po HTML metadata update a je dostupný v `dist/renewal-desk-0.1.0-mvp.zip` a `website/downloads/renewal-desk-0.1.0-mvp.zip`.
-- `website/` a `docs/` mají být synchronizované po posledních úpravách.
-
-Důležité soubory:
-
-- `website/` - zdroj webu.
-- `docs/` - GitHub Pages deploy mirror.
-- `products/renewal-desk/` - zdroj Renewal Desk.
-- `dist/renewal-desk-0.1.0-mvp.zip` - static release package.
-- `website/downloads/renewal-desk-0.1.0-mvp.zip` - veřejná download kopie.
-- `website/downloads/renewal-desk-0.1.0-mvp.zip.sha256` - checksum.
-- `products/renewal-desk/src/sync-adapter.js` - local-first sync adapter scaffold.
-- `website/apps/renewal-desk/src/sync-adapter.js` - public app copy of the adapter scaffold.
-- `DESIGN_SYSTEM.md`
-- `WEBSITE_PLAN.md`
-- `QA_CHECKLIST.md`
-- `FIRST_PRODUCT_RELEASE_CHECKLIST.md`
-- `CHANGELOG.md`
-- `DECISION_LOG.md`
-- `SUPABASE_SETUP.md`
-- `RENEWAL_DESK_SYNC_PLAN.md`
-- `AUTH_STRATEGY.md`
-- `DATABASE_SCHEMA.md`
-- `DOWNLOAD_STRATEGY.md`
-- `LOCALIZATION_PLAN.md`
-- `MAC_DMG_PACKAGING.md`
-- `WINDOWS_PACKAGING.md`
-- `LINUX_PACKAGING.md`
-- `STORE_DISTRIBUTION_PLAN.md`
-- `SUPPORT_WORKFLOW.md`
-- `IMPROVEMENT_BACKLOG.md`
+- Hlavní web má Tidyrail Studio iOS/macOS-inspired Liquid Glass design se scroll-driven Three.js homepage.
+- Renewal Desk web app byla sjednocena se stejným Liquid Glass design systémem:
+  - translucent sidebar
+  - glass command navigation
+  - elevated topbar
+  - search field with code-native icon styling
+  - blue primary CTA
+  - stat cards with soft icon tiles
+  - glass table container
+  - glass timeline/receipt panels
+  - polished item cards
+  - redesigned export/sync readiness panel
+  - polished dialog and focus states
+  - responsive mobile/tablet breakpoints
+  - mobile 2x2 navigation grid
+- Renewal Desk zůstává local-first:
+  - browser local storage
+  - JSON backup/import
+  - CSV export
+  - sync readiness export
+  - Supabase sync adapter scaffold gated behind config
+- ZIP byl přebalen po posledním design refreshi:
+  - `dist/renewal-desk-0.1.0-mvp.zip`
+  - `website/downloads/renewal-desk-0.1.0-mvp.zip`
+  - aktuální website checksum: `7dfaee16ddef59f2013800d269911e81d55fb37b9780f9ffbd525e20ec4c21bb`
+- `website/` a `docs/` jsou synchronizované přes checksum rsync.
+- Desktop packaging scaffold existuje v `desktop/renewal-desk/`.
+- Test scripts existují v `scripts/`.
+- Strategické dokumenty pro Supabase, RLS QA, desktop packaging, store distribution, support, versioning a maintenance existují.
 
 Co bylo naposledy otestováno:
 
-- JavaScript syntax check prošel pro website scripts, Renewal Desk app, sync adapter a service worker.
+- `node --check` prošel pro Renewal Desk app, sync adapter, service worker a website scripts.
 - `unzip -t website/downloads/renewal-desk-0.1.0-mvp.zip` prošel.
-- Lokální HTTP routy vrací 200: homepage, downloads, products, Renewal Desk product page, Renewal Desk app, sitemap, robots, PWA manifest, service worker, ZIP a checksum.
-- Desktop screenshot homepage vizuálně prošel.
-- Desktop screenshot downloads stránky vizuálně prošel.
-- Mobilní screenshot přes Chrome DevTools emulaci vizuálně prošel.
-- HTTPS kontrola stále selhává na certifikátu, proto nezapínej Enforce HTTPS.
-- GitHub Pages cert provisioning byl retriggernut bezpečným re-apply custom domain postupem, ale certifikát ještě není vydaný.
+- `website/` a `docs/` jsou shodné.
+- In-app Browser desktop QA:
+  - route `/apps/renewal-desk/` načtena
+  - title `Renewal Desk`
+  - dashboard není prázdný
+  - console warnings/errors prázdné
+  - sample data fungují
+  - Export view funguje
+  - sync readiness button existuje
+- Chrome CDP desktop QA:
+  - 1440px screenshot prošel vizuálně
+  - `documentElement.scrollWidth === clientWidth`
+  - sample data zobrazují 3 rows
+- Chrome CDP mobile QA:
+  - 390px screenshot prošel vizuálně
+  - `documentElement.scrollWidth === 390`
+  - `body.scrollWidth === 390`
+  - nav grid nepřetéká
+- Lokální server byl použit na portu 4325; na konci další session ho po testech zastav.
 
 Co není hotové:
 
@@ -87,16 +86,31 @@ Co není hotové:
 - Native desktop buildy: macOS `.dmg`, Windows installer, Linux package.
 - iOS/Android app shell a widgety.
 - Store submissions.
+- Finální právní review policies/terms.
 
 Další priorita:
 
-1. Znovu ověř `https://tidyrailstudio.com/`.
-2. Jakmile HTTPS funguje s validním certifikátem pro `tidyrailstudio.com`, zapni Enforce HTTPS v GitHub Pages.
-3. Pokud HTTPS stále nefunguje, zkontroluj GitHub Pages Settings UI pro přesný certifikátový stav a případné tlačítko retry/remove custom domain.
-4. Nečekej pasivně na HTTPS: pokračuj v Renewal Desk first-product práci.
-5. Připrav Supabase test-safe konfiguraci podle `SUPABASE_SETUP.md`, ale necommituj `auth-config.js` ani žádné secrets.
-6. Připrav RLS dvouuživatelský QA postup a poté cloud sync adapter za config gate.
-7. Potom pokračuj desktop packaging přípravou pro macOS `.dmg`, Windows installer a Linux package.
+1. Zkontroluj git stav; respektuj existující necommitnuté změny.
+2. Znovu ověř `https://tidyrailstudio.com/`.
+3. Pokud HTTPS certifikát konečně odpovídá `tidyrailstudio.com`, zapni Enforce HTTPS v GitHub Pages a ověř routy.
+4. Pokud HTTPS stále nefunguje, nezapínej Enforce HTTPS; pokračuj v produktu.
+5. Pokračuj Renewal Desk release-candidate prací:
+   - otestuj JSON export/import na novém designu
+   - otestuj CSV export
+   - otestuj Add/Edit/Delete flow
+   - ověř dialog na mobilu
+   - ověř service worker update flow
+6. Potom pokračuj Supabase test-safe setupem:
+   - necommituj `auth-config.js`
+   - necommituj secrets
+   - připrav RLS dvouuživatelský QA postup
+   - cloud writes nech vypnuté, dokud RLS QA neprojde
+7. Potom pokračuj desktop packaging:
+   - Tauri preflight
+   - macOS `.dmg` plan
+   - Windows installer plan
+   - Linux AppImage/deb plan
+8. Teprve po silném Renewal Desk RC plánuj další produkt.
 
 Omezení:
 
@@ -108,3 +122,17 @@ Omezení:
 - Netvrď platform availability, dokud reálné buildy neexistují.
 - Neimplementuj platby, subscriptions, Pro funkce ani umělá free omezení.
 - Account sync veřejně označuj jako připravovaný, dokud není backend nakonfigurovaný, otestovaný a schválený.
+
+Výstup na konci další session:
+
+1. Co jsem dokončil
+2. Aktuální stav webu
+3. Aktuální stav Renewal Desk
+4. Jak jsem sjednotil design napříč webem a aplikací
+5. Co jsem nastavil nebo opravil pro HTTPS/doménu
+6. Jaké soubory jsem vytvořil nebo změnil
+7. Co jsem otestoval
+8. Jaké problémy nebo rizika zůstávají
+9. Co vyžaduje tvoje ruční schválení
+10. Další nejlepší krok
+11. NEXT_PROMPT.md - nový prompt pro pokračování práce

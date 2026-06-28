@@ -51,11 +51,12 @@ Create this file only after backend approval:
 window.TIDYRAIL_AUTH = {
   supabaseUrl: "https://PROJECT_REF.supabase.co",
   supabaseAnonKey: "PUBLIC_ANON_KEY",
+  enableRenewalDeskCloudSync: false,
   redirectTo: "https://tidyrailstudio.com/account/dashboard/"
 };
 ```
 
-The anon key is designed to be public, but it is only safe with correct RLS policies. Never place the service role key in frontend files.
+The anon key is designed to be public, but it is only safe with correct RLS policies. Never place the service role key in frontend files. Keep `enableRenewalDeskCloudSync` set to `false` until RLS QA passes and local cloud-write testing is explicitly approved.
 
 ## Test-Safe Auth Config Workflow
 
@@ -71,6 +72,12 @@ Use this workflow to avoid committing project keys by accident:
 6. Test email/password only before enabling OAuth providers.
 7. Run the RLS two-user QA checklist before deploying any config.
 8. Delete local test users and test rows after validation.
+
+Prepared QA support:
+
+- `scripts/qa-renewal-sync-adapter.mjs` verifies the Renewal Desk adapter gate and field mapping without a Supabase project.
+- `SUPABASE_RLS_QA.md` documents the test-safe two-user workflow.
+- `scripts/qa-supabase-rls.mjs` runs the RLS checks with local environment variables only.
 
 Production config should be committed or deployed only after a dedicated review confirms that:
 
@@ -134,6 +141,14 @@ Expected results:
 8. Export returns only the signed-in user's rows.
 9. Sign-out clears account-scoped in-memory state.
 10. Local-only mode still works when Supabase config is absent.
+
+Automated local helper:
+
+```sh
+node scripts/qa-supabase-rls.mjs
+```
+
+Required environment variables are listed in `SUPABASE_RLS_QA.md`. The script uses the public anon key and test user sessions only; it must never use a service role key.
 
 ## Rollback Plan
 

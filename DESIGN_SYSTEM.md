@@ -27,6 +27,10 @@ Design direction: premium, calm, iOS/macOS-inspired, privacy-respecting utility 
 - Outside-click and Escape close behavior for mobile navigation.
 - Touch-friendly buttons.
 - Glass panels for account/download surfaces.
+- Glass app shells for product UIs, with a translucent command sidebar, elevated topbar, soft icon tiles, and readable data panels.
+- Dashboard stat cards use an icon tile plus label/value hierarchy.
+- Data tables use glass table containers on desktop and stacked row cards on mobile.
+- Product app navigation collapses into compact touch-friendly command grids on small screens.
 - Cards only for repeated product or platform items.
 - Full-width sections for page rhythm.
 - Referrer, theme-color, and mobile format-detection metadata on public pages.

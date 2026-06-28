@@ -40,3 +40,5 @@
 ## Current Priority
 
 Primary focus: finish Renewal Desk as a free product, finish the Tidyrail Studio website, complete GitHub Pages HTTPS provisioning, and prepare public free distribution. Account drafts stay out of public navigation and discovery until a backend is approved.
+
+Latest Renewal Desk QA note: the app package now uses a network-first service worker with cached fallback to avoid stale app-shell behavior for returning browsers. Local product QA remains clear; public release still waits on founder approval and stable HTTPS.

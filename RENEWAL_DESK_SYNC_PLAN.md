@@ -1,6 +1,6 @@
 # Renewal Desk Sync Plan
 
-Status: local adapter scaffold added, Supabase implementation pending backend approval.
+Status: local adapter scaffold added, Supabase adapter methods prepared behind a disabled config gate.
 
 Renewal Desk 0.1.x remains local-first. Cloud sync will be added only after Supabase is configured, RLS is verified, and HTTPS is enforced for the production domain.
 
@@ -78,7 +78,7 @@ Required before public sync:
 
 1. Add a sync adapter module with local mapping and readiness export. Done.
 2. Keep local storage as the default adapter. Done.
-3. Add Supabase adapter behind a configuration check.
+3. Add Supabase adapter behind a configuration check. Done as a gated adapter surface; production UI flow remains pending.
 4. Add a sync status panel inside Renewal Desk. Partially done with local-first status and readiness export.
 5. Add first-import flow.
 6. Add per-user CRUD through RLS.
@@ -96,15 +96,24 @@ Current behavior:
 
 - Reads and writes Renewal Desk rows through the local adapter.
 - Exposes local-to-cloud and cloud-to-local field mapping helpers.
-- Detects whether a frontend auth config exists, but does not write cloud rows.
+- Detects whether a frontend auth config exists.
+- Keeps cloud writes disabled unless `enableRenewalDeskCloudSync: true` is present in the local uncommitted config.
+- Exposes gated Supabase methods for session lookup, row listing, upsert, delete, account export, and deletion request.
 - Exports a sync readiness JSON report for QA and implementation review.
 - Keeps the app usable if the adapter fails to load by using a local fallback inside `app.js`.
+
+RLS QA support:
+
+- `scripts/qa-renewal-sync-adapter.mjs`
+- `SUPABASE_RLS_QA.md`
+- `scripts/qa-supabase-rls.mjs`
 
 Local QA status:
 
 - Runtime adapter marker shows `local` on a clean local origin.
 - Export view shows the sync readiness action on desktop and mobile.
 - Sync readiness export shows a success status without enabling cloud writes.
+- Scripted sync adapter QA covers local mode, configured-but-disabled mode, explicit cloud test gate mode, local persistence, and cloud row mapping.
 - Console warnings/errors were clear in the tested flow.
 
 ## QA Gates

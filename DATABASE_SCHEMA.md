@@ -42,6 +42,10 @@ create policy "profiles_select_own"
 on public.profiles for select
 using (auth.uid() = id);
 
+create policy "profiles_insert_own"
+on public.profiles for insert
+with check (auth.uid() = id);
+
 create policy "profiles_update_own"
 on public.profiles for update
 using (auth.uid() = id)
@@ -107,6 +111,10 @@ with check (auth.uid() = user_id);
 create policy "account_deletion_requests_select_own"
 on public.account_deletion_requests for select
 using (auth.uid() = user_id);
+
+create policy "account_deletion_requests_delete_own_pending"
+on public.account_deletion_requests for delete
+using (auth.uid() = user_id and status = 'pending');
 ```
 
 ## Renewal Desk Field Mapping

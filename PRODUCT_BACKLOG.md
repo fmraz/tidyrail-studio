@@ -45,5 +45,4 @@ The initial build order is:
 4. CSV Tidy
 5. Packwise Lists
 
-Renewal Desk is first because it has a clear paid use case, broad audience, low infrastructure cost, low maintenance needs, and a strong path from static MVP to paid packaged utility.
-
+Renewal Desk is first because it has a clear everyday admin use case, broad audience, low infrastructure cost, low maintenance needs, and a strong path from static MVP to a free public utility under the central Tidyrail Studio website.

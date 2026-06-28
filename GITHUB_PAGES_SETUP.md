@@ -4,7 +4,7 @@ Public-facing site: `https://tidyrailstudio.com`
 
 Repository target: `fmraz/tidyrail-studio`
 
-Current status on 2026-06-25:
+Current status on 2026-06-28:
 
 - GitHub repository exists.
 - GitHub Pages is built.
@@ -13,9 +13,11 @@ Current status on 2026-06-25:
 - HTTPS enforcement should wait until DNS and GitHub certificate provisioning are confirmed.
 - VEDOS root and `www` DNS records are correct on the authoritative nameserver.
 - `http://tidyrailstudio.com/` returns the GitHub Pages site.
-- `https://tidyrailstudio.com/` is not ready yet because GitHub has not finished certificate provisioning for the custom domain.
+- `https://tidyrailstudio.com/` is not ready yet because GitHub still serves a `*.github.io` certificate for the custom domain.
 - Wildcard `*.tidyrailstudio.com` parking A records no longer resolve on the authoritative VEDOS nameserver.
-- Certificate provisioning was retriggered by safely re-applying the custom domain; wait for GitHub to issue the matching certificate before enabling Enforce HTTPS.
+- GitHub Pages API still reports `https_certificate.state: bad_authz` with description: `The ACME authorization is in a bad state. We need to start over.`
+- A same-settings Pages update retry on 2026-06-26 returned `The certificate has not finished being issued`; Enforce HTTPS must remain off.
+- TLS verification on 2026-06-28 still served a `*.github.io` certificate instead of a certificate covering `tidyrailstudio.com`.
 
 ## Deployment Model
 
@@ -47,7 +49,7 @@ Custom domain:
 tidyrailstudio.com
 ```
 
-After DNS is correct and GitHub finishes certificate provisioning, enable Enforce HTTPS.
+After DNS is correct and GitHub finishes certificate provisioning, enable Enforce HTTPS. If `bad_authz` remains, use GitHub Pages settings to remove and re-add the custom domain or retry certificate issuance from the UI before enabling HTTPS enforcement.
 
 ## VEDOS DNS Records
 
