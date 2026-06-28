@@ -28,6 +28,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -40,6 +41,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img {
@@ -248,7 +250,6 @@ a {
   position: relative;
   min-height: calc(100vh - 82px);
   isolation: isolate;
-  overflow: clip;
   padding: 72px 0 68px;
 }
 
@@ -270,9 +271,9 @@ a {
 }
 
 .hero.cinematic::after {
-  right: -10vw;
+  right: calc(50% - 50vw + 24px);
   bottom: 5%;
-  width: 560px;
+  width: min(560px, calc(100vw - 48px));
   height: 220px;
   border: 1px solid rgba(10, 132, 255, 0.12);
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(175, 221, 255, 0.12));
@@ -438,21 +439,26 @@ h3 {
 .trust-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
   width: min(1180px, calc(100% - 32px));
   max-width: calc(100vw - 32px);
   margin: 18px auto 0;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(26px) saturate(1.42);
+  -webkit-backdrop-filter: blur(26px) saturate(1.42);
+  overflow: hidden;
 }
 
 .trust-item {
-  min-height: 112px;
-  border: 1px solid rgba(125, 148, 170, 0.18);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 20px;
-  box-shadow: 0 16px 44px rgba(30, 48, 72, 0.07), inset 0 1px rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(18px) saturate(1.24);
-  -webkit-backdrop-filter: blur(18px) saturate(1.24);
+  min-height: 118px;
+  padding: 24px 26px;
+  border-right: 1px solid rgba(125, 148, 170, 0.18);
+}
+
+.trust-item:last-child {
+  border-right: 0;
 }
 
 .trust-item strong {
@@ -922,6 +928,15 @@ h3 {
     border-bottom: 0;
   }
 
+  .trust-item {
+    border-right: 0;
+    border-bottom: 1px solid rgba(219, 228, 228, 0.9);
+  }
+
+  .trust-item:last-child {
+    border-bottom: 0;
+  }
+
   .nav {
     min-height: 62px;
     gap: 12px;
@@ -1053,6 +1068,18 @@ h3 {
   .scroll-scene {
     inset: -54px 0 -80px;
     width: 100%;
+  }
+
+  .hero.cinematic::before {
+    left: auto;
+    right: 12px;
+    width: min(340px, calc(100vw - 48px));
+    height: min(340px, calc(100vw - 48px));
+  }
+
+  .hero.cinematic::after {
+    right: 12px;
+    width: min(340px, calc(100vw - 48px));
   }
 
   .hero-device {
