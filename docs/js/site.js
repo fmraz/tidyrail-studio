@@ -138,5 +138,5 @@ function mountLanguageSelector() {
   footer.append(label);
 }
 
-applyLanguage(preferredLanguage());
-mountLanguageSelector();
+document.documentElement.lang = document.documentElement.getAttribute("lang") || "en";
+document.documentElement.dir = "ltr";
