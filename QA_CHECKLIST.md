@@ -86,6 +86,7 @@
 - [x] Tauri scaffold exists under `desktop/renewal-desk`.
 - [x] Desktop scaffold preflight passes without local auth config or secret-bearing files.
 - [x] Final platform icon assets generated under `desktop/renewal-desk/src-tauri/icons` and wired into Tauri bundle config.
+- [x] Native prerequisite preflight added and run; Node/npm, Tauri CLI, `hdiutil`, and Xcode Command Line Tools pass.
 - [ ] Rust and platform-specific Tauri prerequisites installed.
 - [ ] macOS `.dmg` build produced and notarized.
 - [ ] Windows installer produced and smoke tested.

@@ -41,6 +41,28 @@ Do not distribute unsigned macOS builds as the primary public download.
 
 ```sh
 node scripts/qa-desktop-packaging.mjs
+npm run qa:native-prereqs --prefix desktop/renewal-desk
 ```
 
-The first real `.dmg` build still requires Rust, macOS Tauri prerequisites, final icon assets, Developer ID signing, notarization, and a clean-machine Gatekeeper test.
+The first real `.dmg` build still requires Rust/Cargo, macOS Tauri prerequisites, Developer ID signing, notarization, and a clean-machine Gatekeeper test.
+
+Current 2026-07-07 blocker: `npm run tauri:build --prefix desktop/renewal-desk` fails before compilation because `cargo` is not installed. Do not advertise a macOS app until a real `.app` and `.dmg` are produced and tested.
+
+## First Local DMG Candidate Steps
+
+After founder approval to install free developer tooling:
+
+```sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+npm install --prefix desktop/renewal-desk
+npm run qa:desktop --prefix desktop/renewal-desk
+npm run qa:native-prereqs --prefix desktop/renewal-desk
+npm run tauri:build --prefix desktop/renewal-desk
+```
+
+Expected local artifact path after a successful Tauri macOS build:
+
+```text
+desktop/renewal-desk/src-tauri/target/release/bundle/dmg/
+```

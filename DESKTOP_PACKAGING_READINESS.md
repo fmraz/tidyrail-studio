@@ -86,11 +86,12 @@ node --check products/renewal-desk/src/sync-adapter.js
 node scripts/qa-renewal-sync-adapter.mjs
 node --check products/renewal-desk/sw.js
 node scripts/qa-desktop-packaging.mjs
+npm run qa:native-prereqs --prefix desktop/renewal-desk
 unzip -t dist/renewal-desk-0.1.0-mvp.zip
 shasum -a 256 dist/renewal-desk-0.1.0-mvp.zip
 ```
 
-Native build commands remain gated because Rust and platform-specific signing prerequisites are not available in the current automation environment.
+Native build commands remain gated because Rust/Cargo and platform-specific signing prerequisites are not available in the current automation environment. On 2026-07-07, `npm run tauri:build --prefix desktop/renewal-desk` failed at `cargo metadata` because `cargo` was not installed.
 
 Current icon assets live in `desktop/renewal-desk/src-tauri/icons` and were generated from `brand/icons/renewal-desk-icon-concept.png` with the Tauri icon generator. The desktop preflight checks the configured icon list, PNG dimensions, `.icns` signature, and `.ico` header before any packaging candidate can be promoted.
 

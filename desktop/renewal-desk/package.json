@@ -6,7 +6,8 @@
   "scripts": {
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
-    "qa:desktop": "node ../../scripts/qa-desktop-packaging.mjs"
+    "qa:desktop": "node ../../scripts/qa-desktop-packaging.mjs",
+    "qa:native-prereqs": "node ../../scripts/qa-native-prereqs.mjs"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.11.3"

@@ -24,9 +24,19 @@ This folder prepares a Tauri desktop shell for Renewal Desk while keeping the cu
 ```sh
 npm install
 npm run qa:desktop
+npm run qa:native-prereqs
 ```
 
 `tauri:dev` and `tauri:build` require Rust, platform-specific Tauri prerequisites, and platform signing decisions. The current environment does not include Rust, so this scaffold is not yet a build artifact.
+
+Current native prerequisite status:
+
+- Desktop scaffold preflight passes.
+- Tauri CLI package is installed through `desktop/renewal-desk/package-lock.json`.
+- macOS `hdiutil` is available.
+- Xcode Command Line Tools are available.
+- Rust/Cargo are not currently installed, so `npm run tauri:build` cannot create a `.app` or `.dmg` yet.
+- Full Xcode is not selected; this is a warning for later signing/notarization workflows, not a blocker for documenting the scaffold.
 
 ## Before First Native Build
 

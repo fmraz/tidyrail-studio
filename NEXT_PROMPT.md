@@ -33,6 +33,9 @@ Co už je hotové:
 - Supabase auth/sync je připravený jako disabled-by-default scaffold bez secretů, ale veřejně se prezentuje jen jako account sync coming later.
 - Tauri desktop scaffold existuje v `desktop/renewal-desk`.
 - Renewal Desk platform icon assets jsou v `desktop/renewal-desk/src-tauri/icons` a jsou zapojené do Tauri `bundle.icon`.
+- Native packaging prerequisite preflight existuje jako `npm run qa:native-prereqs --prefix desktop/renewal-desk`.
+- Desktop scaffold preflight prošel a native prerequisite preflight ukázal, že Node/npm, Tauri CLI, `hdiutil` a Xcode Command Line Tools jsou dostupné.
+- Blokery pro první `.dmg`: chybí Rust compiler a Cargo. `npm run tauri:build --prefix desktop/renewal-desk` selhává na `cargo metadata`.
 
 Aktuální HTTPS stav:
 
@@ -65,6 +68,7 @@ Co není hotové:
 - Reálný cloud sync v Renewal Desk.
 - Plná lokalizace všech website/app stringů.
 - Rust/Cargo a platform-specific Tauri prerequisites.
+- První reálný macOS `.app` / `.dmg` build.
 - Native desktop buildy: macOS `.dmg`, Windows installer, Linux package.
 - iOS/Android app shell a widgety.
 - Store submissions.
@@ -78,10 +82,11 @@ Další priorita:
 3. Pokud HTTPS certifikát už odpovídá `tidyrailstudio.com`, zapni Enforce HTTPS a ověř přesměrování.
 4. Pokud HTTPS stále vrací `bad_authz`, nečekej pasivně.
 5. Proveď ještě veřejnou HTTP QA po deployi: homepage, downloads, Renewal Desk app, product page, ZIP download.
-6. Pokud je Renewal Desk stále stabilní, pokračuj desktop packaging readiness: ověř dostupnost Rust/Cargo/Tauri prerequisites a připrav první macOS `.dmg` kandidát, ale netvrď native availability.
-7. Připrav Supabase test-safe config workflow bez commitování secretů.
-8. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.
-9. Aktualizuj `NEXT_PROMPT.md` na konci session.
+6. Pokud founder výslovně schválí instalaci free developer tooling, nainstaluj Rust přes rustup, ověř `cargo`, spusť `npm run qa:native-prereqs --prefix desktop/renewal-desk` a potom zkus `npm run tauri:build --prefix desktop/renewal-desk`.
+7. Pokud Rust instalace není schválená, pokračuj dokumentací a přípravou build/release checklistu bez vytváření native availability claimů.
+8. Připrav Supabase test-safe config workflow bez commitování secretů.
+9. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.
+10. Aktualizuj `NEXT_PROMPT.md` na konci session.
 
 Omezení:
 
