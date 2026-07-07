@@ -62,6 +62,7 @@ Manual setup required:
 - OAuth client secrets stay in provider dashboards and Supabase dashboard.
 - Use `website/js/auth-config.example.js` as a template only.
 - Production config must be generated during deploy or manually added after review.
+- Run `node scripts/qa-auth-config-safety.mjs` before auth-related commits.
 
 ## Current Website State
 

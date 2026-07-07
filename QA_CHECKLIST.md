@@ -50,6 +50,7 @@
 - [ ] Supabase project created.
 - [ ] RLS schema applied.
 - [ ] Local `website/js/auth-config.js` created only for approved testing and not committed.
+- [x] Auth config safety QA script added and passing.
 - [x] Test-safe two-user RLS QA script prepared without secrets.
 - [ ] Email/password tested.
 - [ ] Password reset tested.

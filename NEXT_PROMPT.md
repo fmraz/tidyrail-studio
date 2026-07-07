@@ -78,6 +78,8 @@ Naposledy otestováno:
 - `npm run qa:windows --prefix desktop/renewal-desk`
 - `npm run qa:linux --prefix desktop/renewal-desk`
 - Windows/Linux packaging readiness metadata prochází, ale reálné buildy a smoke testy musí běžet na Windows/Linux nebo v CI.
+- `node scripts/qa-auth-config-safety.mjs`
+- Auth config safety prochází: `website/js/auth-config.js` a `docs/js/auth-config.js` jsou ignorované, netrackované, deploy config chybí, examples jsou shodné a bezpečné placeholdery.
 
 Co není hotové:
 
@@ -107,9 +109,10 @@ Další priorita:
 6. Zopakuj `npm run qa:macos-dmg --prefix desktop/renewal-desk` po každém novém Tauri buildu.
 7. Použij `MACOS_NOTARIZATION_CHECKLIST.md` a `npm run qa:macos-notarization --prefix desktop/renewal-desk` pro Developer ID/notarization readiness. Nezadávej ani neukládej Apple credentials bez ručního schválení.
 8. Použij `DESKTOP_CI_BUILD_PLAN.md` pro další Windows/Linux build plán. Nepřidávej aktivní GitHub Actions workflow bez kontroly token scope a founder approval.
-9. Připrav Supabase test-safe config workflow bez commitování secretů.
-10. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.
-11. Aktualizuj `NEXT_PROMPT.md` na konci session.
+9. Před každou auth/sync změnou spusť `node scripts/qa-auth-config-safety.mjs`.
+10. Připrav reálný Supabase test projekt až po founder approval; local config vytvářej pouze z `website/js/auth-config.example.js` a nikdy ho necommituj.
+11. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.
+12. Aktualizuj `NEXT_PROMPT.md` na konci session.
 
 Omezení:
 

@@ -76,6 +76,7 @@ Use this workflow to avoid committing project keys by accident:
 Prepared QA support:
 
 - `scripts/qa-renewal-sync-adapter.mjs` verifies the Renewal Desk adapter gate and field mapping without a Supabase project.
+- `scripts/qa-auth-config-safety.mjs` verifies that frontend auth config stays test-safe and uncommitted.
 - `SUPABASE_RLS_QA.md` documents the test-safe two-user workflow.
 - `scripts/qa-supabase-rls.mjs` runs the RLS checks with local environment variables only.
 
@@ -114,13 +115,34 @@ Auth can be enabled publicly only after:
 1. Run the website locally.
 2. Load `/account/register/`.
 3. Confirm the page shows a not-configured message when `auth-config.js` is absent.
-4. Add a temporary local-only `auth-config.js` with test project values.
-5. Register a test user.
-6. Confirm the user lands on `/account/dashboard/`.
-7. Create test Renewal Desk rows through the sync adapter only after it is implemented.
-8. Sign out and verify private data is not visible.
-9. Log in as a second test user and verify no rows from the first user appear.
-10. Remove local test config before committing unless production connection is approved.
+4. Run `node scripts/qa-auth-config-safety.mjs`.
+5. Add a temporary local-only `auth-config.js` with test project values.
+6. Register a test user.
+7. Confirm the user lands on `/account/dashboard/`.
+8. Create test Renewal Desk rows through the sync adapter only after it is implemented.
+9. Sign out and verify private data is not visible.
+10. Log in as a second test user and verify no rows from the first user appear.
+11. Remove local test config before committing unless production connection is approved.
+12. Run `node scripts/qa-auth-config-safety.mjs` again before every commit.
+
+## Auth Config Safety Check
+
+Run before any auth-related commit:
+
+```sh
+node scripts/qa-auth-config-safety.mjs
+```
+
+The check verifies:
+
+- `website/js/auth-config.js` is gitignored.
+- `docs/js/auth-config.js` is gitignored.
+- neither config file is tracked.
+- no deploy mirror config exists before production approval.
+- website/docs example configs match.
+- example values remain placeholders.
+- cloud sync is disabled in the example config.
+- no unexpected service-role references exist in tracked files.
 
 ## Two-User RLS Test
 

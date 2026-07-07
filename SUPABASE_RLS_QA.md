@@ -68,12 +68,20 @@ The helper also checks that REST select responses are arrays and reports cleanup
 Only after the RLS script passes, create a local uncommitted file from the example:
 
 ```sh
+node scripts/qa-auth-config-safety.mjs
 cp website/js/auth-config.example.js website/js/auth-config.js
 ```
 
 Fill `supabaseUrl` and `supabaseAnonKey` with test project values. Keep `enableRenewalDeskCloudSync: false` while testing account pages only. Set it to `true` only for local Renewal Desk sync-adapter QA after the founder approves testing cloud writes in the test project.
 
 Do not copy this file into `docs/` and do not commit it until production enablement is explicitly approved.
+
+Before every commit after local auth testing, remove the local file and rerun:
+
+```sh
+rm -f website/js/auth-config.js docs/js/auth-config.js
+node scripts/qa-auth-config-safety.mjs
+```
 
 ## Cleanup
 

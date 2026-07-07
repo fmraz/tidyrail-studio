@@ -37,3 +37,4 @@
 - Added an automated macOS DMG internal QA script and desktop package command, then smoke-tested the mounted DMG app launch and quit flow without promoting the build as a public native release.
 - Added a macOS notarization readiness report and checklist. Local Apple notarization tools are available, while Developer ID signing identity, notarization credentials, full Xcode selection, and clean-machine Gatekeeper validation remain required before public macOS distribution.
 - Added Windows and Linux packaging readiness checks for Renewal Desk desktop metadata, Tauri bundle targets, and platform icon assets while keeping real installer/package builds gated on target OS testing.
+- Added an auth config safety check for Supabase preparation so local frontend config stays ignored, deploy config remains absent, example values remain placeholders, and unexpected service-role references are caught before commits.
