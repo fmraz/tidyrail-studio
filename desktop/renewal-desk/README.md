@@ -17,6 +17,7 @@ This folder prepares a Tauri desktop shell for Renewal Desk while keeping the cu
 - Bundle identifier: `com.tidyrailstudio.renewaldesk`
 - Product name: `Renewal Desk`
 - Company: `Tidyrail Studio`
+- Icon set: `src-tauri/icons`, generated from `../../brand/icons/renewal-desk-icon-concept.png`
 
 ## Local Preflight
 
@@ -30,8 +31,8 @@ npm run qa:desktop
 ## Before First Native Build
 
 1. Install Rust and Tauri platform prerequisites.
-2. Replace default bundle icons with final Renewal Desk icon assets.
-3. Confirm local data location and export/import behavior inside the shell.
+2. Confirm local data location and export/import behavior inside the shell.
+3. Visually check the generated icon in Dock/Finder, taskbar/Explorer, and Linux launcher surfaces.
 4. If account sync is approved for desktop, add the exact Supabase project origin to the Tauri CSP instead of a wildcard.
 5. Run platform smoke tests on clean macOS, Windows, and Linux machines or VMs.
 6. Add checksums and release notes for each produced artifact.

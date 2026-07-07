@@ -42,6 +42,7 @@ Product: Renewal Desk
 - [x] Supabase cloud adapter methods prepared behind an explicit disabled-by-default config gate.
 - [x] Desktop packaging readiness gates documented without claiming native availability.
 - [x] Tauri desktop scaffold prepared without native availability claims.
+- [x] Tauri platform icon assets generated and checked by desktop preflight.
 - [ ] Public release approval.
 
 ## Free-First Requirements

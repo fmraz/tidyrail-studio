@@ -19,6 +19,7 @@
 - Hardened the Supabase RLS QA helper with stricter response checks, wrong-owner insert verification, and cleanup warnings.
 - Added desktop packaging readiness gates for future macOS, Windows, and Linux builds without publishing native installers.
 - Added a Tauri desktop scaffold and desktop packaging preflight while keeping native builds unpublished.
+- Added Renewal Desk desktop icon assets for Tauri macOS, Windows, Linux, iOS, and Android packaging surfaces, and tightened desktop packaging preflight around icon signatures and sizes.
 - Bumped the Renewal Desk service worker cache after app-shell sync adapter changes so returning browsers refresh static assets.
 - Redesigned the company website toward an original iOS/macOS-inspired glass interface.
 - Improved mobile navigation with outside-click, link-click, and Escape close behavior.

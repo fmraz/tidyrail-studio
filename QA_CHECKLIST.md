@@ -9,7 +9,7 @@
 - [x] Scroll animation changes scene progress.
 - [x] ZIP download link returns a file.
 - [x] Public HTTP site returns GitHub Pages content.
-- [ ] Public HTTPS certificate completed. Current 2026-06-28 GitHub Pages API state: `bad_authz`; TLS still serves `*.github.io`; same-settings and remove/re-add API retries returned `The certificate has not finished being issued`, so the next retry should use the GitHub Pages Settings UI.
+- [ ] Public HTTPS certificate completed. Current 2026-07-07 GitHub Pages API state: `bad_authz`; TLS still serves `*.github.io`. DNS is correct, HTTP routes are live, Pages build is `built`, and a controlled CNAME remove/re-add reset was pushed through `main` + `/docs`; Enforce HTTPS remains off until GitHub issues the matching certificate.
 - [x] VEDOS wildcard DNS records removed.
 - [x] Mobile menu retested after account/download changes.
 - [x] Public website navigation and sitemap exclude account drafts until backend approval.
@@ -22,7 +22,7 @@
 - [x] GitHub Pages HTTPS certificate provisioning retriggered by safely re-applying the custom domain.
 - [x] GitHub Pages certificate state checked through API after HTTPS failure.
 - [x] GitHub Pages remove/re-add API reset attempted; custom domain remained `tidyrailstudio.com`, HTTP stayed live, and HTTPS still served the wrong certificate.
-- [x] GitHub Pages certificate state rechecked on 2026-06-28; DNS remains correct, HTTP stays live, HTTPS still has the wrong certificate, and Enforce HTTPS remains off.
+- [x] GitHub Pages certificate state rechecked on 2026-07-07; DNS remains correct, HTTP stays live, HTTPS still has the wrong certificate, Pages build is healthy, and Enforce HTTPS remains off.
 
 ## Renewal Desk
 
@@ -83,8 +83,8 @@
 
 - [x] Tauri scaffold exists under `desktop/renewal-desk`.
 - [x] Desktop scaffold preflight passes without local auth config or secret-bearing files.
+- [x] Final platform icon assets generated under `desktop/renewal-desk/src-tauri/icons` and wired into Tauri bundle config.
 - [ ] Rust and platform-specific Tauri prerequisites installed.
-- [ ] Final platform icon assets added.
 - [ ] macOS `.dmg` build produced and notarized.
 - [ ] Windows installer produced and smoke tested.
 - [ ] Linux AppImage or `.deb` produced and smoke tested.

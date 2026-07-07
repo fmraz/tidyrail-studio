@@ -21,6 +21,6 @@ Meaning:
 ## Production Tasks
 
 1. Refine vector mark.
-2. Export full icon set.
+2. Export full icon set. Done for Tauri packaging in `desktop/renewal-desk/src-tauri/icons` from `brand/icons/renewal-desk-icon-concept.png`.
 3. Test on macOS dock, Windows taskbar, Linux launcher, iOS home screen, Android launcher, and browser tabs.
 4. Prepare store icon PNG.

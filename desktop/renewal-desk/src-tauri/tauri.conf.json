@@ -28,6 +28,13 @@
     "publisher": "Tidyrail Studio",
     "shortDescription": "Local-first renewal tracker",
     "longDescription": "Renewal Desk helps track subscriptions, warranties, renewals, service dates, and document expiry reminders with local-first storage.",
-    "category": "Productivity"
+    "category": "Productivity",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 # Desktop Packaging Readiness
 
-Status: Tauri scaffold prepared, no native desktop builds produced yet.
+Status: Tauri scaffold and platform icon assets prepared, no native desktop builds produced yet.
 
 Purpose: define the minimum packaging inputs and QA gates before Renewal Desk is advertised as a macOS, Windows, or Linux desktop app.
 
@@ -91,6 +91,8 @@ shasum -a 256 dist/renewal-desk-0.1.0-mvp.zip
 ```
 
 Native build commands remain gated because Rust and platform-specific signing prerequisites are not available in the current automation environment.
+
+Current icon assets live in `desktop/renewal-desk/src-tauri/icons` and were generated from `brand/icons/renewal-desk-icon-concept.png` with the Tauri icon generator. The desktop preflight checks the configured icon list, PNG dimensions, `.icns` signature, and `.ico` header before any packaging candidate can be promoted.
 
 ## Public Copy Rules
 
