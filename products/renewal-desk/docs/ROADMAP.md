@@ -7,8 +7,8 @@
 - Search and category filter.
 - Upcoming table.
 - Receipt status panel.
-- JSON backup and import.
-- CSV export.
+- Backup and restore.
+- Spreadsheet export.
 
 ## v1.0 Candidate
 

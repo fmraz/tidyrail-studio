@@ -32,7 +32,7 @@ Renewal Desk is a private local-first tracker for subscriptions, warranties, ser
 
 Important dates often live in inboxes, receipts, calendars, notes, and memory. Renewal Desk gives you one simple place to track what renews, what expires, what costs money, and which receipts still need to be found.
 
-The MVP runs locally in your browser, stores records on your device, and lets you export JSON backups or CSV files whenever you want.
+The MVP runs in your browser, keeps records on your device, and lets you download backups or spreadsheet-friendly exports whenever you want.
 
 Renewal Desk is an organizer. It does not cancel subscriptions, contact vendors, sync across devices, or provide financial advice.
 
@@ -42,8 +42,8 @@ Renewal Desk is an organizer. It does not cancel subscriptions, contact vendors,
 - Subscription, warranty, document, service, and custom categories.
 - Receipt status tracking.
 - Search and category filtering.
-- JSON backup and import.
-- CSV export.
+- Backup and restore.
+- Spreadsheet export.
 - Offline static app files.
 
 ## Download File

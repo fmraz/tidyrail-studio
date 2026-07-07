@@ -25,7 +25,7 @@ function updatePlatformNote(key) {
     node.textContent =
       key === "web"
         ? "This browser can use the web app now. No tracking, fingerprinting, or analytics are used for this note."
-        : `Detected platform: ${label}. Native ${label} builds are not published yet; use the web app or static package for now. No tracking, fingerprinting, or analytics are used for this note.`;
+        : `We think you are using ${label}. The web app is ready now; native apps are coming later.`;
   });
 }
 

@@ -24,37 +24,41 @@ Co už je hotové:
 
 - Hlavní web má iOS/macOS-inspired Liquid Glass design se scroll-driven Three.js homepage.
 - Renewal Desk web app je sjednocená se stejným Liquid Glass design systémem.
-- Renewal Desk je local-first release candidate: browser storage, JSON backup/import, CSV export, sync readiness export.
-- Downloads stránka má privacy-friendly OS/device detection a manuální platform selector.
-- ZIP balíček je publikovaný v `dist/`, `website/downloads/` a `docs/downloads/`; ověřený SHA-256: `7dfaee16ddef59f2013800d269911e81d55fb37b9780f9ffbd525e20ec4c21bb`.
-- Supabase auth/sync je připravený jako disabled-by-default scaffold bez secretů.
+- Veřejné webové a app texty byly zjednodušené směrem k uživatelskému výsledku: backup, restore, spreadsheet export, account sync coming later, no account required today.
+- Z běžného user flow byly odstraněné zbytečné technické výrazy jako backend setup, row-level security, Supabase, checksum, static package, JSON/CSV jako primární button labely a sync readiness.
+- Renewal Desk je free private release candidate: data zůstávají na zařízení, uživatel může stáhnout backup, obnovit backup a exportovat spreadsheet-friendly soubor.
+- Downloads stránka má privacy-friendly OS/device detection a manuální platform selector, ale text je jednoduchý a netechnický.
+- ZIP balíček je publikovaný v `dist/`, `website/downloads/` a `docs/downloads/`; aktuální SHA-256: `af6db58df222e20443a2f29f9c671845412a74b9a2c5fdf34cc1dd6c55920df7`.
+- Supabase auth/sync je připravený jako disabled-by-default scaffold bez secretů, ale veřejně se prezentuje jen jako account sync coming later.
 - Tauri desktop scaffold existuje v `desktop/renewal-desk`.
 - Renewal Desk platform icon assets jsou v `desktop/renewal-desk/src-tauri/icons` a jsou zapojené do Tauri `bundle.icon`.
-- Desktop preflight kontroluje scaffold, secret/config blokace, CSP, icon PNG rozměry, `.icns` signaturu a `.ico` header.
-- GitHub Pages CNAME reset byl proveden přes skutečný commit/remove/re-add flow a Pages build je zpět `built`.
 
 Aktuální HTTPS stav:
 
 - DNS root A/AAAA a `www` CNAME míří na GitHub Pages.
 - HTTP routy vrací 200.
-- GitHub Pages API 2026-07-07 stále vrací `https_certificate.state: bad_authz` a popis `The ACME authorization is in a bad state. We need to start over.`
-- `https://tidyrailstudio.com/` stále selhává, protože TLS certifikát neobsahuje `tidyrailstudio.com`.
+- GitHub Pages API 2026-07-07 stále vracelo `https_certificate.state: bad_authz`.
+- `https://tidyrailstudio.com/` stále selhávalo, protože TLS certifikát neobsahoval `tidyrailstudio.com`.
 - Enforce HTTPS je vypnuté a nesmí se zapnout, dokud certifikát nebude validní.
-- Další HTTPS krok: znovu ověřit Pages API po čekání; pokud stav zůstane `bad_authz`, použít GitHub Pages Settings UI nebo GitHub Support, protože API/remove-readd reset už byl proveden.
+- Další HTTPS krok: znovu ověřit Pages API po čekání; pokud stav zůstane `bad_authz`, použít GitHub Pages Settings UI nebo GitHub Support.
 
 Naposledy otestováno:
 
 - `node --check website/js/site.js`
 - `node --check website/js/downloads.js`
+- `node --check website/js/auth.js`
+- `node --check products/renewal-desk/src/app.js`
+- `node --check products/renewal-desk/src/sync-adapter.js`
 - `node --check website/apps/renewal-desk/src/app.js`
-- `node --check scripts/qa-desktop-packaging.mjs`
-- `npm run qa:desktop --prefix desktop/renewal-desk`
+- `node --check website/apps/renewal-desk/src/sync-adapter.js`
 - `unzip -t website/downloads/renewal-desk-0.1.0-mvp.zip`
-- Public HTTP routes: `/`, `/downloads/`, `/apps/renewal-desk/`, `/sitemap.xml`, `/robots.txt`
+- SHA-256 shoda pro `dist/`, `website/downloads/`, `docs/downloads/`
+- `rg` kontrola hlavních veřejných stránek nevrátila vybrané technické termíny v běžném user flow.
 
 Co není hotové:
 
 - GitHub HTTPS certifikát a Enforce HTTPS.
+- Vizuální browser QA po posledním copy passu.
 - Reálný Supabase projekt a production auth config.
 - Reálný dvouuživatelský RLS test.
 - Reálný cloud sync v Renewal Desk.
@@ -67,15 +71,16 @@ Co není hotové:
 
 Další priorita:
 
-1. Zkontroluj git stav; respektuj existující necommitnuté změny.
-2. Ověř znovu GitHub Pages API a `https://tidyrailstudio.com/`.
+1. Zkontroluj git stav.
+2. Ověř GitHub Pages API a `https://tidyrailstudio.com/`.
 3. Pokud HTTPS certifikát už odpovídá `tidyrailstudio.com`, zapni Enforce HTTPS a ověř přesměrování.
-4. Pokud HTTPS stále vrací `bad_authz`, nečekej pasivně; pokračuj Renewal Desk release-candidate prací.
-5. Dokonči manuální QA core flow: Add/Edit/Delete, JSON export/import, CSV export, mobile dialog, service worker update.
-6. Připrav Supabase test-safe lokální config workflow, ale necommituj secrets.
-7. Jakmile founder dodá Supabase projekt/env hodnoty, spusť dvouuživatelský RLS QA.
-8. Pokračuj desktop packagingem: nainstaluj Rust/Tauri prerequisites, vytvoř první lokální `.dmg`, Windows installer a Linux package kandidáty bez veřejných availability claimů.
-9. Aktualizuj `NEXT_PROMPT.md` na konci session.
+4. Spusť lokální web server a proveď vizuální QA homepage, downloads, Renewal Desk app, account pages, mobile menu a mobile export panel.
+5. Oprav jakýkoliv UX copy, který je pořád moc technický, dlouhý nebo matoucí.
+6. Dokonči manuální QA core flow: Add/Edit/Delete, backup download, restore backup, spreadsheet export, mobile dialog, service worker update.
+7. Připrav Supabase test-safe config workflow bez commitování secretů.
+8. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.
+9. Pokračuj desktop packagingem až po UX/QA stabilizaci.
+10. Aktualizuj `NEXT_PROMPT.md` na konci session.
 
 Omezení:
 

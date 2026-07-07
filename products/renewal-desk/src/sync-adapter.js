@@ -1,23 +1,23 @@
 (function () {
   const localMode = {
     key: "local_only",
-    label: "Local-first release",
+    label: "Saved on this device",
     description:
-      "Renewal Desk is using browser storage on this device. Optional account sync is not connected in this release.",
+      "Your list is saved on this device. Account sync is coming later.",
   };
 
   const configuredMode = {
     key: "sync_configured",
-    label: "Sync configuration detected",
+    label: "Sync is being prepared",
     description:
-      "A sync configuration is present, but Renewal Desk cloud writes remain disabled until sync is explicitly enabled and tested.",
+      "Account sync is being prepared and is not active yet.",
   };
 
   const cloudReadyMode = {
     key: "cloud_ready",
-    label: "Account sync test mode",
+    label: "Sync test mode",
     description:
-      "Renewal Desk can reach the configured Supabase project. Cloud writes still require an approved import or sync action.",
+      "Account sync is available for testing only.",
   };
 
   function createAdapter(options = {}) {
@@ -144,7 +144,7 @@
   async function requireCloudClient(config) {
     const client = await getSupabaseClient(config);
     if (!client) {
-      throw new Error("Renewal Desk cloud sync is not enabled. Set enableRenewalDeskCloudSync after RLS QA passes.");
+      throw new Error("Account sync is not enabled yet.");
     }
     return client;
   }
@@ -152,7 +152,7 @@
   async function requireSession(client) {
     const { data, error } = await client.auth.getSession();
     if (error) throw error;
-    if (!data.session?.user?.id) throw new Error("Sign in before using Renewal Desk cloud sync.");
+    if (!data.session?.user?.id) throw new Error("Sign in before using account sync.");
     return data.session;
   }
 

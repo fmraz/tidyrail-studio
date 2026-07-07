@@ -30,7 +30,7 @@
         </nav>
         <div class="local-note">
           <strong>Stored locally on this device</strong>
-          <span>Use JSON backup or CSV export to keep a copy outside this browser.</span>
+          <span>Back up or export your list anytime.</span>
         </div>
       </aside>
 
@@ -156,25 +156,24 @@
             <div>
               <p class="section-label">Backup and portability</p>
               <h2>Export your data</h2>
-              <p class="body-copy">Your tracker data is stored in this browser on this device. Export a backup before clearing browser data or switching machines.</p>
+              <p class="body-copy">Keep a copy of your list before clearing browser data or moving to another device.</p>
             </div>
-            <div class="sync-readiness" aria-label="Cloud sync status">
+            <div class="sync-readiness" aria-label="Account sync status">
               <div>
-                <span class="status-pill">Local-first release</span>
-                <h3>Cloud sync is not connected yet.</h3>
-                <p>Renewal Desk keeps the first public release simple and private. Optional sync will be considered only after the backend is configured, tested with row-level security, and approved for public use.</p>
+                <span class="status-pill">Saved on this device</span>
+                <h3>Account sync is coming later.</h3>
+                <p>Renewal Desk keeps this first release simple and private. Account sync is planned, but today your list stays on this device unless you export it.</p>
               </div>
               <ul class="feature-list compact">
-                <li>Current version: browser storage, JSON backup, CSV export</li>
-                <li>Future research: optional login, private cloud rows, data export, deletion controls</li>
-                <li>No analytics, paid locks, or forced account in this release</li>
+                <li>Save a backup of your list whenever you want.</li>
+                <li>Account sync and privacy controls are planned for a future update.</li>
+                <li>No account is required for the current free release.</li>
               </ul>
             </div>
             <div class="export-actions">
-              <button class="button primary" id="exportJsonBtn" type="button">Export JSON</button>
-              <button class="button secondary" id="exportCsvBtn" type="button">Export CSV</button>
-              <button class="button secondary" id="importJsonBtn" type="button">Import JSON</button>
-              <button class="button secondary" id="syncReadinessBtn" type="button">Export sync readiness</button>
+              <button class="button primary" id="exportJsonBtn" type="button">Download backup</button>
+              <button class="button secondary" id="exportCsvBtn" type="button">Export spreadsheet</button>
+              <button class="button secondary" id="importJsonBtn" type="button">Restore backup</button>
               <input class="visually-hidden" id="importJsonInput" type="file" accept="application/json,.json" />
             </div>
             <div class="status-note" id="exportStatus" role="status" aria-live="polite" aria-atomic="true"></div>

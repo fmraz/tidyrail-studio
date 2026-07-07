@@ -1,6 +1,6 @@
 # Renewal Desk
 
-Renewal Desk is a local-first tracker for subscriptions, warranties, renewals, service dates, and document expiry reminders.
+Renewal Desk is a private tracker for subscriptions, warranties, renewals, service dates, and document expiry reminders.
 
 ## What It Does
 
@@ -8,8 +8,8 @@ Renewal Desk is a local-first tracker for subscriptions, warranties, renewals, s
 - See upcoming items in a simple dashboard.
 - Mark whether receipts are saved, missing, or not needed.
 - Search and filter records locally.
-- Export JSON backups and CSV files.
-- Import a JSON backup.
+- Download backups and spreadsheet-friendly exports.
+- Restore a backup file.
 
 ## Privacy
 
@@ -24,7 +24,7 @@ No build step is required.
 ## MVP Limitations
 
 - Data is tied to the browser profile where it was entered.
-- Clearing browser data may remove records unless a JSON backup was exported.
+- Clearing browser data may remove records unless a backup was downloaded first.
 - Receipts are tracked by status only; file attachments are not included in the MVP.
 - Currency display uses English USD formatting in the MVP.
 

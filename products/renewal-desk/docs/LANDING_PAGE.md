@@ -44,7 +44,7 @@ No. Renewal Desk is an organizer. It does not contact vendors or cancel anything
 
 **Can I back up my data?**
 
-Yes. Export a JSON backup from the Export screen.
+Yes. Use Download backup from the Export screen.
 
 **Does it sync across devices?**
 

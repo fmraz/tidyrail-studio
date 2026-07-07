@@ -20,8 +20,8 @@ It runs locally in your browser, stores data on your device, and lets you export
 - Subscription, warranty, document, service, and custom categories.
 - Receipt status tracking.
 - Local search and filtering.
-- JSON backup and import.
-- CSV export.
+- Backup and restore.
+- Spreadsheet export.
 - No account required in the MVP.
 
 ## Product Hunt Draft

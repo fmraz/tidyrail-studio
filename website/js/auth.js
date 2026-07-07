@@ -43,7 +43,7 @@ async function handleAuthForm(event) {
   const client = await getSupabaseClient();
 
   if (!client) {
-    showAuthStatus("Account sync is prepared but not configured yet. Tidyrail Studio needs a Supabase project before cloud accounts can be enabled.", "warning");
+    showAuthStatus("Accounts are not active yet. Please use Renewal Desk without signing in for now.", "warning");
     return;
   }
 
@@ -69,7 +69,7 @@ oauthButtons.forEach((button) => {
     const provider = button.getAttribute("data-auth-provider");
     const client = await getSupabaseClient();
     if (!client) {
-      showAuthStatus("Social sign-in is prepared but not configured yet. OAuth provider credentials must be added in Supabase first.", "warning");
+      showAuthStatus("Social sign-in is not available yet.", "warning");
       return;
     }
     const { error } = await client.auth.signInWithOAuth({
@@ -92,5 +92,5 @@ document.querySelectorAll("[data-delete-local]").forEach((button) => {
 });
 
 if (authStatus && !getAuthConfig()) {
-  showAuthStatus("Cloud accounts are prepared but not active yet. The current Renewal Desk release remains local-first until the approved authentication backend is connected.", "warning");
+  showAuthStatus("Accounts are not active yet. You can use Renewal Desk without signing in.", "warning");
 }

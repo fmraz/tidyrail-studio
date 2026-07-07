@@ -426,7 +426,7 @@ function exportJson() {
     items: state.items,
   };
   downloadFile("renewal-desk-backup.json", JSON.stringify(payload, null, 2), "application/json");
-  setExportStatus("JSON backup exported.");
+  setExportStatus("Backup downloaded.");
 }
 
 function exportCsv() {
@@ -442,13 +442,13 @@ function exportCsv() {
   ]);
   const csv = [headers, ...rows].map((row) => row.map(csvCell).join(",")).join("\n");
   downloadFile("renewal-desk-items.csv", csv, "text/csv");
-  setExportStatus("CSV exported.");
+  setExportStatus("Spreadsheet export downloaded.");
 }
 
 function exportSyncReadiness() {
   const payload = syncAdapter.exportReadiness();
   downloadFile("renewal-desk-sync-readiness.json", JSON.stringify(payload, null, 2), "application/json");
-  setExportStatus("Sync readiness report exported.");
+  setExportStatus("Sync status saved.");
 }
 
 function importJson(event) {
@@ -466,7 +466,7 @@ function importJson(event) {
       render();
       setExportStatus(`Imported ${normalized.length} item${normalized.length === 1 ? "" : "s"}.`);
     } catch {
-      setExportStatus("Import failed. Choose a Renewal Desk JSON backup.");
+      setExportStatus("Import failed. Choose a Renewal Desk backup file.");
     } finally {
       event.target.value = "";
     }
@@ -588,8 +588,8 @@ function createFallbackSyncAdapter(key) {
     adapterType: "fallback",
     mode: {
       key: "local_only",
-      label: "Local-first release",
-      description: "Renewal Desk is using browser storage on this device.",
+      label: "Saved on this device",
+      description: "Your list is saved on this device.",
     },
     isCloudReady: false,
     loadItems(normalizeItem) {

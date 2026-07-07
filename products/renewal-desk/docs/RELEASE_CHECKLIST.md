@@ -7,7 +7,7 @@
 - [x] Receipt status panel.
 - [x] Search and category filtering.
 - [x] JSON export/import.
-- [x] CSV export.
+- [x] Spreadsheet export.
 - [x] Manual browser QA.
 - [x] Mobile layout QA.
 - [x] Basic accessibility pass.

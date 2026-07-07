@@ -2,11 +2,11 @@
 
 ## Data Missing
 
-Thanks for writing in. Renewal Desk stores MVP data in the browser's local storage on the device where it was used. If browser data was cleared or a different browser profile is being used, records may not appear. If you exported a JSON backup, use Import JSON to restore it.
+Thanks for writing in. Renewal Desk saves your list on the device and browser where you used it. If browser data was cleared or a different browser profile is being used, records may not appear. If you downloaded a backup, use Restore backup to bring it back.
 
 ## Import Problem
 
-Please check that the file is a Renewal Desk JSON backup. CSV files can be exported for spreadsheets, but the MVP imports JSON backups only.
+Please check that the file is a Renewal Desk backup. Spreadsheet exports are for review, not restore.
 
 ## Feature Request
 

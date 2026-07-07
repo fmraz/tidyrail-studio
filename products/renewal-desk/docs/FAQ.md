@@ -14,11 +14,11 @@ Records are stored in the browser's local storage on the device where the app is
 
 ## Can I back up my data?
 
-Yes. Use Export JSON to create a backup file.
+Yes. Use Download backup to create a backup file.
 
 ## Can I import my data on another device?
 
-Yes. Export JSON from one browser and import it into Renewal Desk on another browser.
+Yes. Download a backup from one browser and restore it in Renewal Desk on another browser.
 
 ## Does Renewal Desk cancel subscriptions for me?
 

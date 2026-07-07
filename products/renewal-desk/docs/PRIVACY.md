@@ -14,7 +14,7 @@ The MVP does not send app data to Tidyrail Studio servers. It does not require a
 
 ## Exports
 
-Users can export JSON backups and CSV files. Exported files are controlled by the user and may contain the information entered into the app.
+Users can download backups and spreadsheet-friendly exports. Exported files are controlled by the user and may contain the information entered into the app.
 
 ## Limitations
 
