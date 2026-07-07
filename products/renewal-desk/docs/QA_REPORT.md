@@ -256,3 +256,37 @@ Environment: local static website served from `http://127.0.0.1:4324/`, in-app B
 - Retry the custom-domain certificate reset from GitHub Pages Settings UI.
 - Enable HTTPS only after GitHub serves a certificate valid for `tidyrailstudio.com`.
 - Optional assistive-technology screen-reader spot check if available.
+
+## 2026-07-07 Release Candidate Core Flow QA
+
+Environment: local static website served from `http://127.0.0.1:4330/`, in-app Browser attempted first, then local Google Chrome headless through Playwright fallback after the in-app Browser snapshot API failed.
+
+## Checks Run
+
+- Rechecked GitHub Pages API and public HTTPS state for `tidyrailstudio.com`.
+- Loaded Renewal Desk from the local website app route in a clean browser context.
+- Checked first meaningful render, empty state, and desktop overflow.
+- Tested Add Item from an empty tracker.
+- Tested Edit Item from the Items view.
+- Tested Download backup and confirmed the backup file contained the edited item.
+- Tested Export spreadsheet and confirmed the spreadsheet file contained the edited item.
+- Tested Delete Item with confirmation and verified storage was cleared.
+- Tested Restore backup through the hidden file input and verified the item returned.
+- Tested service worker registration/controller state.
+- Tested the Add Item dialog at 390px mobile width and verified no horizontal overflow.
+- Captured screenshots:
+  - `/tmp/tidyrail-renewal-desktop.png`
+  - `/tmp/tidyrail-renewal-after-flow.png`
+  - `/tmp/tidyrail-renewal-mobile-dialog.png`
+
+## Results
+
+- Found and fixed a release-candidate bug caused by removing the visible sync-status button while leaving an unconditional listener for `#syncReadinessBtn`. The missing element stopped app initialization before the form submit handler was attached.
+- Add/Edit/Delete passed after the listener was guarded.
+- Backup download passed with `renewal-desk-backup.json`.
+- Spreadsheet export passed with `renewal-desk-items.csv`.
+- Restore backup passed and returned one saved item.
+- Service worker support was present, controlled the page, and had one registration.
+- Mobile dialog QA passed at 390px: document width and scroll width were both 390, the dialog opened, and the dialog fit within the viewport.
+- No relevant console warnings or errors were captured during the passing flow.
+- Rebuilt the ZIP package and copied it to website/docs download folders; current SHA-256 is `dc276d3451ce4f7f44c1ffc9dbea2d6bab4d61d71d6749f913473ec931706884`.

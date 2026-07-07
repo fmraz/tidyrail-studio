@@ -31,3 +31,4 @@
 - Extended the Renewal Desk app UI into the full Tidyrail Studio Liquid Glass system across sidebar, topbar, stats, tables, panels, dialog controls, and mobile navigation.
 - Rebuilt the Renewal Desk ZIP package after the app-wide visual refresh and mobile overflow fix.
 - Simplified public website and Renewal Desk app copy around user outcomes: backups, restore, spreadsheet export, account sync coming later, and device-local privacy. Removed unnecessary technical wording from the main user flow and rebuilt the ZIP package; current SHA-256 is `af6db58df222e20443a2f29f9c671845412a74b9a2c5fdf34cc1dd6c55920df7`.
+- Fixed Renewal Desk initialization after removing the visible sync-status button from the user flow, retested Add/Edit/Delete, backup, restore, spreadsheet export, service worker, and 390px mobile dialog behavior, then rebuilt the ZIP package; current SHA-256 is `dc276d3451ce4f7f44c1ffc9dbea2d6bab4d61d71d6749f913473ec931706884`.

@@ -24,11 +24,12 @@ Co už je hotové:
 
 - Hlavní web má iOS/macOS-inspired Liquid Glass design se scroll-driven Three.js homepage.
 - Renewal Desk web app je sjednocená se stejným Liquid Glass design systémem.
-- Veřejné webové a app texty byly zjednodušené směrem k uživatelskému výsledku: backup, restore, spreadsheet export, account sync coming later, no account required today.
+- Veřejné webové a app texty jsou zjednodušené směrem k uživatelskému výsledku: backup, restore, spreadsheet export, account sync coming later, no account required today.
 - Z běžného user flow byly odstraněné zbytečné technické výrazy jako backend setup, row-level security, Supabase, checksum, static package, JSON/CSV jako primární button labely a sync readiness.
-- Renewal Desk je free private release candidate: data zůstávají na zařízení, uživatel může stáhnout backup, obnovit backup a exportovat spreadsheet-friendly soubor.
+- Opraven bug po odstranění viditelného sync-status tlačítka: `syncReadinessBtn` listener je nyní guarded, takže aplikace znovu inicializuje submit handler a core flow funguje.
+- Renewal Desk Add/Edit/Delete, backup download, spreadsheet export, backup restore, service worker a 390px mobile dialog QA prošly.
 - Downloads stránka má privacy-friendly OS/device detection a manuální platform selector, ale text je jednoduchý a netechnický.
-- ZIP balíček je publikovaný v `dist/`, `website/downloads/` a `docs/downloads/`; aktuální SHA-256: `af6db58df222e20443a2f29f9c671845412a74b9a2c5fdf34cc1dd6c55920df7`.
+- ZIP balíček je publikovaný v `dist/`, `website/downloads/` a `docs/downloads/`; aktuální SHA-256: `dc276d3451ce4f7f44c1ffc9dbea2d6bab4d61d71d6749f913473ec931706884`.
 - Supabase auth/sync je připravený jako disabled-by-default scaffold bez secretů, ale veřejně se prezentuje jen jako account sync coming later.
 - Tauri desktop scaffold existuje v `desktop/renewal-desk`.
 - Renewal Desk platform icon assets jsou v `desktop/renewal-desk/src-tauri/icons` a jsou zapojené do Tauri `bundle.icon`.
@@ -44,21 +45,21 @@ Aktuální HTTPS stav:
 
 Naposledy otestováno:
 
-- `node --check website/js/site.js`
-- `node --check website/js/downloads.js`
-- `node --check website/js/auth.js`
+- GitHub Pages API a HTTPS stav.
+- Public HTTP routes: `/`, `/downloads/`, `/apps/renewal-desk/`, `/products/renewal-desk/`.
 - `node --check products/renewal-desk/src/app.js`
-- `node --check products/renewal-desk/src/sync-adapter.js`
 - `node --check website/apps/renewal-desk/src/app.js`
-- `node --check website/apps/renewal-desk/src/sync-adapter.js`
-- `unzip -t website/downloads/renewal-desk-0.1.0-mvp.zip`
-- SHA-256 shoda pro `dist/`, `website/downloads/`, `docs/downloads/`
-- `rg` kontrola hlavních veřejných stránek nevrátila vybrané technické termíny v běžném user flow.
+- `node --check docs/apps/renewal-desk/src/app.js`
+- Renewal Desk clean-browser Add/Edit/Delete.
+- Backup download: `renewal-desk-backup.json`.
+- Spreadsheet export: `renewal-desk-items.csv`.
+- Restore backup through file input.
+- Service worker supported, controlled, one registration.
+- Mobile Add Item dialog at 390px: no horizontal overflow and dialog fits viewport.
 
 Co není hotové:
 
 - GitHub HTTPS certifikát a Enforce HTTPS.
-- Vizuální browser QA po posledním copy passu.
 - Reálný Supabase projekt a production auth config.
 - Reálný dvouuživatelský RLS test.
 - Reálný cloud sync v Renewal Desk.
@@ -68,19 +69,19 @@ Co není hotové:
 - iOS/Android app shell a widgety.
 - Store submissions.
 - Finální právní review policies/terms.
+- Optional assistive-technology screen-reader spot check.
 
 Další priorita:
 
 1. Zkontroluj git stav.
 2. Ověř GitHub Pages API a `https://tidyrailstudio.com/`.
 3. Pokud HTTPS certifikát už odpovídá `tidyrailstudio.com`, zapni Enforce HTTPS a ověř přesměrování.
-4. Spusť lokální web server a proveď vizuální QA homepage, downloads, Renewal Desk app, account pages, mobile menu a mobile export panel.
-5. Oprav jakýkoliv UX copy, který je pořád moc technický, dlouhý nebo matoucí.
-6. Dokonči manuální QA core flow: Add/Edit/Delete, backup download, restore backup, spreadsheet export, mobile dialog, service worker update.
+4. Pokud HTTPS stále vrací `bad_authz`, nečekej pasivně.
+5. Proveď ještě veřejnou HTTP QA po deployi: homepage, downloads, Renewal Desk app, product page, ZIP download.
+6. Pokud je Renewal Desk stále stabilní, pokračuj desktop packaging readiness: ověř dostupnost Rust/Cargo/Tauri prerequisites a připrav první macOS `.dmg` kandidát, ale netvrď native availability.
 7. Připrav Supabase test-safe config workflow bez commitování secretů.
 8. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.
-9. Pokračuj desktop packagingem až po UX/QA stabilizaci.
-10. Aktualizuj `NEXT_PROMPT.md` na konci session.
+9. Aktualizuj `NEXT_PROMPT.md` na konci session.
 
 Omezení:
 

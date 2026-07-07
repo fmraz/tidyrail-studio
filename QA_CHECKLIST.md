@@ -41,6 +41,8 @@
 - [x] Renewal Desk mobile layout checked at 390px with `documentElement.scrollWidth` and `body.scrollWidth` equal to viewport width.
 - [x] Renewal Desk mobile navigation changed to a 2x2 grid after visual QA showed horizontal nav clipping.
 - [x] Renewal Desk sample data flow, dashboard stats, active view switching, and Export view were retested after the visual refresh.
+- [x] Renewal Desk Add/Edit/Delete, backup download, spreadsheet export, backup restore, service worker registration, and 390px mobile dialog flow retested after the UX copy pass.
+- [x] Missing sync-status listener guard fixed after removing the visible sync readiness button from the user flow.
 - [ ] Cloud sync tested after backend setup.
 
 ## Account System
@@ -94,6 +96,6 @@
 - Fresh browser/profile test.
 - Existing data migration or reset test.
 - Manual accessibility pass.
-- Responsive desktop and mobile pass.
+- [x] Responsive desktop and mobile pass for Renewal Desk core flow.
 - Offline/local file usage pass where applicable.
-- Packaging/opening instructions verified.
+- [x] Packaging/opening instructions verified through ZIP integrity and local app route checks.

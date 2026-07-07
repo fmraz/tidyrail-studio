@@ -54,7 +54,7 @@ document.querySelector("#exportJsonBtn").addEventListener("click", exportJson);
 document.querySelector("#exportCsvBtn").addEventListener("click", exportCsv);
 elements.importJsonBtn.addEventListener("click", () => elements.importJsonInput.click());
 elements.importJsonInput.addEventListener("change", importJson);
-elements.syncReadinessBtn.addEventListener("click", exportSyncReadiness);
+elements.syncReadinessBtn?.addEventListener("click", exportSyncReadiness);
 
 elements.searchInput.addEventListener("input", (event) => {
   state.query = event.target.value.trim().toLowerCase();
