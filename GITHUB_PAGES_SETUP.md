@@ -4,7 +4,7 @@ Public-facing site: `https://tidyrailstudio.com`
 
 Repository target: `fmraz/tidyrail-studio`
 
-Current status on 2026-06-28:
+Current status on 2026-07-07:
 
 - GitHub repository exists.
 - GitHub Pages is built.
@@ -17,7 +17,8 @@ Current status on 2026-06-28:
 - Wildcard `*.tidyrailstudio.com` parking A records no longer resolve on the authoritative VEDOS nameserver.
 - GitHub Pages API still reports `https_certificate.state: bad_authz` with description: `The ACME authorization is in a bad state. We need to start over.`
 - A same-settings Pages update retry on 2026-06-26 returned `The certificate has not finished being issued`; Enforce HTTPS must remain off.
-- TLS verification on 2026-06-28 still served a `*.github.io` certificate instead of a certificate covering `tidyrailstudio.com`.
+- TLS verification on 2026-07-07 still served a `*.github.io` certificate instead of a certificate covering `tidyrailstudio.com`.
+- A GitHub Pages API remove/re-add reset attempt on 2026-07-07 was rejected with `The certificate has not finished being issued`, leaving the custom domain unchanged and HTTP live.
 
 ## Deployment Model
 
@@ -50,6 +51,34 @@ tidyrailstudio.com
 ```
 
 After DNS is correct and GitHub finishes certificate provisioning, enable Enforce HTTPS. If `bad_authz` remains, use GitHub Pages settings to remove and re-add the custom domain or retry certificate issuance from the UI before enabling HTTPS enforcement.
+
+## HTTPS Recovery Plan
+
+GitHub's documented recovery path for stuck certificate provisioning is to remove the custom domain in repository Pages settings, save, retype the domain, and save again. The API path is currently blocked for this repository, so use the Settings UI next.
+
+Manual UI steps:
+
+1. Open `https://github.com/fmraz/tidyrail-studio/settings/pages`.
+2. In "Custom domain", remove `tidyrailstudio.com`.
+3. Save the empty custom domain field.
+4. Wait until GitHub Pages confirms the setting changed.
+5. Re-enter `tidyrailstudio.com`.
+6. Save again.
+7. Wait for the certificate state to move away from `bad_authz`.
+8. Do not enable "Enforce HTTPS" until `https://tidyrailstudio.com/` serves a certificate valid for `tidyrailstudio.com`.
+
+If the UI refuses the reset or the certificate remains `bad_authz`, contact GitHub Support with this concise report:
+
+```text
+Repository: fmraz/tidyrail-studio
+Pages source: main /docs
+Custom domain: tidyrailstudio.com
+DNS status: apex A and AAAA records point to GitHub Pages; www CNAME points to fmraz.github.io; no CAA record is set; no wildcard record is returned by the authoritative VEDOS nameservers.
+Runtime status: http://tidyrailstudio.com/ returns the GitHub Pages site, but https://tidyrailstudio.com/ serves a *.github.io certificate and fails hostname validation.
+Pages API status: https_certificate.state is bad_authz with description "The ACME authorization is in a bad state. We need to start over."
+Attempted fixes: re-applied CNAME through the repository, temporarily removed/restored CNAME files, triggered Pages rebuilds, and attempted Pages API cname null/re-add. The API reset returned "The certificate has not finished being issued."
+Request: please reset or inspect the GitHub Pages ACME certificate provisioning for tidyrailstudio.com.
+```
 
 ## VEDOS DNS Records
 

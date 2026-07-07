@@ -71,6 +71,8 @@ Naposledy otestováno:
 - `npm run tauri:build --prefix desktop/renewal-desk`
 - `hdiutil verify` pro lokální DMG.
 - Mounted `.app` `Info.plist`, bundle contents a strict local codesign verification.
+- `npm run qa:macos-dmg --prefix desktop/renewal-desk`
+- Mounted DMG launch smoke test: aplikace se otevřela na Renewal Desk dashboard, proces běžel, quit proběhl a DMG se odpojil.
 
 Co není hotové:
 
@@ -91,9 +93,9 @@ Další priorita:
 1. Zkontroluj git stav a ujisti se, že `desktop/renewal-desk/src-tauri/target/`, `desktop/renewal-desk/src-tauri/gen/`, `.env`, `auth-config.js` a secret-bearing soubory nejsou commitované.
 2. Ověř GitHub Pages API a `https://tidyrailstudio.com/`.
 3. Pokud HTTPS certifikát už odpovídá `tidyrailstudio.com`, zapni Enforce HTTPS a ověř HTTP->HTTPS redirect.
-4. Pokud HTTPS stále vrací `bad_authz`, otevři GitHub Pages Settings UI a zkus ručně odstranit custom domain, uložit, znovu zadat `tidyrailstudio.com`, uložit a počkat na provisioning. Pokud UI krok vyžaduje 2FA nebo selže, připrav přesnou zprávu pro GitHub Support.
+4. Pokud HTTPS stále vrací `bad_authz`, otevři GitHub Pages Settings UI a zkus ručně odstranit custom domain, uložit, znovu zadat `tidyrailstudio.com`, uložit a počkat na provisioning. Přesný postup a support text jsou v `GITHUB_PAGES_SETUP.md`. Pokud UI krok vyžaduje 2FA nebo selže, připrav přesnou zprávu pro GitHub Support.
 5. Nečekej pasivně na HTTPS; pokračuj Renewal Desk RC prací.
-6. Spusť lokální browser QA pro Renewal Desk desktop shell, pokud jde bezpečně spustit Tauri app bez publikování.
+6. Zopakuj `npm run qa:macos-dmg --prefix desktop/renewal-desk` po každém novém Tauri buildu.
 7. Připrav macOS Developer ID signing/notarization checklist s přesnými founder-only kroky.
 8. Pokračuj Windows/Linux packaging přípravou bez tvrzení veřejné availability.
 9. Připrav Supabase test-safe config workflow bez commitování secretů.

@@ -44,6 +44,7 @@ The current local build uses ad-hoc signing identity `"-"` for internal QA only.
 ```sh
 node scripts/qa-desktop-packaging.mjs
 npm run qa:native-prereqs --prefix desktop/renewal-desk
+npm run qa:macos-dmg --prefix desktop/renewal-desk
 ```
 
 Current 2026-07-07 status:
@@ -53,6 +54,7 @@ Current 2026-07-07 status:
 - `npm run tauri:build --prefix desktop/renewal-desk` produces a local Apple Silicon `.dmg`.
 - `hdiutil verify` passes for the generated `.dmg`.
 - `codesign --verify --deep --strict` passes for the mounted app bundle when using ad-hoc signing identity `"-"`.
+- `npm run qa:macos-dmg --prefix desktop/renewal-desk` automates the local `.dmg`, bundle metadata, checksum, drag-to-Applications, and code-signature checks.
 - The build remains internal QA only until Developer ID signing, notarization, and clean-machine Gatekeeper testing are complete.
 
 Do not advertise a public macOS app download until a Developer ID signed and notarized `.dmg` is produced and tested.
