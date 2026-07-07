@@ -43,6 +43,7 @@ Public deployment target:
 - Supabase setup checklist: `SUPABASE_SETUP.md`
 - Renewal Desk sync plan: `RENEWAL_DESK_SYNC_PLAN.md`
 - Desktop scaffold: `desktop/renewal-desk/`
+- Desktop CI build plan: `DESKTOP_CI_BUILD_PLAN.md`
 - macOS DMG packaging: `MAC_DMG_PACKAGING.md`
 - macOS notarization checklist: `MACOS_NOTARIZATION_CHECKLIST.md`
 

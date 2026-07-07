@@ -23,7 +23,7 @@ Current scaffold: `desktop/renewal-desk`.
 - install instructions
 - uninstall instructions
 - release notes
-- desktop id: `com.tidyrailstudio.RenewalDesk`
+- desktop id: `com.tidyrailstudio.renewaldesk`
 
 Linux packaging should not block the web app release.
 
@@ -31,6 +31,14 @@ Linux packaging should not block the web app release.
 
 ```sh
 node scripts/qa-desktop-packaging.mjs
+npm run qa:linux --prefix desktop/renewal-desk
 ```
 
-The first real Linux build still requires Rust, Linux Tauri prerequisites, final icon assets, and clean-desktop launch testing.
+Current readiness:
+
+- Tauri targets include `appimage` and `deb`.
+- Linux icon PNG sizes are available.
+- Desktop id is aligned with the Tauri identifier: `com.tidyrailstudio.renewaldesk`.
+- The current Mac host cannot produce or smoke test final Linux packages.
+
+The first real Linux build still requires a Linux machine or CI runner, Linux Tauri prerequisites, AppImage/.deb artifact generation, clean-desktop launch testing, install/removal notes, checksums, and release notes.

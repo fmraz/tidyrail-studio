@@ -13,7 +13,7 @@ Purpose: define the minimum packaging inputs and QA gates before Renewal Desk is
 | Domain | `tidyrailstudio.com` |
 | Bundle identifier | `com.tidyrailstudio.renewaldesk` |
 | Windows AppUserModelID | `TidyrailStudio.RenewalDesk` |
-| Linux desktop id | `com.tidyrailstudio.RenewalDesk` |
+| Linux desktop id | `com.tidyrailstudio.renewaldesk` |
 | Current release | `0.1.0-mvp` |
 | Current distribution | Web app and static ZIP package |
 | Local native candidate | macOS Apple Silicon `.dmg`, internal QA only |
@@ -81,7 +81,7 @@ Target artifacts: AppImage first, `.deb` only if maintenance stays reasonable.
 Required before public listing:
 
 - AppImage launches on a clean mainstream Linux desktop.
-- `.desktop` metadata uses `com.tidyrailstudio.RenewalDesk`.
+- `.desktop` metadata uses `com.tidyrailstudio.renewaldesk`.
 - Icon sizes include at least 32, 64, 128, 256, and 512 px PNG.
 - Export/import works from the packaged app.
 - Install and removal instructions are documented.
@@ -100,6 +100,8 @@ node scripts/qa-desktop-packaging.mjs
 npm run qa:native-prereqs --prefix desktop/renewal-desk
 npm run qa:macos-dmg --prefix desktop/renewal-desk
 npm run qa:macos-notarization --prefix desktop/renewal-desk
+npm run qa:windows --prefix desktop/renewal-desk
+npm run qa:linux --prefix desktop/renewal-desk
 unzip -t dist/renewal-desk-0.1.0-mvp.zip
 shasum -a 256 dist/renewal-desk-0.1.0-mvp.zip
 ```
@@ -107,6 +109,8 @@ shasum -a 256 dist/renewal-desk-0.1.0-mvp.zip
 Rust/Cargo are now installed locally through `rustup`, and the Apple Silicon macOS Tauri build can produce an internal `.dmg` candidate. The DMG QA helper verifies the image, metadata, checksum, drag-to-Applications layout, and local ad-hoc code signature. The notarization readiness helper confirms local Apple tooling is available and reports the remaining Developer ID and credential blockers without printing secrets. Native distribution remains gated by platform-specific signing, notarization, Windows/Linux build environments, and clean-machine tests.
 
 Current icon assets live in `desktop/renewal-desk/src-tauri/icons` and were generated from `brand/icons/renewal-desk-icon-concept.png` with the Tauri icon generator. The desktop preflight checks the configured icon list, PNG dimensions, `.icns` signature, and `.ico` header before any packaging candidate can be promoted.
+
+Windows and Linux readiness helpers validate bundle metadata, platform icon assets, configured Tauri targets, and host limitations. They do not replace real installer/package builds on Windows and Linux machines.
 
 ## Public Copy Rules
 

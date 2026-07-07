@@ -101,6 +101,12 @@ Direct macOS `.dmg` status:
 - Public macOS release is blocked until Developer ID signing identity, notarization credentials, notarization, stapling, and clean-machine Gatekeeper testing are complete.
 - Do not list macOS as available on the website until the signed and notarized `.dmg` is uploaded with a checksum.
 
+Windows/Linux direct download status:
+
+- Windows readiness metadata passes for the NSIS target and icon assets.
+- Linux readiness metadata passes for AppImage/.deb targets and icon assets.
+- Real Windows and Linux artifacts still require target OS or CI builds, clean install/launch tests, checksums, and founder approval before public download links are enabled.
+
 ## Microsoft Store
 
 Requires Microsoft Partner Center account and possible identity/payment setup. Direct Windows download should come first.

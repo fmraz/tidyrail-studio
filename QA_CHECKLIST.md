@@ -98,6 +98,8 @@
 - [ ] Notarization credentials configured without committing secrets.
 - [ ] Full Xcode selected for final signing/notarization workflow.
 - [ ] Public macOS `.dmg` Developer ID signed and notarized.
+- [x] Windows packaging readiness metadata checked: NSIS target and Windows icon assets are configured.
+- [x] Linux packaging readiness metadata checked: AppImage/.deb targets and Linux icon assets are configured.
 - [ ] Windows installer produced and smoke tested.
 - [ ] Linux AppImage or `.deb` produced and smoke tested.
 
