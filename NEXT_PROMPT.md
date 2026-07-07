@@ -17,6 +17,7 @@ Aktuální stav:
 - Source webu: `website/`.
 - Deploy mirror: `docs/`.
 - Renewal Desk source: `products/renewal-desk/`.
+- Desktop scaffold: `desktop/renewal-desk/`.
 - Veřejný HTTP web funguje na `http://tidyrailstudio.com/`.
 - Produkty jsou zatím zdarma. Neimplementuj platby, subscriptions, Pro funkce ani umělá omezení.
 
@@ -26,7 +27,6 @@ Co už je hotové:
 - Renewal Desk web app je sjednocená se stejným Liquid Glass design systémem.
 - Veřejné webové a app texty jsou zjednodušené směrem k uživatelskému výsledku: backup, restore, spreadsheet export, account sync coming later, no account required today.
 - Z běžného user flow byly odstraněné zbytečné technické výrazy jako backend setup, row-level security, Supabase, checksum, static package, JSON/CSV jako primární button labely a sync readiness.
-- Opraven bug po odstranění viditelného sync-status tlačítka: `syncReadinessBtn` listener je nyní guarded, takže aplikace znovu inicializuje submit handler a core flow funguje.
 - Renewal Desk Add/Edit/Delete, backup download, spreadsheet export, backup restore, service worker a 390px mobile dialog QA prošly.
 - Downloads stránka má privacy-friendly OS/device detection a manuální platform selector, ale text je jednoduchý a netechnický.
 - ZIP balíček je publikovaný v `dist/`, `website/downloads/` a `docs/downloads/`; aktuální SHA-256: `dc276d3451ce4f7f44c1ffc9dbea2d6bab4d61d71d6749f913473ec931706884`.
@@ -34,31 +34,43 @@ Co už je hotové:
 - Tauri desktop scaffold existuje v `desktop/renewal-desk`.
 - Renewal Desk platform icon assets jsou v `desktop/renewal-desk/src-tauri/icons` a jsou zapojené do Tauri `bundle.icon`.
 - Native packaging prerequisite preflight existuje jako `npm run qa:native-prereqs --prefix desktop/renewal-desk`.
-- Desktop scaffold preflight prošel a native prerequisite preflight ukázal, že Node/npm, Tauri CLI, `hdiutil` a Xcode Command Line Tools jsou dostupné.
-- Blokery pro první `.dmg`: chybí Rust compiler a Cargo. `npm run tauri:build --prefix desktop/renewal-desk` selhává na `cargo metadata`.
+- Rust/Cargo byly nainstalované lokálně přes `rustup` po founderově pokynu pokračovat.
+- `npm run qa:native-prereqs --prefix desktop/renewal-desk` prochází s jedním warningem: full Xcode není selected, aktivní jsou Xcode Command Line Tools.
+- `npm run qa:desktop --prefix desktop/renewal-desk` prochází.
+- Tauri macOS config má `bundle.macOS.signingIdentity` nastavené na `"-"` pro interní QA ad-hoc signing.
+- Lokální macOS Apple Silicon DMG kandidát existuje na `desktop/renewal-desk/src-tauri/target/release/bundle/dmg/Renewal Desk_0.1.0_aarch64.dmg`.
+- Aktuální lokální DMG SHA-256: `9e9a9772c2c394dfcf5cc6025d1179923230762547176de6f1c25f781ef7020d`.
+- `hdiutil verify` prošel pro lokální DMG.
+- Mounted DMG obsahuje `Renewal Desk.app`, `Applications` symlink, `.VolumeIcon.icns` a `.DS_Store`.
+- Mounted app bundle má bundle identifier `com.tidyrailstudio.renewaldesk`.
+- `codesign --verify --deep --strict` prošel pro mounted app bundle s ad-hoc podpisem.
+- Public macOS distribuce pořád není hotová: chybí Developer ID signing, notarizace a clean-machine Gatekeeper test.
 
 Aktuální HTTPS stav:
 
 - DNS root A/AAAA a `www` CNAME míří na GitHub Pages.
 - HTTP routy vrací 200.
-- GitHub Pages API 2026-07-07 stále vracelo `https_certificate.state: bad_authz`.
-- `https://tidyrailstudio.com/` stále selhávalo, protože TLS certifikát neobsahoval `tidyrailstudio.com`.
+- GitHub Pages API 2026-07-07 stále vrací `https_certificate.state: bad_authz`.
+- `https://tidyrailstudio.com/` stále selhává, protože TLS certifikát neobsahuje `tidyrailstudio.com`.
 - Enforce HTTPS je vypnuté a nesmí se zapnout, dokud certifikát nebude validní.
-- Další HTTPS krok: znovu ověřit Pages API po čekání; pokud stav zůstane `bad_authz`, použít GitHub Pages Settings UI nebo GitHub Support.
+- Předchozí remove/re-add reset přes commitované `CNAME` soubory nepomohl.
+- Nový pokus přes GitHub Pages API o `cname: null` a re-add byl odmítnut chybou `The certificate has not finished being issued`; custom domain zůstala `tidyrailstudio.com`.
+- Další HTTPS krok: zkusit reset v GitHub Pages Settings UI, případně kontaktovat GitHub Support, pokud UI reset nepůjde.
 
 Naposledy otestováno:
 
 - GitHub Pages API a HTTPS stav.
-- Public HTTP routes: `/`, `/downloads/`, `/apps/renewal-desk/`, `/products/renewal-desk/`.
+- `curl -I http://tidyrailstudio.com/` vrací 200.
+- `curl -I https://tidyrailstudio.com/` selhává na certifikátu.
+- DNS: apex A/AAAA a `www` CNAME jsou správné; CAA není nastavené.
+- `node --check scripts/qa-native-prereqs.mjs`
+- `npm run qa:native-prereqs --prefix desktop/renewal-desk`
+- `npm run qa:desktop --prefix desktop/renewal-desk`
 - `node --check products/renewal-desk/src/app.js`
-- `node --check website/apps/renewal-desk/src/app.js`
-- `node --check docs/apps/renewal-desk/src/app.js`
-- Renewal Desk clean-browser Add/Edit/Delete.
-- Backup download: `renewal-desk-backup.json`.
-- Spreadsheet export: `renewal-desk-items.csv`.
-- Restore backup through file input.
-- Service worker supported, controlled, one registration.
-- Mobile Add Item dialog at 390px: no horizontal overflow and dialog fits viewport.
+- `unzip -t website/downloads/renewal-desk-0.1.0-mvp.zip`
+- `npm run tauri:build --prefix desktop/renewal-desk`
+- `hdiutil verify` pro lokální DMG.
+- Mounted `.app` `Info.plist`, bundle contents a strict local codesign verification.
 
 Co není hotové:
 
@@ -67,9 +79,8 @@ Co není hotové:
 - Reálný dvouuživatelský RLS test.
 - Reálný cloud sync v Renewal Desk.
 - Plná lokalizace všech website/app stringů.
-- Rust/Cargo a platform-specific Tauri prerequisites.
-- První reálný macOS `.app` / `.dmg` build.
-- Native desktop buildy: macOS `.dmg`, Windows installer, Linux package.
+- Developer ID podpis a notarizace macOS DMG.
+- Windows installer a Linux package.
 - iOS/Android app shell a widgety.
 - Store submissions.
 - Finální právní review policies/terms.
@@ -77,16 +88,17 @@ Co není hotové:
 
 Další priorita:
 
-1. Zkontroluj git stav.
+1. Zkontroluj git stav a ujisti se, že `desktop/renewal-desk/src-tauri/target/`, `desktop/renewal-desk/src-tauri/gen/`, `.env`, `auth-config.js` a secret-bearing soubory nejsou commitované.
 2. Ověř GitHub Pages API a `https://tidyrailstudio.com/`.
-3. Pokud HTTPS certifikát už odpovídá `tidyrailstudio.com`, zapni Enforce HTTPS a ověř přesměrování.
-4. Pokud HTTPS stále vrací `bad_authz`, nečekej pasivně.
-5. Proveď ještě veřejnou HTTP QA po deployi: homepage, downloads, Renewal Desk app, product page, ZIP download.
-6. Pokud founder výslovně schválí instalaci free developer tooling, nainstaluj Rust přes rustup, ověř `cargo`, spusť `npm run qa:native-prereqs --prefix desktop/renewal-desk` a potom zkus `npm run tauri:build --prefix desktop/renewal-desk`.
-7. Pokud Rust instalace není schválená, pokračuj dokumentací a přípravou build/release checklistu bez vytváření native availability claimů.
-8. Připrav Supabase test-safe config workflow bez commitování secretů.
-9. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.
-10. Aktualizuj `NEXT_PROMPT.md` na konci session.
+3. Pokud HTTPS certifikát už odpovídá `tidyrailstudio.com`, zapni Enforce HTTPS a ověř HTTP->HTTPS redirect.
+4. Pokud HTTPS stále vrací `bad_authz`, otevři GitHub Pages Settings UI a zkus ručně odstranit custom domain, uložit, znovu zadat `tidyrailstudio.com`, uložit a počkat na provisioning. Pokud UI krok vyžaduje 2FA nebo selže, připrav přesnou zprávu pro GitHub Support.
+5. Nečekej pasivně na HTTPS; pokračuj Renewal Desk RC prací.
+6. Spusť lokální browser QA pro Renewal Desk desktop shell, pokud jde bezpečně spustit Tauri app bez publikování.
+7. Připrav macOS Developer ID signing/notarization checklist s přesnými founder-only kroky.
+8. Pokračuj Windows/Linux packaging přípravou bez tvrzení veřejné availability.
+9. Připrav Supabase test-safe config workflow bez commitování secretů.
+10. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.
+11. Aktualizuj `NEXT_PROMPT.md` na konci session.
 
 Omezení:
 
@@ -96,8 +108,9 @@ Omezení:
 - Nehardcoduj secrets.
 - Nevystavuj service role keys.
 - Necommituj `auth-config.js`, `.env` ani secret-bearing poznámky.
-- Netvrď platform availability, dokud reálné buildy neexistují.
+- Netvrď platform availability, dokud reálné buildy neexistují a neprojdou QA.
 - Neimplementuj platby, subscriptions, Pro funkce ani umělá free omezení.
+- Mac DMG s ad-hoc podpisem je pouze interní QA kandidát, ne veřejný release.
 
 Výstup na konci další session:
 

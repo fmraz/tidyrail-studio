@@ -9,7 +9,7 @@
 - [x] Scroll animation changes scene progress.
 - [x] ZIP download link returns a file.
 - [x] Public HTTP site returns GitHub Pages content.
-- [ ] Public HTTPS certificate completed. Current 2026-07-07 GitHub Pages API state: `bad_authz`; TLS still serves `*.github.io`. DNS is correct, HTTP routes are live, Pages build is `built`, and a controlled CNAME remove/re-add reset was pushed through `main` + `/docs`; Enforce HTTPS remains off until GitHub issues the matching certificate.
+- [ ] Public HTTPS certificate completed. Current 2026-07-07 GitHub Pages API state: `bad_authz`; TLS still serves `*.github.io`. DNS is correct, HTTP routes are live, Pages build is `built`, a controlled CNAME remove/re-add reset was already pushed through `main` + `/docs`, and a later GitHub Pages API remove/re-add attempt was rejected with `The certificate has not finished being issued`. Enforce HTTPS remains off until GitHub issues the matching certificate.
 - [x] VEDOS wildcard DNS records removed.
 - [x] Mobile menu retested after account/download changes.
 - [x] Public website navigation and sitemap exclude account drafts until backend approval.
@@ -87,8 +87,11 @@
 - [x] Desktop scaffold preflight passes without local auth config or secret-bearing files.
 - [x] Final platform icon assets generated under `desktop/renewal-desk/src-tauri/icons` and wired into Tauri bundle config.
 - [x] Native prerequisite preflight added and run; Node/npm, Tauri CLI, `hdiutil`, and Xcode Command Line Tools pass.
-- [ ] Rust and platform-specific Tauri prerequisites installed.
-- [ ] macOS `.dmg` build produced and notarized.
+- [x] Rust and Cargo installed locally through `rustup` after founder approval to continue.
+- [x] Local macOS Apple Silicon `.dmg` internal QA candidate produced.
+- [x] Local `.dmg` verified with `hdiutil verify`.
+- [x] Mounted local app bundle verified with `codesign --verify --deep --strict` using ad-hoc signing identity `"-"`.
+- [ ] Public macOS `.dmg` Developer ID signed and notarized.
 - [ ] Windows installer produced and smoke tested.
 - [ ] Linux AppImage or `.deb` produced and smoke tested.
 

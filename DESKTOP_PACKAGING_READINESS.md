@@ -1,6 +1,6 @@
 # Desktop Packaging Readiness
 
-Status: Tauri scaffold and platform icon assets prepared, no native desktop builds produced yet.
+Status: Tauri scaffold and platform icon assets prepared; local macOS internal QA `.dmg` candidate produced, not public distribution ready.
 
 Purpose: define the minimum packaging inputs and QA gates before Renewal Desk is advertised as a macOS, Windows, or Linux desktop app.
 
@@ -16,6 +16,7 @@ Purpose: define the minimum packaging inputs and QA gates before Renewal Desk is
 | Linux desktop id | `com.tidyrailstudio.RenewalDesk` |
 | Current release | `0.1.0-mvp` |
 | Current distribution | Web app and static ZIP package |
+| Local native candidate | macOS Apple Silicon `.dmg`, internal QA only |
 | Data model | Local-first browser storage with JSON backup/import and CSV export |
 | Account sync | Prepared, not public until Supabase, RLS, and HTTPS are approved |
 
@@ -47,6 +48,16 @@ Required before public listing:
 - Gatekeeper first-launch test passes on a clean macOS profile.
 
 Payment blocker: Apple Developer Program membership and signing setup require founder approval.
+
+Current local candidate:
+
+- Path: `desktop/renewal-desk/src-tauri/target/release/bundle/dmg/Renewal Desk_0.1.0_aarch64.dmg`
+- SHA-256: `9e9a9772c2c394dfcf5cc6025d1179923230762547176de6f1c25f781ef7020d`
+- `hdiutil verify`: passed.
+- Mounted bundle contains `Renewal Desk.app`, an `Applications` symlink, `.VolumeIcon.icns`, and `.DS_Store`.
+- Bundle identifier: `com.tidyrailstudio.renewaldesk`.
+- `codesign --verify --deep --strict`: passed with local ad-hoc signing.
+- Public readiness: blocked until Developer ID signing, notarization, and clean-machine Gatekeeper validation.
 
 ## Windows Gate
 
@@ -91,7 +102,7 @@ unzip -t dist/renewal-desk-0.1.0-mvp.zip
 shasum -a 256 dist/renewal-desk-0.1.0-mvp.zip
 ```
 
-Native build commands remain gated because Rust/Cargo and platform-specific signing prerequisites are not available in the current automation environment. On 2026-07-07, `npm run tauri:build --prefix desktop/renewal-desk` failed at `cargo metadata` because `cargo` was not installed.
+Rust/Cargo are now installed locally through `rustup`, and the Apple Silicon macOS Tauri build can produce an internal `.dmg` candidate. Native distribution remains gated by platform-specific signing, notarization, Windows/Linux build environments, and clean-machine tests.
 
 Current icon assets live in `desktop/renewal-desk/src-tauri/icons` and were generated from `brand/icons/renewal-desk-icon-concept.png` with the Tauri icon generator. The desktop preflight checks the configured icon list, PNG dimensions, `.icns` signature, and `.ico` header before any packaging candidate can be promoted.
 

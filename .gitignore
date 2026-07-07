@@ -8,3 +8,5 @@ docs/js/auth-config.js
 dist/tmp/
 tmp/
 *.log
+desktop/renewal-desk/src-tauri/target/
+desktop/renewal-desk/src-tauri/gen/

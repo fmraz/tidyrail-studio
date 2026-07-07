@@ -1,6 +1,6 @@
 # macOS DMG Packaging
 
-Status: Tauri scaffold prepared, not built.
+Status: Local internal QA `.dmg` candidate produced, not public distribution ready.
 
 See `DESKTOP_PACKAGING_READINESS.md` for shared identity, QA gates, and copy rules.
 
@@ -37,6 +37,8 @@ Manual requirements:
 
 Do not distribute unsigned macOS builds as the primary public download.
 
+The current local build uses ad-hoc signing identity `"-"` for internal QA only. This can make a local bundle structurally verifiable, but it is not a substitute for Developer ID signing and notarization.
+
 ## Local Preflight
 
 ```sh
@@ -44,9 +46,16 @@ node scripts/qa-desktop-packaging.mjs
 npm run qa:native-prereqs --prefix desktop/renewal-desk
 ```
 
-The first real `.dmg` build still requires Rust/Cargo, macOS Tauri prerequisites, Developer ID signing, notarization, and a clean-machine Gatekeeper test.
+Current 2026-07-07 status:
 
-Current 2026-07-07 blocker: `npm run tauri:build --prefix desktop/renewal-desk` fails before compilation because `cargo` is not installed. Do not advertise a macOS app until a real `.app` and `.dmg` are produced and tested.
+- Rust/Cargo were installed through `rustup` in the local user profile after founder approval to continue.
+- `npm run qa:native-prereqs --prefix desktop/renewal-desk` passes with one warning: full Xcode is not selected, only Xcode Command Line Tools are active.
+- `npm run tauri:build --prefix desktop/renewal-desk` produces a local Apple Silicon `.dmg`.
+- `hdiutil verify` passes for the generated `.dmg`.
+- `codesign --verify --deep --strict` passes for the mounted app bundle when using ad-hoc signing identity `"-"`.
+- The build remains internal QA only until Developer ID signing, notarization, and clean-machine Gatekeeper testing are complete.
+
+Do not advertise a public macOS app download until a Developer ID signed and notarized `.dmg` is produced and tested.
 
 ## First Local DMG Candidate Steps
 
@@ -66,3 +75,26 @@ Expected local artifact path after a successful Tauri macOS build:
 ```text
 desktop/renewal-desk/src-tauri/target/release/bundle/dmg/
 ```
+
+Current local candidate:
+
+```text
+desktop/renewal-desk/src-tauri/target/release/bundle/dmg/Renewal Desk_0.1.0_aarch64.dmg
+```
+
+SHA-256:
+
+```text
+9e9a9772c2c394dfcf5cc6025d1179923230762547176de6f1c25f781ef7020d
+```
+
+Validation commands used:
+
+```sh
+hdiutil verify "desktop/renewal-desk/src-tauri/target/release/bundle/dmg/Renewal Desk_0.1.0_aarch64.dmg"
+codesign --verify --deep --strict --verbose=2 "/Volumes/Renewal Desk/Renewal Desk.app"
+codesign -dv --verbose=4 "/Volumes/Renewal Desk/Renewal Desk.app"
+spctl --assess --type execute --verbose=4 "/Volumes/Renewal Desk/Renewal Desk.app"
+```
+
+Gatekeeper note: the current local `spctl` result is not proof of public readiness because it reports a local security override. A public macOS release still needs Developer ID signing, notarization, and a clean-machine test.
