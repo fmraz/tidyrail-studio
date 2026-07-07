@@ -93,6 +93,10 @@
 - [x] Mounted local app bundle verified with `codesign --verify --deep --strict` using ad-hoc signing identity `"-"`.
 - [x] Automated macOS DMG internal QA script added and passing.
 - [x] Mounted DMG launch smoke test passed: app opened to the Renewal Desk dashboard, process ran, quit completed, and DMG detached.
+- [x] macOS notarization readiness report added; `notarytool` and `stapler` are available.
+- [ ] Developer ID Application signing identity installed.
+- [ ] Notarization credentials configured without committing secrets.
+- [ ] Full Xcode selected for final signing/notarization workflow.
 - [ ] Public macOS `.dmg` Developer ID signed and notarized.
 - [ ] Windows installer produced and smoke tested.
 - [ ] Linux AppImage or `.deb` produced and smoke tested.

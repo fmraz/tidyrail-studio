@@ -42,6 +42,9 @@ Public deployment target:
 - Auth backend: not connected
 - Supabase setup checklist: `SUPABASE_SETUP.md`
 - Renewal Desk sync plan: `RENEWAL_DESK_SYNC_PLAN.md`
+- Desktop scaffold: `desktop/renewal-desk/`
+- macOS DMG packaging: `MAC_DMG_PACKAGING.md`
+- macOS notarization checklist: `MACOS_NOTARIZATION_CHECKLIST.md`
 
 ## Architecture Notes
 
@@ -53,6 +56,7 @@ Public deployment target:
 - Do not commit Supabase service role keys or OAuth secrets.
 - Keep Renewal Desk usable without an account until sync is configured, tested, and approved.
 - Renewal Desk now includes a local sync adapter scaffold and a sync readiness export for future Supabase work.
+- Renewal Desk has a Tauri desktop scaffold and an internal macOS `.dmg` QA candidate, but no public native desktop build is available until platform signing, notarization, and clean-machine tests pass.
 - The company website now uses an original iOS/macOS-inspired glass design direction with scroll-driven Three.js motion.
 - GitHub Pages custom domain is configured for `tidyrailstudio.com`; HTTPS enforcement must wait until GitHub finishes issuing a matching certificate.
 

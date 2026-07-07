@@ -8,7 +8,8 @@
     "tauri:build": "tauri build",
     "qa:desktop": "node ../../scripts/qa-desktop-packaging.mjs",
     "qa:native-prereqs": "node ../../scripts/qa-native-prereqs.mjs",
-    "qa:macos-dmg": "node ../../scripts/qa-macos-dmg.mjs"
+    "qa:macos-dmg": "node ../../scripts/qa-macos-dmg.mjs",
+    "qa:macos-notarization": "node ../../scripts/qa-macos-notarization-readiness.mjs"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.11.3"

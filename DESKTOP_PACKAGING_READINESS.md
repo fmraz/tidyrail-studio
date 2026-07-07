@@ -99,11 +99,12 @@ node --check products/renewal-desk/sw.js
 node scripts/qa-desktop-packaging.mjs
 npm run qa:native-prereqs --prefix desktop/renewal-desk
 npm run qa:macos-dmg --prefix desktop/renewal-desk
+npm run qa:macos-notarization --prefix desktop/renewal-desk
 unzip -t dist/renewal-desk-0.1.0-mvp.zip
 shasum -a 256 dist/renewal-desk-0.1.0-mvp.zip
 ```
 
-Rust/Cargo are now installed locally through `rustup`, and the Apple Silicon macOS Tauri build can produce an internal `.dmg` candidate. The DMG QA helper verifies the image, metadata, checksum, drag-to-Applications layout, and local ad-hoc code signature. Native distribution remains gated by platform-specific signing, notarization, Windows/Linux build environments, and clean-machine tests.
+Rust/Cargo are now installed locally through `rustup`, and the Apple Silicon macOS Tauri build can produce an internal `.dmg` candidate. The DMG QA helper verifies the image, metadata, checksum, drag-to-Applications layout, and local ad-hoc code signature. The notarization readiness helper confirms local Apple tooling is available and reports the remaining Developer ID and credential blockers without printing secrets. Native distribution remains gated by platform-specific signing, notarization, Windows/Linux build environments, and clean-machine tests.
 
 Current icon assets live in `desktop/renewal-desk/src-tauri/icons` and were generated from `brand/icons/renewal-desk-icon-concept.png` with the Tauri icon generator. The desktop preflight checks the configured icon list, PNG dimensions, `.icns` signature, and `.ico` header before any packaging candidate can be promoted.
 

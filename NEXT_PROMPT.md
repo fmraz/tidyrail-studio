@@ -73,6 +73,8 @@ Naposledy otestováno:
 - Mounted `.app` `Info.plist`, bundle contents a strict local codesign verification.
 - `npm run qa:macos-dmg --prefix desktop/renewal-desk`
 - Mounted DMG launch smoke test: aplikace se otevřela na Renewal Desk dashboard, proces běžel, quit proběhl a DMG se odpojil.
+- `npm run qa:macos-notarization --prefix desktop/renewal-desk`
+- macOS notarization readiness: `notarytool` a `stapler` jsou dostupné; chybí Developer ID Application identity a notarization credentials; full Xcode není selected.
 
 Co není hotové:
 
@@ -82,6 +84,9 @@ Co není hotové:
 - Reálný cloud sync v Renewal Desk.
 - Plná lokalizace všech website/app stringů.
 - Developer ID podpis a notarizace macOS DMG.
+- Developer ID Application identity v Keychain.
+- Notarization credentials bez commitování secretů.
+- Full Xcode selected pro finální signing/notarization workflow.
 - Windows installer a Linux package.
 - iOS/Android app shell a widgety.
 - Store submissions.
@@ -96,7 +101,7 @@ Další priorita:
 4. Pokud HTTPS stále vrací `bad_authz`, otevři GitHub Pages Settings UI a zkus ručně odstranit custom domain, uložit, znovu zadat `tidyrailstudio.com`, uložit a počkat na provisioning. Přesný postup a support text jsou v `GITHUB_PAGES_SETUP.md`. Pokud UI krok vyžaduje 2FA nebo selže, připrav přesnou zprávu pro GitHub Support.
 5. Nečekej pasivně na HTTPS; pokračuj Renewal Desk RC prací.
 6. Zopakuj `npm run qa:macos-dmg --prefix desktop/renewal-desk` po každém novém Tauri buildu.
-7. Připrav macOS Developer ID signing/notarization checklist s přesnými founder-only kroky.
+7. Použij `MACOS_NOTARIZATION_CHECKLIST.md` a `npm run qa:macos-notarization --prefix desktop/renewal-desk` pro Developer ID/notarization readiness. Nezadávej ani neukládej Apple credentials bez ručního schválení.
 8. Pokračuj Windows/Linux packaging přípravou bez tvrzení veřejné availability.
 9. Připrav Supabase test-safe config workflow bez commitování secretů.
 10. Po dodání Supabase env hodnot spusť dvouuživatelský RLS QA.

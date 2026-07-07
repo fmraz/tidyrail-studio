@@ -93,6 +93,14 @@ Do not start paid membership without founder approval.
 
 Requires Apple Developer Program and Mac-specific packaging/signing. Direct macOS download should come first.
 
+Direct macOS `.dmg` status:
+
+- Internal Apple Silicon `.dmg` QA candidate exists.
+- Automated DMG QA passes.
+- Notarization readiness report exists.
+- Public macOS release is blocked until Developer ID signing identity, notarization credentials, notarization, stapling, and clean-machine Gatekeeper testing are complete.
+- Do not list macOS as available on the website until the signed and notarized `.dmg` is uploaded with a checksum.
+
 ## Microsoft Store
 
 Requires Microsoft Partner Center account and possible identity/payment setup. Direct Windows download should come first.

@@ -2,7 +2,7 @@
 
 Status: Local internal QA `.dmg` candidate produced, not public distribution ready.
 
-See `DESKTOP_PACKAGING_READINESS.md` for shared identity, QA gates, and copy rules.
+See `DESKTOP_PACKAGING_READINESS.md` for shared identity, QA gates, and copy rules. See `MACOS_NOTARIZATION_CHECKLIST.md` for Developer ID and notarization steps.
 
 ## Target
 
@@ -45,6 +45,7 @@ The current local build uses ad-hoc signing identity `"-"` for internal QA only.
 node scripts/qa-desktop-packaging.mjs
 npm run qa:native-prereqs --prefix desktop/renewal-desk
 npm run qa:macos-dmg --prefix desktop/renewal-desk
+npm run qa:macos-notarization --prefix desktop/renewal-desk
 ```
 
 Current 2026-07-07 status:
@@ -55,6 +56,7 @@ Current 2026-07-07 status:
 - `hdiutil verify` passes for the generated `.dmg`.
 - `codesign --verify --deep --strict` passes for the mounted app bundle when using ad-hoc signing identity `"-"`.
 - `npm run qa:macos-dmg --prefix desktop/renewal-desk` automates the local `.dmg`, bundle metadata, checksum, drag-to-Applications, and code-signature checks.
+- `npm run qa:macos-notarization --prefix desktop/renewal-desk` confirms `notarytool` and `stapler` are available, while Developer ID identity and notarization credentials remain blockers.
 - The build remains internal QA only until Developer ID signing, notarization, and clean-machine Gatekeeper testing are complete.
 
 Do not advertise a public macOS app download until a Developer ID signed and notarized `.dmg` is produced and tested.

@@ -84,3 +84,4 @@
 - Added `scripts/qa-macos-dmg.mjs` and `npm run qa:macos-dmg --prefix desktop/renewal-desk` so the local macOS DMG can be checked consistently before any release decision.
 - Smoke-tested the mounted DMG app launch and quit flow. The app opened to the Renewal Desk dashboard, the process was visible, quit completed, and the DMG detached cleanly. The temporary screenshot was deleted because it captured the user's desktop background.
 - Documented the exact GitHub Pages HTTPS recovery UI steps and support request text because Chrome automation is unavailable in this session and GitHub's Pages API refused the reset.
+- Added `scripts/qa-macos-notarization-readiness.mjs` and `MACOS_NOTARIZATION_CHECKLIST.md` to separate local DMG quality from public macOS distribution readiness. The report confirms `notarytool` and `stapler` are available, but Developer ID identity and notarization credentials are blockers.
