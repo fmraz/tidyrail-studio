@@ -6,6 +6,7 @@ Renewal Desk is a private tracker for subscriptions, warranties, renewals, servi
 
 - Track renewal and expiry dates.
 - See upcoming items in a simple dashboard.
+- Move recurring monthly, quarterly, and yearly items to their next date with Renew and Undo.
 - Mark whether receipts are saved, missing, or not needed.
 - Search and filter records locally.
 - Download backups and spreadsheet-friendly exports.
@@ -30,4 +31,4 @@ No build step is required.
 
 ## Release Status
 
-Current status: static MVP release candidate. The MVP feature set is implemented, packaged, and covered by release-candidate QA. Public distribution, sales setup, or marketplace submission still needs approval for the concrete destination and action.
+Current status: free static MVP release candidate, available as a web app and downloadable package from the Tidyrail Studio website. Native store releases are not available yet.

@@ -609,6 +609,7 @@ tbody tr:hover {
   display: flex;
   gap: 6px;
   justify-content: flex-end;
+  min-width: max-content;
 }
 
 .text-button {
@@ -635,6 +636,16 @@ tbody tr:hover {
 .text-button.danger:hover,
 .text-button.danger:focus-visible {
   background: rgba(182, 64, 50, 0.08);
+}
+
+.text-button.success {
+  background: rgba(33, 168, 154, 0.1);
+  color: var(--teal-dark);
+}
+
+.text-button.success:hover,
+.text-button.success:focus-visible {
+  background: rgba(33, 168, 154, 0.18);
 }
 
 .empty-state {
@@ -791,6 +802,52 @@ tbody tr:hover {
   font-weight: 700;
 }
 
+.action-toast {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: min(440px, calc(100vw - 36px));
+  min-height: 54px;
+  padding: 10px 12px 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 20px;
+  background: rgba(25, 33, 43, 0.88);
+  color: #fff;
+  box-shadow: 0 24px 70px rgba(17, 24, 32, 0.24), inset 0 1px rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(24px) saturate(1.35);
+  -webkit-backdrop-filter: blur(24px) saturate(1.35);
+}
+
+.action-toast[hidden] {
+  display: none;
+}
+
+.action-toast span {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.action-toast button {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-weight: 750;
+}
+
+.action-toast button:hover,
+.action-toast button:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  outline: 3px solid rgba(255, 255, 255, 0.18);
+}
+
 dialog {
   width: min(720px, calc(100vw - 32px));
   border: 1px solid rgba(255, 255, 255, 0.78);
@@ -888,6 +945,17 @@ label textarea {
     position: sticky;
     top: 14px;
     z-index: 3;
+  }
+}
+
+@media (min-width: 1061px) and (max-width: 1400px) {
+  .content-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .panel.wide {
+    grid-column: 1 / -1;
+    grid-row: auto;
   }
 }
 
@@ -1089,6 +1157,13 @@ label textarea {
 
   .button {
     width: 100%;
+  }
+
+  .action-toast {
+    right: 9px;
+    bottom: max(9px, env(safe-area-inset-bottom));
+    left: 9px;
+    max-width: none;
   }
 }
 

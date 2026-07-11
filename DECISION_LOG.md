@@ -88,3 +88,6 @@
 - Added Windows and Linux packaging readiness helpers rather than attempting cross-platform builds from macOS. The helpers validate configured Tauri targets and platform icons, while real Windows installer and Linux AppImage/.deb validation remain target-OS or CI tasks.
 - Standardized the Linux desktop id documentation to `com.tidyrailstudio.renewaldesk` so it matches the Tauri identifier and avoids a mismatch between generated metadata and release docs.
 - Added an auth config safety helper before creating any Supabase project config. This makes the safe path explicit: example config stays public, local config stays ignored, deploy config stays absent until approval, and service-role references are blocked outside approved safety docs/scripts.
+- Chose renewal completion as the next product improvement because tracking a date without advancing a completed recurring obligation left the core user loop unfinished.
+- Kept one-time and custom schedules manual. Automatic Renew is offered only for monthly, quarterly, and yearly records where the next occurrence can be calculated without guessing user intent.
+- Chose a short Undo confirmation instead of another modal for Renew so the common action stays fast while mistakes remain recoverable.

@@ -290,3 +290,25 @@ Environment: local static website served from `http://127.0.0.1:4330/`, in-app B
 - Mobile dialog QA passed at 390px: document width and scroll width were both 390, the dialog opened, and the dialog fit within the viewport.
 - No relevant console warnings or errors were captured during the passing flow.
 - Rebuilt the ZIP package and copied it to website/docs download folders; current SHA-256 is `dc276d3451ce4f7f44c1ffc9dbea2d6bab4d61d71d6749f913473ec931706884`.
+
+## 2026-07-11 Recurring Renewal Workflow QA
+
+Environment: local static website served from `http://127.0.0.1:4327/` and tested with the in-app Browser at 1280x900 and 390x844.
+
+## Checks Run
+
+- Tested recurring-date logic for a future monthly date, a long-overdue monthly date, month-end clamping, quarterly recurrence, leap-day yearly recurrence, and manual custom cycles.
+- Loaded sample data and used Renew on a monthly record.
+- Verified the next date advanced from July 23, 2026 to August 23, 2026.
+- Verified the confirmation appeared and Undo restored the previous date.
+- Checked 1280px layout geometry, table overflow, console health, and rendered screenshot.
+- Checked 390px document width, Renew visibility, toast safe-area placement, Undo, and console health.
+- Rechecked the homepage after removing the trust strip: no trust-strip element, no section gap, a sized Three.js canvas, and no console warnings or errors.
+
+## Results
+
+- All recurring-date logic tests passed.
+- Renew and Undo passed on desktop and mobile.
+- At 1280px, the renewal table now spans the full content width and does not overflow.
+- At 390px, document width equals viewport width and the action confirmation stays inside the viewport.
+- No relevant console warnings or errors were captured.

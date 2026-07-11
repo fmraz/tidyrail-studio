@@ -20,7 +20,10 @@ Yes. Use Download backup to create a backup file.
 
 Yes. Download a backup from one browser and restore it in Renewal Desk on another browser.
 
+## What happens when a recurring item renews?
+
+Choose Renew to move a monthly, quarterly, or yearly item to its next scheduled date. You can immediately undo the change if needed. One-time and custom dates stay manual.
+
 ## Does Renewal Desk cancel subscriptions for me?
 
 No. Renewal Desk is an organizer. It does not contact vendors, cancel subscriptions, or provide financial advice.
-

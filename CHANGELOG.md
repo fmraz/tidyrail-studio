@@ -38,3 +38,6 @@
 - Added a macOS notarization readiness report and checklist. Local Apple notarization tools are available, while Developer ID signing identity, notarization credentials, full Xcode selection, and clean-machine Gatekeeper validation remain required before public macOS distribution.
 - Added Windows and Linux packaging readiness checks for Renewal Desk desktop metadata, Tauri bundle targets, and platform icon assets while keeping real installer/package builds gated on target OS testing.
 - Added an auth config safety check for Supabase preparation so local frontend config stays ignored, deploy config remains absent, example values remain placeholders, and unexpected service-role references are caught before commits.
+- Added Renewal Desk recurring renewal completion with tested month-end, leap-year, overdue, quarterly, and yearly date handling plus an accessible Undo confirmation.
+- Improved the Renewal Desk dashboard at common laptop widths so the main table has enough room for every action without horizontal scrolling.
+- Replaced the studio automation prompt with a product-outcome operating loop covering workflow logic, Liquid Glass UX, data safety, accessibility, packaging, release gates, and evidence-based QA.

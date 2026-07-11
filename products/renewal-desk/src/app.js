@@ -1,4 +1,5 @@
 const storageKey = "renewal-desk-items-v1";
+const renewalLogic = window.RenewalDeskLogic;
 const syncAdapter =
   window.RenewalDeskSync?.createAdapter({ storageKey }) || createFallbackSyncAdapter(storageKey);
 document.documentElement.dataset.syncAdapter = syncAdapter.adapterType || "fallback";
@@ -9,6 +10,8 @@ const state = {
   category: "all",
   view: "dashboard",
   returnFocusTo: null,
+  undoAction: null,
+  undoTimer: null,
 };
 
 const elements = {
@@ -41,6 +44,9 @@ const elements = {
   itemCycle: document.querySelector("#itemCycle"),
   itemReceipt: document.querySelector("#itemReceipt"),
   itemNotes: document.querySelector("#itemNotes"),
+  actionToast: document.querySelector("#actionToast"),
+  actionToastMessage: document.querySelector("#actionToastMessage"),
+  undoActionBtn: document.querySelector("#undoActionBtn"),
 };
 
 document.querySelectorAll(".nav-item").forEach((button) => {
@@ -55,6 +61,7 @@ document.querySelector("#exportCsvBtn").addEventListener("click", exportCsv);
 elements.importJsonBtn.addEventListener("click", () => elements.importJsonInput.click());
 elements.importJsonInput.addEventListener("change", importJson);
 elements.syncReadinessBtn?.addEventListener("click", exportSyncReadiness);
+elements.undoActionBtn.addEventListener("click", undoLastAction);
 
 elements.searchInput.addEventListener("input", (event) => {
   state.query = event.target.value.trim().toLowerCase();
@@ -142,14 +149,14 @@ function getFilteredItems() {
 
 function renderStats() {
   const now = startOfToday();
-  const dueSoon = state.items.filter((item) => {
+  const needsAttention = state.items.filter((item) => {
     const days = differenceInDays(parseLocalDate(item.date), now);
-    return days >= 0 && days <= 30;
+    return days <= 30;
   });
   const annualEstimate = state.items.reduce((sum, item) => sum + annualizedCost(item), 0);
   const missingReceipts = state.items.filter((item) => item.receipt === "Missing").length;
 
-  elements.statDueSoon.textContent = dueSoon.length;
+  elements.statDueSoon.textContent = needsAttention.length;
   elements.statAnnual.textContent = formatCurrency(annualEstimate);
   elements.statMissingReceipts.textContent = missingReceipts;
   elements.statTotal.textContent = state.items.length;
@@ -176,6 +183,7 @@ function renderUpcoming(items) {
           <td data-label="Status"><span class="tag ${status.className}">${status.label}</span></td>
           <td data-label="Actions">
             <div class="row-actions">
+              ${renewAction(item)}
               <button class="text-button" type="button" data-action="edit" data-id="${item.id}" aria-label="Edit ${escapeHtml(item.name)}">Edit</button>
               <button class="text-button danger" type="button" data-action="delete" data-id="${item.id}" aria-label="Delete ${escapeHtml(item.name)}">Delete</button>
             </div>
@@ -207,6 +215,7 @@ function renderItems(items) {
           <div class="item-card-footer">
             <span>${formatDate(item.date)} · ${item.cost ? formatCurrency(item.cost) : "No cost"}</span>
             <span class="row-actions">
+              ${renewAction(item)}
               <button class="text-button" type="button" data-action="edit" data-id="${item.id}" aria-label="Edit ${escapeHtml(item.name)}">Edit</button>
               <button class="text-button danger" type="button" data-action="delete" data-id="${item.id}" aria-label="Delete ${escapeHtml(item.name)}">Delete</button>
             </span>
@@ -291,9 +300,57 @@ function bindActionButtons(root) {
   root.querySelectorAll("[data-action]").forEach((button) => {
     button.addEventListener("click", () => {
       if (button.dataset.action === "edit") openItemDialog(button.dataset.id);
+      if (button.dataset.action === "renew") renewItem(button.dataset.id);
       if (button.dataset.action === "delete") deleteItem(button.dataset.id);
     });
   });
+}
+
+function renewAction(item) {
+  if (!renewalLogic?.canAdvance(item.cycle)) return "";
+  return `<button class="text-button success" type="button" data-action="renew" data-id="${item.id}" aria-label="Renew ${escapeHtml(item.name)} and move its next date">Renew</button>`;
+}
+
+function renewItem(id) {
+  const item = state.items.find((entry) => entry.id === id);
+  if (!item) return;
+  const nextDate = renewalLogic?.nextRecurringDate(item.date, item.cycle, toDateInputValue(startOfToday()));
+  if (!nextDate) {
+    openItemDialog(id);
+    return;
+  }
+
+  const previousItem = { ...item };
+  state.items = state.items.map((entry) =>
+    entry.id === id ? { ...entry, date: nextDate, updatedAt: new Date().toISOString() } : entry,
+  );
+  persistItems();
+  render();
+  showActionToast(`${item.name} now renews on ${formatDate(nextDate)}.`, () => {
+    state.items = state.items.map((entry) => (entry.id === id ? previousItem : entry));
+    persistItems();
+    render();
+  });
+}
+
+function showActionToast(message, undoAction) {
+  window.clearTimeout(state.undoTimer);
+  state.undoAction = undoAction;
+  elements.actionToastMessage.textContent = message;
+  elements.actionToast.hidden = false;
+  state.undoTimer = window.setTimeout(hideActionToast, 8000);
+}
+
+function undoLastAction() {
+  const undoAction = state.undoAction;
+  hideActionToast();
+  undoAction?.();
+}
+
+function hideActionToast() {
+  window.clearTimeout(state.undoTimer);
+  state.undoAction = null;
+  elements.actionToast.hidden = true;
 }
 
 function openItemDialog(id = null) {

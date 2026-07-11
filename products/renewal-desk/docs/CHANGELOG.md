@@ -20,6 +20,10 @@
 - Changed the service worker to prefer fresh network responses while keeping cached offline fallback, so returning browsers are less likely to see a stale app shell after updates.
 - Removed negative letter spacing from the Renewal Desk app typography.
 - Rebuilt the packaged ZIP after the service worker and launch-copy fixes.
+- Added a one-step Renew action for monthly, quarterly, and yearly records. Renewal Desk now calculates the next future occurrence correctly for overdue schedules, month ends, and leap years, and offers an eight-second Undo action.
+- Changed the first dashboard summary to Needs attention so overdue records are included alongside dates due in the next 30 days.
+- Improved medium-width desktop layout so the renewal table uses the full content width and actions no longer require horizontal scrolling.
+- Bumped the offline app cache to include the reusable recurring-date logic.
 
 ## 0.1.0 - MVP Release Candidate
 
