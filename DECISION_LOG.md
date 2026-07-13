@@ -91,3 +91,6 @@
 - Chose renewal completion as the next product improvement because tracking a date without advancing a completed recurring obligation left the core user loop unfinished.
 - Kept one-time and custom schedules manual. Automatic Renew is offered only for monthly, quarterly, and yearly records where the next occurrence can be calculated without guessing user intent.
 - Chose a short Undo confirmation instead of another modal for Renew so the common action stays fast while mistakes remain recoverable.
+- Chose a standard calendar-file export as the next product improvement because it turns passive tracking into reminders through tools users already rely on, without adding accounts, notifications infrastructure, permissions, or maintenance cost.
+- Kept calendar import user-controlled. Renewal Desk generates a portable file but does not open external calendar services or transmit records automatically.
+- Corrected the active automation cadence from hourly to every three hours and replaced its generic instruction with the studio product-outcome workflow.

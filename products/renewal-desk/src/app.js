@@ -1,5 +1,6 @@
 const storageKey = "renewal-desk-items-v1";
 const renewalLogic = window.RenewalDeskLogic;
+const calendarExport = window.RenewalDeskCalendar;
 const syncAdapter =
   window.RenewalDeskSync?.createAdapter({ storageKey }) || createFallbackSyncAdapter(storageKey);
 document.documentElement.dataset.syncAdapter = syncAdapter.adapterType || "fallback";
@@ -57,6 +58,7 @@ document.querySelector("#addItemBtn").addEventListener("click", () => openItemDi
 document.querySelector("#sampleDataBtn").addEventListener("click", loadSampleData);
 document.querySelector("#clearAllBtn").addEventListener("click", clearAllItems);
 document.querySelector("#exportJsonBtn").addEventListener("click", exportJson);
+document.querySelector("#exportCalendarBtn").addEventListener("click", exportCalendar);
 document.querySelector("#exportCsvBtn").addEventListener("click", exportCsv);
 elements.importJsonBtn.addEventListener("click", () => elements.importJsonInput.click());
 elements.importJsonInput.addEventListener("change", importJson);
@@ -484,6 +486,20 @@ function exportJson() {
   };
   downloadFile("renewal-desk-backup.json", JSON.stringify(payload, null, 2), "application/json");
   setExportStatus("Backup downloaded.");
+}
+
+function exportCalendar() {
+  if (!state.items.length) {
+    setExportStatus("Add an item before downloading a calendar.");
+    return;
+  }
+  const calendar = calendarExport?.createCalendar(state.items);
+  if (!calendar) {
+    setExportStatus("Calendar export is unavailable. Try reloading Renewal Desk.");
+    return;
+  }
+  downloadFile("renewal-desk-calendar.ics", calendar, "text/calendar;charset=utf-8");
+  setExportStatus(`Calendar downloaded with ${state.items.length} date${state.items.length === 1 ? "" : "s"}.`);
 }
 
 function exportCsv() {

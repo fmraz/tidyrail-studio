@@ -312,3 +312,24 @@ Environment: local static website served from `http://127.0.0.1:4327/` and teste
 - At 1280px, the renewal table now spans the full content width and does not overflow.
 - At 390px, document width equals viewport width and the action confirmation stays inside the viewport.
 - No relevant console warnings or errors were captured.
+
+## 2026-07-12 Calendar Export QA
+
+Environment: local static website served from `http://127.0.0.1:4328/` and tested with the in-app Browser at 1280x900 and 390x844.
+
+## Checks Run
+
+- Tested calendar structure, product identity, all-day start/end dates, year rollover, deterministic timestamp, comma/semicolon escaping, multiline notes, invalid-date rejection, and event count.
+- Verified an empty tracker shows guidance instead of creating a meaningless calendar file.
+- Loaded three sample records and used Add dates to calendar.
+- Verified the live status reports three downloaded dates.
+- Checked desktop and mobile button layout, document width, and console health.
+
+## Results
+
+- All nine calendar generation assertions passed.
+- Empty-state protection passed.
+- Calendar export interaction passed with three records on desktop and mobile.
+- At 390px, all four export buttons remain inside the viewport at full usable width.
+- No relevant console warnings or errors were captured.
+- The in-app Browser did not expose its download event for the generated Blob URL, so file content was verified through deterministic unit assertions and the rendered interaction through the live status message.

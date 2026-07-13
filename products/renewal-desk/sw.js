@@ -1,4 +1,4 @@
-const CACHE_NAME = "renewal-desk-0.1.5";
+const CACHE_NAME = "renewal-desk-0.1.6";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,6 +6,7 @@ const APP_SHELL = [
   "./manifest.webmanifest",
   "./src/styles.css",
   "./src/renewal-logic.js",
+  "./src/calendar-export.js",
   "./src/sync-adapter.js",
   "./src/app.js",
 ];

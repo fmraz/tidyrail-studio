@@ -24,6 +24,10 @@ Yes. Download a backup from one browser and restore it in Renewal Desk on anothe
 
 Choose Renew to move a monthly, quarterly, or yearly item to its next scheduled date. You can immediately undo the change if needed. One-time and custom dates stay manual.
 
+## Can I add my dates to a calendar app?
+
+Yes. Open Export and choose Add dates to calendar. Renewal Desk downloads a standard calendar file that can be imported into Apple Calendar, Google Calendar, Outlook, and many other calendar apps.
+
 ## Does Renewal Desk cancel subscriptions for me?
 
 No. Renewal Desk is an organizer. It does not contact vendors, cancel subscriptions, or provide financial advice.

@@ -30,7 +30,13 @@ Do not restart. Do not rename Tidyrail Studio. Do not abandon Renewal Desk. Comm
 - Added `scripts/qa-renewal-logic.mjs`.
 - Bumped the service worker cache to `renewal-desk-0.1.5` and included `src/renewal-logic.js` in the offline app shell.
 - Replaced `THREE_HOUR_WORK_LOOP.md` with a comprehensive product-outcome operating prompt covering UX, domain logic, data safety, accessibility, packaging, release gates, and evidence-based QA.
-- Rebuilt and synchronized the free ZIP package. Current SHA-256: `da33f21f65342c19464a71a47a6a02147a7600e8fc365533d4cb6060f722f686`.
+- Rebuilt and synchronized the free ZIP package. Current SHA-256: `ddc238a20ff0d1613ecda0150f3d0df5b0ae93ce6536f6472a8dfc1cbf57a0eb`.
+- Added a privacy-friendly calendar download that turns all valid records into standard all-day calendar events for Apple Calendar, Google Calendar, Outlook, and compatible apps.
+- Calendar generation escapes user text, uses exclusive next-day event endings, rejects invalid dates, and does not transmit data.
+- Added empty-state guidance when no calendar can be created.
+- Bumped the service worker cache to `renewal-desk-0.1.6` and included `src/calendar-export.js` in the offline app shell.
+- Added `scripts/qa-renewal-calendar-export.mjs` with nine deterministic calendar assertions.
+- Updated automation `create-software-company-brand` to **Tidyrail 3-hour product loop**, running every three hours instead of hourly.
 
 ## Verified QA
 
@@ -48,6 +54,8 @@ Do not restart. Do not rename Tidyrail Studio. Do not abandon Renewal Desk. Comm
 - Package contains `src/renewal-logic.js`.
 - Checksum verification passes from `website/downloads/`.
 - Changed product files match between product source, `website/`, and `docs/`.
+- `node scripts/qa-renewal-calendar-export.mjs` passes all nine calendar assertions.
+- Calendar export browser QA passed at 1280x900 and 390x844, including empty-state protection, three-date export feedback, no horizontal overflow, and no relevant console errors.
 
 ## HTTPS Status
 
@@ -85,12 +93,13 @@ Do not restart. Do not rename Tidyrail Studio. Do not abandon Renewal Desk. Comm
 1. Check Git status, GitHub Pages API, and public HTTPS.
 2. If the certificate becomes valid for `tidyrailstudio.com`, enable Enforce HTTPS and verify HTTP-to-HTTPS redirect. Otherwise keep it off.
 3. Continue Renewal Desk core-product QA with overdue records, one-time/custom date editing, delete confirmation, invalid backup import, offline reload, service worker update, keyboard navigation, and a VoiceOver spot check if available.
-4. Add a user-friendly overdue-first review flow only if QA shows it reduces missed renewals without adding clutter.
-5. Review recurrence logic against future cloud schema and preserve backward compatibility before adding any new item fields.
-6. Keep Supabase disabled until approved test configuration exists; then run the two-user RLS test before implementing automatic sync.
-7. Continue public macOS packaging only after approved Developer ID/notarization prerequisites. Build Windows/Linux candidates only on target OS or reviewed CI.
-8. Update affected changelogs, QA report, decision log, package checksum, and this file.
-9. Commit and push completed safe changes. Do not include `NEXT_PROMPT 2.md`.
+4. Test the generated calendar file in Apple Calendar on the founder machine when a non-destructive import review is convenient; do not add external events without confirmation.
+5. Add a user-friendly overdue-first review flow only if QA shows it reduces missed renewals without adding clutter.
+6. Review recurrence and calendar logic against the future cloud schema and preserve backward compatibility before adding any new item fields.
+7. Keep Supabase disabled until approved test configuration exists; then run the two-user RLS test before implementing automatic sync.
+8. Continue public macOS packaging only after approved Developer ID/notarization prerequisites. Build Windows/Linux candidates only on target OS or reviewed CI.
+9. Update affected changelogs, QA report, decision log, package checksum, and this file.
+10. Commit and push completed safe changes. Do not include `NEXT_PROMPT 2.md`.
 
 ## Required End Report
 

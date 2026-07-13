@@ -24,6 +24,9 @@
 - Changed the first dashboard summary to Needs attention so overdue records are included alongside dates due in the next 30 days.
 - Improved medium-width desktop layout so the renewal table uses the full content width and actions no longer require horizontal scrolling.
 - Bumped the offline app cache to include the reusable recurring-date logic.
+- Added a privacy-friendly calendar download for all tracked dates, with standard all-day events that can be imported into common calendar apps.
+- Added clear feedback when the tracker is empty and no calendar can be created.
+- Bumped the offline app cache to include calendar export support.
 
 ## 0.1.0 - MVP Release Candidate
 

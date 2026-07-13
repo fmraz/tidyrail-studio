@@ -6,4 +6,5 @@
 - The MVP does not sync across devices.
 - The MVP uses USD for currency formatting.
 - One-time and custom schedules require the next date to be entered manually.
+- Calendar import options and reminder settings depend on the calendar app you use.
 - The app is an organizer, not a financial, legal, or cancellation service.

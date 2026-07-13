@@ -10,6 +10,7 @@ Renewal Desk is a private tracker for subscriptions, warranties, renewals, servi
 - Mark whether receipts are saved, missing, or not needed.
 - Search and filter records locally.
 - Download backups and spreadsheet-friendly exports.
+- Add tracked dates to Apple Calendar, Google Calendar, Outlook, or another calendar app with a standard calendar file.
 - Restore a backup file.
 
 ## Privacy

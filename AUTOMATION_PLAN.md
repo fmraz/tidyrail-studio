@@ -2,6 +2,8 @@
 
 The preferred automation is a Codex recurring workspace automation that runs every 3 hours in this workspace and follows `THREE_HOUR_WORK_LOOP.md`.
 
+Active Codex automation: `create-software-company-brand`, displayed as **Tidyrail 3-hour product loop**. It runs every three hours in the current project thread and uses `THREE_HOUR_WORK_LOOP.md` plus `NEXT_PROMPT.md` as its operating context.
+
 ## Safety Rules
 
 The automation may create necessary low-cost/no-cost setup accounts when technically possible without payment details, public posting, or irreversible publication.
