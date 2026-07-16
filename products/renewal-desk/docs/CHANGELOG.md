@@ -27,6 +27,10 @@
 - Added a privacy-friendly calendar download for all tracked dates, with standard all-day events that can be imported into common calendar apps.
 - Added clear feedback when the tracker is empty and no calendar can be created.
 - Bumped the offline app cache to include calendar export support.
+- Added versioned backup files while keeping older array backups compatible.
+- Hardened restore with a 5 MB file limit, record-count limit, app/version checks, calendar-date validation, duplicate handling, replacement confirmation, and Undo.
+- Added clear feedback for canceled, rejected, partially restored, and reverted backups.
+- Bumped the offline app cache to include the reusable backup validation logic.
 
 ## 0.1.0 - MVP Release Candidate
 

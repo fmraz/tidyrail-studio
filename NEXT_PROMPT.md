@@ -2,7 +2,11 @@
 
 Continue the existing project in `/Users/frantamraz/Documents/Software Company`.
 
-Do not restart. Do not rename Tidyrail Studio. Do not abandon Renewal Desk. Communicate with the founder only in Czech. Write all public UI, website copy, documentation, policies, changelogs, store materials, and marketing text in English first.
+Do not restart. Do not rename Tidyrail Studio. Do not abandon Renewal Desk. Do not begin a second product before Renewal Desk reaches a trustworthy public release. Communicate with the founder only in Czech. Write all public UI, website copy, documentation, policies, changelogs, store material, and marketing text in English first.
+
+## Operating System
+
+Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly one measurable user outcome per cycle. Prefer finishing, fixing, simplifying, protecting user data, and verifying release quality over brainstorming.
 
 ## Current Project
 
@@ -15,92 +19,82 @@ Do not restart. Do not rename Tidyrail Studio. Do not abandon Renewal Desk. Comm
 - Deployment mirror: `docs/`
 - Renewal Desk source: `products/renewal-desk/`
 - Tauri desktop scaffold: `desktop/renewal-desk/`
-- Products are free. Do not add payments, subscriptions, Pro locks, or artificial limits.
+- Products are free. Do not add payments, subscriptions, Pro locks, advertising, or artificial limits.
 
-## Latest Completed Work
+## Latest Completed Product Work
 
-- Removed the unwanted four-column trust strip from the homepage and published commit `294882c`.
-- Added reusable recurring-date logic in `products/renewal-desk/src/renewal-logic.js`.
-- Added a Renew action for monthly, quarterly, and yearly records.
-- Renew advances to the next future scheduled date, including long-overdue schedules, month ends, quarterly cycles, and leap-year yearly cycles.
-- Added an eight-second Liquid Glass confirmation with Undo.
-- One-time and custom cycles remain manual so the app does not guess user intent.
-- Changed the first dashboard summary from `Due in 30 days` to `Needs attention`, including overdue items.
-- Improved 1061-1400px layout: the main renewal table now spans the full width and secondary panels sit below it in two columns.
-- Added `scripts/qa-renewal-logic.mjs`.
-- Bumped the service worker cache to `renewal-desk-0.1.5` and included `src/renewal-logic.js` in the offline app shell.
-- Replaced `THREE_HOUR_WORK_LOOP.md` with a comprehensive product-outcome operating prompt covering UX, domain logic, data safety, accessibility, packaging, release gates, and evidence-based QA.
-- Rebuilt and synchronized the free ZIP package. Current SHA-256: `ddc238a20ff0d1613ecda0150f3d0df5b0ae93ce6536f6472a8dfc1cbf57a0eb`.
-- Added a privacy-friendly calendar download that turns all valid records into standard all-day calendar events for Apple Calendar, Google Calendar, Outlook, and compatible apps.
-- Calendar generation escapes user text, uses exclusive next-day event endings, rejects invalid dates, and does not transmit data.
-- Added empty-state guidance when no calendar can be created.
-- Bumped the service worker cache to `renewal-desk-0.1.6` and included `src/calendar-export.js` in the offline app shell.
-- Added `scripts/qa-renewal-calendar-export.mjs` with nine deterministic calendar assertions.
-- Updated automation `create-software-company-brand` to **Tidyrail 3-hour product loop**, running every three hours instead of hourly.
+- Renewal Desk is a free local-first web release candidate with add, edit, delete, search, category filtering, recurring Renew, Undo, calendar download, spreadsheet export, backup, and restore.
+- Monthly, quarterly, and yearly renewals advance to the next future scheduled date with month-end, overdue, and leap-year handling.
+- Calendar export produces standard all-day events for Apple Calendar, Google Calendar, Outlook, and compatible apps without transmitting user data.
+- Backup export now writes a versioned Renewal Desk format while preserving support for older array backups.
+- Restore now validates app identity, backup version, file size, record count, item name, real calendar date, enum values, cost, duplicate IDs, and usable record count before changing user data.
+- Restore rejects files larger than 5 MB, foreign apps, unsupported future versions, more than 10,000 records, and backups without usable records.
+- Existing data is never silently replaced: Renewal Desk asks for confirmation, reports skipped entries, and offers immediate Undo after a successful restore.
+- The reusable restore parser is in `products/renewal-desk/src/backup-logic.js` and is mirrored to the website and Pages app.
+- The offline app cache is `renewal-desk-0.1.7` and includes `src/backup-logic.js`.
+- The release ZIP was rebuilt and synchronized. SHA-256: `fb798b0943d04f2e2ad15437344fd93a4d6a1c829e824c24a54e0a7c81f1b3d0`.
+- The active studio automation runs every three hours and uses the product-outcome workflow in `THREE_HOUR_WORK_LOOP.md`.
 
 ## Verified QA
 
+- `node scripts/qa-renewal-backup-logic.mjs` passes nine backup-format and safety assertions.
 - `node scripts/qa-renewal-logic.mjs` passes all six recurrence cases.
+- `node scripts/qa-renewal-calendar-export.mjs` passes all nine calendar assertions.
 - `node scripts/qa-auth-config-safety.mjs` passes.
 - `node scripts/qa-renewal-sync-adapter.mjs` passes.
-- JavaScript syntax checks pass for the app and recurrence logic.
-- In-app Browser desktop QA passed at 1280x900.
-- Renew moved a sample monthly record from July 23, 2026 to August 23, 2026.
-- Undo restored the exact previous record state.
-- The 1280px table has no internal overflow and the document has no horizontal overflow.
-- In-app Browser mobile QA passed at 390x844: document width equals viewport width, Renew works, the toast respects the viewport safe area, and Undo works.
-- Homepage QA confirms the removed trust strip is absent, the next section has no artificial gap, the Three.js canvas is sized, and no console warnings/errors were captured.
-- `unzip -t website/downloads/renewal-desk-0.1.0-mvp.zip` passes.
-- Package contains `src/renewal-logic.js`.
-- Checksum verification passes from `website/downloads/`.
-- Changed product files match between product source, `website/`, and `docs/`.
-- `node scripts/qa-renewal-calendar-export.mjs` passes all nine calendar assertions.
-- Calendar export browser QA passed at 1280x900 and 390x844, including empty-state protection, three-date export feedback, no horizontal overflow, and no relevant console errors.
+- JavaScript syntax checks pass for the app and backup logic.
+- Desktop browser QA passed at 1280x900 with no horizontal overflow.
+- A foreign backup was rejected without changing the current list.
+- Canceling restore preserved the current list.
+- A backup with one valid item and one impossible date restored one item and reported one skipped entry.
+- Restore Undo returned all four pre-restore records.
+- Mobile QA passed at 390x844: document width equals viewport width, export controls stay between x=26 and x=364, controls are at least 46px high, and no relevant console errors were captured.
+- Product source, `website/`, and `docs/` match for all changed public app files.
+- All three ZIP copies are byte-identical, pass `unzip -t`, contain `src/backup-logic.js`, and pass their SHA-256 files.
 
-## HTTPS Status
+## Public Website And HTTPS
 
-- Public HTTP site returns 200.
-- GitHub Pages reports `status: built`.
-- GitHub Pages still reports `https_certificate.state: bad_authz` with `The ACME authorization is in a bad state. We need to start over.`
-- HTTPS still fails hostname validation because the served certificate does not include `tidyrailstudio.com`.
-- `https_enforced` remains false and must not be enabled yet.
-- Next HTTPS action requires GitHub Pages Settings UI custom-domain reset or GitHub Support using the prepared text in `GITHUB_PAGES_SETUP.md`.
+- Public HTTP Renewal Desk currently returns status 200 from GitHub Pages.
+- HTTPS still fails host validation because the served certificate does not include `tidyrailstudio.com`.
+- Do not enable Enforce HTTPS until a certificate valid for `tidyrailstudio.com` is served.
+- The GitHub CLI login for `fmraz` was invalid during the latest check, so the Pages API returned 404. Re-authentication with `gh auth login -h github.com` requires the founder to complete the browser/device authorization step.
+- After GitHub authentication is restored, recheck `gh api repos/fmraz/tidyrail-studio/pages`, the latest Pages build, the public backup logic asset, and the public ZIP checksum.
+- If Pages still reports `bad_authz`, use the prepared GitHub Pages Settings reset or support request in `GITHUB_PAGES_SETUP.md`; keep HTTPS enforcement off.
 
 ## Existing Platform State
 
-- Renewal Desk remains local-first with browser storage, backup, restore, spreadsheet export, PWA manifest, and service worker.
-- Supabase auth/sync scaffolding is disabled by default and has no committed secrets.
-- A real Supabase project and two-user RLS QA are not complete.
-- Local Apple Silicon Tauri DMG candidate exists for internal QA only.
-- DMG structure, ad-hoc signature, mount, launch, quit, and detach checks passed previously.
-- Public macOS distribution still requires full Xcode, Developer ID signing, notarization credentials, notarization, staple, and clean-machine Gatekeeper QA.
+- Supabase auth and sync scaffolding is disabled by default and contains no committed secrets.
+- A real Supabase project and two-user RLS isolation QA are not complete.
+- A local Apple Silicon Tauri DMG exists for internal QA only.
+- Public macOS distribution still requires full Xcode, Developer ID signing, notarization credentials, stapling, and clean-machine Gatekeeper QA.
 - Windows and Linux metadata readiness checks pass, but real target-OS installers do not exist.
-- iOS/Android shells and widgets do not exist.
+- iOS and Android shells and widgets do not exist.
+- Do not claim untested platform availability.
 
 ## Safety And Repository Rules
 
 - Do not spend money or enter payment details.
-- Do not publish to stores or social platforms.
-- Do not hardcode or commit secrets, `.env`, `auth-config.js`, service-role keys, signing credentials, or native `target/` and `gen/` output.
-- Do not claim unavailable platforms.
-- Preserve the unrelated untracked file `NEXT_PROMPT 2.md`; do not edit or commit it.
-- Run `node scripts/qa-auth-config-safety.mjs` before and after auth/sync work.
-- Synchronize each changed public file from `website/` to `docs/`.
-- Follow `THREE_HOUR_WORK_LOOP.md` and choose one measurable user outcome per cycle.
+- Do not publish to stores, Product Hunt, Reddit, email, or social platforms.
+- Do not hardcode or commit secrets, `.env`, `auth-config.js`, service-role keys, passwords, signing credentials, or native `target/` and `gen/` output.
+- Keep cloud sync disabled until approved configuration, two-user RLS isolation, account export/deletion, conflict handling, and recovery pass QA.
+- Preserve the unrelated untracked founder file `NEXT_PROMPT 2.md`; do not edit, stage, or commit it.
+- Synchronize every changed public file between `website/` and `docs/`.
+- Rebuild all ZIP copies and checksum files whenever packaged product content changes.
 
 ## Next Priority
 
-1. Check Git status, GitHub Pages API, and public HTTPS.
-2. If the certificate becomes valid for `tidyrailstudio.com`, enable Enforce HTTPS and verify HTTP-to-HTTPS redirect. Otherwise keep it off.
-3. Continue Renewal Desk core-product QA with overdue records, one-time/custom date editing, delete confirmation, invalid backup import, offline reload, service worker update, keyboard navigation, and a VoiceOver spot check if available.
-4. Test the generated calendar file in Apple Calendar on the founder machine when a non-destructive import review is convenient; do not add external events without confirmation.
-5. Add a user-friendly overdue-first review flow only if QA shows it reduces missed renewals without adding clutter.
-6. Review recurrence and calendar logic against the future cloud schema and preserve backward compatibility before adding any new item fields.
-7. Keep Supabase disabled until approved test configuration exists; then run the two-user RLS test before implementing automatic sync.
-8. Continue public macOS packaging only after approved Developer ID/notarization prerequisites. Build Windows/Linux candidates only on target OS or reviewed CI.
-9. Update affected changelogs, QA report, decision log, package checksum, and this file.
-10. Commit and push completed safe changes. Do not include `NEXT_PROMPT 2.md`.
+1. Check Git status and preserve `NEXT_PROMPT 2.md`.
+2. Restore GitHub CLI authentication with the founder if it remains invalid; do not request or store the founder's password or token.
+3. Verify the latest commit is pushed and GitHub Pages has built it.
+4. Verify public HTTP routes for the app, `src/backup-logic.js`, ZIP, and checksum.
+5. Recheck HTTPS. Enable Enforce HTTPS only after hostname-valid TLS succeeds.
+6. Run the remaining Renewal Desk release-candidate resilience checks: offline reload after first successful load, service worker update from the prior cache, keyboard-only backup/export navigation, delete confirmation, one-time/custom date editing, and a VoiceOver spot check if available.
+7. Review restore behavior for intentional empty backups and decide whether replacing a non-empty list with zero records should require stronger wording.
+8. Keep Supabase disabled. Only after approved test configuration exists, run the two-user RLS test before implementing automatic sync.
+9. Continue public macOS packaging only after approved Developer ID/notarization prerequisites. Build Windows/Linux candidates only on their target OS or reviewed CI.
+10. Update only affected docs, `CHANGELOG.md`, the product QA report, the decision log, checksums, and this file.
+11. Commit and push completed safe changes. Never include `NEXT_PROMPT 2.md`.
 
 ## Required End Report
 
-Respond in Czech with: completed work, website state, Renewal Desk state, user benefit, HTTPS/distribution state, changed files, tests, remaining risks, manual approvals, next best step, and the complete updated `NEXT_PROMPT.md`.
+Respond in Czech with: completed user outcome, website state, Renewal Desk state, HTTPS/distribution state, changed files, tests and evidence, remaining risks, manual approvals, next best step, and the complete updated `NEXT_PROMPT.md`.

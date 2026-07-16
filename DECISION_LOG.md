@@ -94,3 +94,4 @@
 - Chose a standard calendar-file export as the next product improvement because it turns passive tracking into reminders through tools users already rely on, without adding accounts, notifications infrastructure, permissions, or maintenance cost.
 - Kept calendar import user-controlled. Renewal Desk generates a portable file but does not open external calendar services or transmit records automatically.
 - Corrected the active automation cadence from hourly to every three hours and replaced its generic instruction with the studio product-outcome workflow.
+- Chose backup restore safety as the next Renewal Desk user outcome because restoring an unverified file could silently replace a trustworthy local list. Renewal Desk now validates the file before mutation, asks before replacing existing data, and keeps the previous list available through Undo.

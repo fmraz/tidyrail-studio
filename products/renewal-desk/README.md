@@ -11,7 +11,7 @@ Renewal Desk is a private tracker for subscriptions, warranties, renewals, servi
 - Search and filter records locally.
 - Download backups and spreadsheet-friendly exports.
 - Add tracked dates to Apple Calendar, Google Calendar, Outlook, or another calendar app with a standard calendar file.
-- Restore a backup file.
+- Restore a versioned backup with validation, replacement confirmation, and Undo.
 
 ## Privacy
 
@@ -27,6 +27,7 @@ No build step is required.
 
 - Data is tied to the browser profile where it was entered.
 - Clearing browser data may remove records unless a backup was downloaded first.
+- Restore accepts Renewal Desk backups up to 5 MB and skips unusable or duplicate entries instead of loading unsafe records.
 - Receipts are tracked by status only; file attachments are not included in the MVP.
 - Currency display uses English USD formatting in the MVP.
 

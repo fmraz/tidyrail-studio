@@ -1,6 +1,8 @@
 const storageKey = "renewal-desk-items-v1";
 const renewalLogic = window.RenewalDeskLogic;
 const calendarExport = window.RenewalDeskCalendar;
+const backupLogic = window.RenewalDeskBackup;
+const maxBackupBytes = 5 * 1024 * 1024;
 const syncAdapter =
   window.RenewalDeskSync?.createAdapter({ storageKey }) || createFallbackSyncAdapter(storageKey);
 document.documentElement.dataset.syncAdapter = syncAdapter.adapterType || "fallback";
@@ -99,16 +101,21 @@ function persistItems() {
 }
 
 function normalizeItem(item) {
-  if (!item || !item.name || !item.date) return null;
+  const name = typeof item?.name === "string" ? item.name.trim() : "";
+  if (!name || !isValidDateValue(item.date)) return null;
+  const categories = ["Subscription", "Warranty", "Document", "Service", "Other"];
+  const cycles = ["Monthly", "Quarterly", "Yearly", "One-time", "Custom"];
+  const receiptStates = ["Saved", "Missing", "Not needed"];
+  const cost = Number(item.cost || 0);
   return {
     id: String(item.id || createId()),
-    name: String(item.name).trim(),
-    category: item.category || "Other",
+    name,
+    category: categories.includes(item.category) ? item.category : "Other",
     date: item.date,
-    cost: Number(item.cost || 0),
-    cycle: item.cycle || "Custom",
-    receipt: item.receipt || "Missing",
-    notes: item.notes || "",
+    cost: Number.isFinite(cost) && cost >= 0 ? cost : 0,
+    cycle: cycles.includes(item.cycle) ? item.cycle : "Custom",
+    receipt: receiptStates.includes(item.receipt) ? item.receipt : "Missing",
+    notes: typeof item.notes === "string" ? item.notes : "",
     createdAt: item.createdAt || new Date().toISOString(),
     updatedAt: item.updatedAt || new Date().toISOString(),
   };
@@ -479,11 +486,7 @@ function loadSampleData() {
 }
 
 function exportJson() {
-  const payload = {
-    app: "Renewal Desk",
-    exportedAt: new Date().toISOString(),
-    items: state.items,
-  };
+  const payload = backupLogic.createBackup(state.items);
   downloadFile("renewal-desk-backup.json", JSON.stringify(payload, null, 2), "application/json");
   setExportStatus("Backup downloaded.");
 }
@@ -527,17 +530,41 @@ function exportSyncReadiness() {
 function importJson(event) {
   const file = event.target.files?.[0];
   if (!file) return;
+  if (file.size > maxBackupBytes) {
+    setExportStatus("This backup is too large. Choose a file smaller than 5 MB.");
+    event.target.value = "";
+    return;
+  }
   const reader = new FileReader();
   reader.onload = () => {
     try {
       const parsed = JSON.parse(String(reader.result));
-      const imported = Array.isArray(parsed) ? parsed : parsed.items;
-      if (!Array.isArray(imported)) throw new Error("Invalid file");
-      const normalized = imported.map(normalizeItem).filter(Boolean);
-      state.items = normalized;
+      const result = backupLogic.parseBackup(parsed, normalizeItem);
+      const previousItems = state.items.map((item) => ({ ...item }));
+      if (previousItems.length) {
+        const confirmed = window.confirm(
+          `Replace your current ${previousItems.length} item${previousItems.length === 1 ? "" : "s"} with ${result.items.length} from this backup?`,
+        );
+        if (!confirmed) {
+          setExportStatus("Restore canceled. Your current list was not changed.");
+          return;
+        }
+      }
+
+      state.items = result.items;
       persistItems();
       render();
-      setExportStatus(`Imported ${normalized.length} item${normalized.length === 1 ? "" : "s"}.`);
+      const skippedCount = result.invalidCount + result.duplicateCount;
+      const restoredMessage = `Restored ${result.items.length} item${result.items.length === 1 ? "" : "s"}${
+        skippedCount ? `. Skipped ${skippedCount} unusable ${skippedCount === 1 ? "entry" : "entries"}` : ""
+      }.`;
+      setExportStatus(restoredMessage);
+      showActionToast(restoredMessage, () => {
+        state.items = previousItems;
+        persistItems();
+        render();
+        setExportStatus("Previous list restored.");
+      });
     } catch {
       setExportStatus("Import failed. Choose a Renewal Desk backup file.");
     } finally {
@@ -592,6 +619,17 @@ function relativeDate(dateValue) {
 function parseLocalDate(value) {
   const [year, month, day] = value.split("-").map(Number);
   return new Date(year, month - 1, day);
+}
+
+function isValidDateValue(value) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+  return (
+    date.getFullYear() === year &&
+    date.getMonth() === month - 1 &&
+    date.getDate() === day
+  );
 }
 
 function startOfToday() {

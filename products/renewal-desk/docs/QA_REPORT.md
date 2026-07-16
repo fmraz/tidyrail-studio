@@ -333,3 +333,29 @@ Environment: local static website served from `http://127.0.0.1:4328/` and teste
 - At 390px, all four export buttons remain inside the viewport at full usable width.
 - No relevant console warnings or errors were captured.
 - The in-app Browser did not expose its download event for the generated Blob URL, so file content was verified through deterministic unit assertions and the rendered interaction through the live status message.
+
+## 2026-07-13 Safe Backup Restore QA
+
+Environment: local static website served from `http://127.0.0.1:4329/`, tested with the in-app Browser at 1280x900 and 390x844, plus local Google Chrome for the native file picker.
+
+## Checks Run
+
+- Tested versioned backup creation and parsing, legacy array compatibility, duplicate handling, invalid-record handling, foreign-app rejection, future-version rejection, all-invalid rejection, a 10,001-record limit, and an intentional empty backup.
+- Restored a test backup containing one valid record and one impossible calendar date.
+- Verified the impossible date was skipped and the valid record was retained.
+- Verified a foreign backup was rejected without changing the existing list.
+- Verified canceling the replacement confirmation left the existing list unchanged.
+- Verified accepting replacement produced clear restored/skipped feedback.
+- Verified Undo restored the exact previous list.
+- Checked desktop and 390px mobile geometry, touch target sizes, horizontal overflow, and browser console health.
+- Re-ran recurring-date, calendar export, auth-config safety, and sync-adapter regression checks.
+
+## Results
+
+- All nine backup logic assertions passed.
+- Existing lists are no longer replaced without confirmation.
+- Invalid, foreign, oversized, and unsupported backups cannot silently overwrite current data.
+- Restore Undo passed and returned all four pre-restore test records.
+- At 390px, export actions are 338px wide, at least 46px high, and stay inside the viewport.
+- No relevant browser console warnings or errors were captured.
+- Native file selection was tested in local Chrome because the in-app Browser API does not expose a file-upload helper.
