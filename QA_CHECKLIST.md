@@ -43,6 +43,7 @@
 - [x] Renewal Desk sample data flow, dashboard stats, active view switching, and Export view were retested after the visual refresh.
 - [x] Renewal Desk Add/Edit/Delete, backup download, spreadsheet export, backup restore, service worker registration, and 390px mobile dialog flow retested after the UX copy pass.
 - [x] Renewal Desk backup restore rejects foreign, future, oversized, and all-invalid files; confirms replacement; skips unusable records; and supports immediate Undo.
+- [x] Empty backup replacement explicitly states that all current items will be removed and explains immediate Undo.
 - [x] Missing sync-status listener guard fixed after removing the visible sync readiness button from the user flow.
 - [ ] Cloud sync tested after backend setup.
 

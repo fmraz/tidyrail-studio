@@ -44,3 +44,4 @@
 - Added a standard calendar download to Renewal Desk so users can move tracked dates into Apple Calendar, Google Calendar, Outlook, and compatible calendar apps without an account or backend.
 - Updated the active studio automation from an hourly generic prompt to a focused three-hour product loop driven by `THREE_HOUR_WORK_LOOP.md` and `NEXT_PROMPT.md`.
 - Hardened Renewal Desk backup restore with a versioned format, strict app/version/date/size/record validation, legacy compatibility, replacement confirmation, partial-restore feedback, and immediate Undo.
+- Clarified the destructive empty-backup edge case with an explicit affected-item count and immediate Undo guidance before any current records are removed.

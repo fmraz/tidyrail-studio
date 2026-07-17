@@ -76,6 +76,17 @@ const empty = backup.parseBackup({ app: "Renewal Desk", formatVersion: 1, items:
 assert(empty.items.length === 0, "intentional empty backup must remain valid");
 console.log("PASS empty backup support");
 
+const emptyRestorePrompt = backup.createRestorePrompt(3, 0);
+assert(emptyRestorePrompt.includes("backup is empty"), "empty restore must identify the empty backup");
+assert(emptyRestorePrompt.includes("remove all 3 current items"), "empty restore must state the data loss");
+assert(emptyRestorePrompt.includes("undo"), "empty restore must explain immediate recovery");
+console.log("PASS empty backup replacement warning");
+
+const replacementPrompt = backup.createRestorePrompt(1, 2);
+assert(replacementPrompt.includes("current 1 item"), "replacement prompt must use singular item copy");
+assert(replacementPrompt.includes("with 2"), "replacement prompt must state the incoming count");
+console.log("PASS standard replacement warning");
+
 function expectFailure(fn, name) {
   let failed = false;
   try {

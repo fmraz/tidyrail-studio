@@ -359,3 +359,23 @@ Environment: local static website served from `http://127.0.0.1:4329/`, tested w
 - At 390px, export actions are 338px wide, at least 46px high, and stay inside the viewport.
 - No relevant browser console warnings or errors were captured.
 - Native file selection was tested in local Chrome because the in-app Browser API does not expose a file-upload helper.
+
+## 2026-07-16 Empty Backup Warning QA
+
+Environment: local static website served from `http://127.0.0.1:4329/` and tested with the in-app Browser at 1280x900 and 390x844.
+
+## Checks Run
+
+- Added deterministic assertions for empty-backup and standard replacement confirmation copy.
+- Verified the empty-backup warning identifies the backup as empty, states the exact number of current items that would be removed, and explains immediate Undo.
+- Re-ran backup parsing, recurrence, calendar export, auth-config safety, and sync-adapter regression checks.
+- Checked the Export view at desktop and 390px mobile widths.
+- Checked mobile action geometry, horizontal overflow, and browser console health.
+
+## Results
+
+- All eleven backup logic assertions passed.
+- The destructive empty-backup consequence is explicit before user data changes.
+- At 390px, all export actions remain between x=26 and x=364 and are 46px high.
+- No relevant browser console warnings or errors were captured.
+- The synthetic file-picker interaction could not be repeated because the Mac was locked. The confirmation copy and branch selection are covered by deterministic tests; the previously verified restore and Undo flow remains unchanged.

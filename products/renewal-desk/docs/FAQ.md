@@ -24,6 +24,8 @@ Yes. Download a backup from one browser and restore it in Renewal Desk on anothe
 
 Renewal Desk asks before replacing a non-empty list. After a successful restore, you can immediately choose Undo to bring the previous list back. Files from another app, unsupported backup versions, and backups without usable records are rejected.
 
+If the selected backup is intentionally empty, the confirmation clearly states that restoring it will remove every current item before you decide whether to continue.
+
 ## What happens when a recurring item renews?
 
 Choose Renew to move a monthly, quarterly, or yearly item to its next scheduled date. You can immediately undo the change if needed. One-time and custom dates stay manual.

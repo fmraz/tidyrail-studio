@@ -543,7 +543,7 @@ function importJson(event) {
       const previousItems = state.items.map((item) => ({ ...item }));
       if (previousItems.length) {
         const confirmed = window.confirm(
-          `Replace your current ${previousItems.length} item${previousItems.length === 1 ? "" : "s"} with ${result.items.length} from this backup?`,
+          backupLogic.createRestorePrompt(previousItems.length, result.items.length),
         );
         if (!confirmed) {
           setExportStatus("Restore canceled. Your current list was not changed.");

@@ -31,6 +31,8 @@
 - Hardened restore with a 5 MB file limit, record-count limit, app/version checks, calendar-date validation, duplicate handling, replacement confirmation, and Undo.
 - Added clear feedback for canceled, rejected, partially restored, and reverted backups.
 - Bumped the offline app cache to include the reusable backup validation logic.
+- Added an explicit warning when an empty backup would remove every current item, including the exact affected count and immediate Undo guidance.
+- Bumped the offline app cache after the restore warning update.
 
 ## 0.1.0 - MVP Release Candidate
 

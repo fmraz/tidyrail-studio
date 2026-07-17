@@ -58,7 +58,17 @@
     };
   }
 
-  const api = { createBackup, parseBackup };
+  function createRestorePrompt(currentCount, incomingCount) {
+    if (currentCount <= 0) return "";
+    if (incomingCount === 0) {
+      return `This backup is empty. Restoring it will remove all ${currentCount} current ${
+        currentCount === 1 ? "item" : "items"
+      }. You can undo this change immediately. Continue?`;
+    }
+    return `Replace your current ${currentCount} ${currentCount === 1 ? "item" : "items"} with ${incomingCount} from this backup? You can undo this change immediately.`;
+  }
+
+  const api = { createBackup, parseBackup, createRestorePrompt };
   global.RenewalDeskBackup = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

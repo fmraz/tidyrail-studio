@@ -30,14 +30,15 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 - Restore now validates app identity, backup version, file size, record count, item name, real calendar date, enum values, cost, duplicate IDs, and usable record count before changing user data.
 - Restore rejects files larger than 5 MB, foreign apps, unsupported future versions, more than 10,000 records, and backups without usable records.
 - Existing data is never silently replaced: Renewal Desk asks for confirmation, reports skipped entries, and offers immediate Undo after a successful restore.
+- An intentionally empty backup remains portable, but its confirmation now states that every current item will be removed, includes the exact affected count, and explains immediate Undo before the user continues.
 - The reusable restore parser is in `products/renewal-desk/src/backup-logic.js` and is mirrored to the website and Pages app.
-- The offline app cache is `renewal-desk-0.1.7` and includes `src/backup-logic.js`.
-- The release ZIP was rebuilt and synchronized. SHA-256: `fb798b0943d04f2e2ad15437344fd93a4d6a1c829e824c24a54e0a7c81f1b3d0`.
+- The offline app cache is `renewal-desk-0.1.8` and includes `src/backup-logic.js`.
+- The release ZIP was rebuilt and synchronized. SHA-256: `9f58eb2c5787f70a556ba2f5973a55eae3329b6a4907708d72826a5dccbd85bc`.
 - The active studio automation runs every three hours and uses the product-outcome workflow in `THREE_HOUR_WORK_LOOP.md`.
 
 ## Verified QA
 
-- `node scripts/qa-renewal-backup-logic.mjs` passes nine backup-format and safety assertions.
+- `node scripts/qa-renewal-backup-logic.mjs` passes eleven backup-format, safety, and confirmation-copy assertions.
 - `node scripts/qa-renewal-logic.mjs` passes all six recurrence cases.
 - `node scripts/qa-renewal-calendar-export.mjs` passes all nine calendar assertions.
 - `node scripts/qa-auth-config-safety.mjs` passes.
@@ -48,6 +49,7 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 - Canceling restore preserved the current list.
 - A backup with one valid item and one impossible date restored one item and reported one skipped entry.
 - Restore Undo returned all four pre-restore records.
+- Empty-backup confirmation logic identifies the destructive outcome, exact affected count, and recovery path.
 - Mobile QA passed at 390x844: document width equals viewport width, export controls stay between x=26 and x=364, controls are at least 46px high, and no relevant console errors were captured.
 - Product source, `website/`, and `docs/` match for all changed public app files.
 - All three ZIP copies are byte-identical, pass `unzip -t`, contain `src/backup-logic.js`, and pass their SHA-256 files.
@@ -55,6 +57,7 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 ## Public Website And HTTPS
 
 - Public HTTP Renewal Desk currently returns status 200 from GitHub Pages.
+- The public deployment is still behind local `main`: `src/backup-logic.js` returns 404 and the public ZIP checksum is still `ddc238a20ff0d1613ecda0150f3d0df5b0ae93ce6536f6472a8dfc1cbf57a0eb`.
 - HTTPS still fails host validation because the served certificate does not include `tidyrailstudio.com`.
 - Do not enable Enforce HTTPS until a certificate valid for `tidyrailstudio.com` is served.
 - The GitHub CLI login for `fmraz` was invalid during the latest check, so the Pages API returned 404. Re-authentication with `gh auth login -h github.com` requires the founder to complete the browser/device authorization step.
@@ -88,8 +91,8 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 3. Verify the latest commit is pushed and GitHub Pages has built it.
 4. Verify public HTTP routes for the app, `src/backup-logic.js`, ZIP, and checksum.
 5. Recheck HTTPS. Enable Enforce HTTPS only after hostname-valid TLS succeeds.
-6. Run the remaining Renewal Desk release-candidate resilience checks: offline reload after first successful load, service worker update from the prior cache, keyboard-only backup/export navigation, delete confirmation, one-time/custom date editing, and a VoiceOver spot check if available.
-7. Review restore behavior for intentional empty backups and decide whether replacing a non-empty list with zero records should require stronger wording.
+6. After the founder unlocks the Mac, repeat the synthetic empty-backup file-picker smoke test and verify Cancel, Continue, and Undo; deterministic confirmation tests already pass.
+7. Run the remaining Renewal Desk release-candidate resilience checks: offline reload after first successful load, service worker update from the prior cache, keyboard-only backup/export navigation, delete confirmation, one-time/custom date editing, and a VoiceOver spot check if available.
 8. Keep Supabase disabled. Only after approved test configuration exists, run the two-user RLS test before implementing automatic sync.
 9. Continue public macOS packaging only after approved Developer ID/notarization prerequisites. Build Windows/Linux candidates only on their target OS or reviewed CI.
 10. Update only affected docs, `CHANGELOG.md`, the product QA report, the decision log, checksums, and this file.
