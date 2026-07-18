@@ -96,3 +96,4 @@
 - Corrected the active automation cadence from hourly to every three hours and replaced its generic instruction with the studio product-outcome workflow.
 - Chose backup restore safety as the next Renewal Desk user outcome because restoring an unverified file could silently replace a trustworthy local list. Renewal Desk now validates the file before mutation, asks before replacing existing data, and keeps the previous list available through Undo.
 - Strengthened the empty-backup confirmation instead of rejecting intentional empty backups. This preserves a valid portable state while making the destructive outcome, affected record count, and recovery path explicit before the user continues.
+- Closed the returning-user offline reload gate without adding another offline UI layer. A fresh-origin test proved the existing network-first service worker and local storage preserve the full app shell, records, responsive layout, and navigation after the server is stopped.

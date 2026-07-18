@@ -112,5 +112,5 @@
 - Existing data migration or reset test.
 - Manual accessibility pass.
 - [x] Responsive desktop and mobile pass for Renewal Desk core flow.
-- Offline/local file usage pass where applicable.
+- [x] Hosted PWA offline reload passed after one successful load on desktop and 390px mobile, with local records and navigation intact.
 - [x] Packaging/opening instructions verified through ZIP integrity and local app route checks.

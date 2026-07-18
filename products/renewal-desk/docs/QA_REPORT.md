@@ -379,3 +379,25 @@ Environment: local static website served from `http://127.0.0.1:4329/` and teste
 - At 390px, all export actions remain between x=26 and x=364 and are 46px high.
 - No relevant browser console warnings or errors were captured.
 - The synthetic file-picker interaction could not be repeated because the Mac was locked. The confirmation copy and branch selection are covered by deterministic tests; the previously verified restore and Undo flow remains unchanged.
+
+## 2026-07-18 Offline Reload QA
+
+Environment: fresh local origin at `http://127.0.0.1:4332/`, tested with the in-app Browser at 1280x900 and 390x844.
+
+## Checks Run
+
+- Loaded Renewal Desk once with the local server available and confirmed the complete app shell was requested by the service worker.
+- Loaded three sample records and verified browser persistence across an online reload.
+- Stopped the local server completely.
+- Reloaded the same controlled page at desktop width with no server available.
+- Reloaded again at 390px mobile width with no server available.
+- Opened the Items view after the mobile offline reload to verify the cached app remained interactive.
+- Checked stored records, document width, rendered structure, and browser console health after each offline reload.
+
+## Results
+
+- Desktop offline reload passed with the dashboard, styles, and all three stored records intact.
+- Mobile offline reload passed with document width equal to the 390px viewport and all three stored records intact.
+- Offline navigation to the Items view worked and displayed the stored records.
+- No relevant browser console warnings or errors were captured.
+- The existing network-first service worker with cached fallback passed without a product code change.
