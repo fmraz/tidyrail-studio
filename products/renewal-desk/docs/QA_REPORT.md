@@ -401,3 +401,24 @@ Environment: fresh local origin at `http://127.0.0.1:4332/`, tested with the in-
 - Offline navigation to the Items view worked and displayed the stored records.
 - No relevant browser console warnings or errors were captured.
 - The existing network-first service worker with cached fallback passed without a product code change.
+
+## 2026-07-18 Service Worker Upgrade QA
+
+Environment: fresh local origin at `http://127.0.0.1:4333/`, tested with the in-app Browser at 1280x900 and 390x844.
+
+## Checks Run
+
+- Installed and activated the previous `renewal-desk-0.1.7` service worker on a fresh origin.
+- Loaded three sample records and confirmed they were stored before the update.
+- Switched the same origin to the current `renewal-desk-0.1.8` worker and requested a registration update.
+- Confirmed the new worker activated, the `renewal-desk-0.1.7` cache was removed, and only `renewal-desk-0.1.8` remained.
+- Reloaded the updated app on desktop and 390px mobile and checked the dashboard, stored records, responsive width, and browser console.
+- Stopped the server completely and reloaded the updated app at 390px to verify the new cache remained usable offline.
+
+## Results
+
+- The service worker upgraded from `0.1.7` to `0.1.8` without losing any of the three stored records.
+- The previous cache was removed after activation and only the current cache remained.
+- The updated app rendered correctly on desktop and mobile with no horizontal overflow.
+- The post-update offline reload preserved the complete app shell and all stored records.
+- No relevant browser console warnings or errors were captured.

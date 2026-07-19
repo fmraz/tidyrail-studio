@@ -113,4 +113,5 @@
 - Manual accessibility pass.
 - [x] Responsive desktop and mobile pass for Renewal Desk core flow.
 - [x] Hosted PWA offline reload passed after one successful load on desktop and 390px mobile, with local records and navigation intact.
+- [x] Service worker upgrade from cache `0.1.7` to `0.1.8` passed with old-cache cleanup, preserved records, responsive rendering, and post-update offline reload.
 - [x] Packaging/opening instructions verified through ZIP integrity and local app route checks.

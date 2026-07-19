@@ -33,7 +33,7 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 - An intentionally empty backup remains portable, but its confirmation now states that every current item will be removed, includes the exact affected count, and explains immediate Undo before the user continues.
 - The reusable restore parser is in `products/renewal-desk/src/backup-logic.js` and is mirrored to the website and Pages app.
 - The offline app cache is `renewal-desk-0.1.8` and includes `src/backup-logic.js`.
-- The release ZIP was rebuilt and synchronized. SHA-256: `98bb75033c250a28cdc2674a828ca33f450aafa88f64f25a9fce2e37b1c5ada1`.
+- The release ZIP was rebuilt and synchronized. SHA-256: `eb6c26d46d917cd1677e4574305ca1f6291627cde5c837cc8c889dcb6d410304`.
 - The active studio automation runs every three hours and uses the product-outcome workflow in `THREE_HOUR_WORK_LOOP.md`.
 
 ## Verified QA
@@ -52,6 +52,7 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 - Empty-backup confirmation logic identifies the destructive outcome, exact affected count, and recovery path.
 - Mobile QA passed at 390x844: document width equals viewport width, export controls stay between x=26 and x=364, controls are at least 46px high, and no relevant console errors were captured.
 - Returning-user offline QA passed after one successful fresh-origin load: with the server fully stopped, desktop and 390px mobile reloads preserved the complete app shell, all three stored records, responsive width, and interactive Items navigation without console errors.
+- Service worker upgrade QA passed from cache `renewal-desk-0.1.7` to `renewal-desk-0.1.8`: the old cache was removed, three local records survived, desktop and mobile rendering stayed correct, and the updated cache passed a server-offline reload without console errors.
 - Product source, `website/`, and `docs/` match for all changed public app files.
 - All three ZIP copies are byte-identical, pass `unzip -t`, contain `src/backup-logic.js`, and pass their SHA-256 files.
 
@@ -93,7 +94,7 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 4. Verify public HTTP routes for the app, `src/backup-logic.js`, ZIP, and checksum.
 5. Recheck HTTPS. Enable Enforce HTTPS only after hostname-valid TLS succeeds.
 6. After the founder unlocks the Mac, repeat the synthetic empty-backup file-picker smoke test and verify Cancel, Continue, and Undo; deterministic confirmation tests already pass.
-7. Run the remaining Renewal Desk release-candidate resilience checks: service worker update from the prior cache, keyboard-only backup/export navigation, delete confirmation, one-time/custom date editing, and a VoiceOver spot check if available.
+7. Run the remaining Renewal Desk release-candidate resilience checks: keyboard-only backup/export navigation, delete confirmation, one-time/custom date editing, and a VoiceOver spot check if available.
 8. Keep Supabase disabled. Only after approved test configuration exists, run the two-user RLS test before implementing automatic sync.
 9. Continue public macOS packaging only after approved Developer ID/notarization prerequisites. Build Windows/Linux candidates only on their target OS or reviewed CI.
 10. Update only affected docs, `CHANGELOG.md`, the product QA report, the decision log, checksums, and this file.
