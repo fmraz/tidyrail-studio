@@ -12,7 +12,6 @@
 | Prepare signed and notarized public macOS DMG | P1 | M | High | High | Requires Apple approval |
 | Build and smoke-test Windows and Linux packages on target systems | P2 | M | Medium | Medium | After web release |
 | Build iOS/Android shells and useful deadline widgets | P2 | L | Medium | High | After sync is stable |
-| Publish a verified GitHub Release with the static ZIP and checksum | P2 | S | Medium | Low | After final package push |
 
 ## Implemented Foundation
 
@@ -29,3 +28,4 @@
 - Release documentation, version sources, platform claims, and package hashes reconciled.
 - Lighthouse, route, link, SEO, responsive, and accessibility audits completed.
 - Privacy-safe GitHub bug and feature request forms.
+- Public Renewal Desk `0.1.0-mvp` GitHub prerelease with the verified static ZIP and checksum only.

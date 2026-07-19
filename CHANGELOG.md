@@ -56,3 +56,4 @@
 - Rebuilt the internal Apple Silicon DMG from the same product source and passed the automated DMG QA; internal-only SHA-256: `98d55d03d02fec5726ee55205be78ddc89c0edd165d1a0755e4cf7759f12542f`.
 - Replaced immediate Three.js startup with a lightweight first-frame canvas and scroll-triggered 3D upgrade. Homepage Lighthouse performance improved from 39 to 94 while retaining the scroll-driven scene.
 - Fixed planned-status contrast, brand accessible names, product heading order, and Renewal Desk meta description. Homepage, product, downloads, and app now score 100 for Lighthouse accessibility, best practices, and SEO in the local release audit.
+- Published the verified Renewal Desk `0.1.0-mvp` static ZIP and checksum as a GitHub prerelease without exposing the unsigned internal DMG.

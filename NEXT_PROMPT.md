@@ -80,6 +80,8 @@ Prioritize user outcomes in this order:
 
 - The static ZIP and checksum are synchronized in `dist/`, `website/downloads/`, and `docs/downloads/`.
 - Archive integrity and all three checksums pass.
+- Public GitHub prerelease: `https://github.com/fmraz/tidyrail-studio/releases/tag/renewal-desk-v0.1.0-mvp`.
+- The prerelease contains only the verified static ZIP and checksum; it does not contain the unsigned DMG.
 - Tauri desktop scaffold and icons are tracked.
 - Current internal Apple Silicon DMG:
   - `desktop/renewal-desk/src-tauri/target/release/bundle/dmg/Renewal Desk_0.1.0_aarch64.dmg`
@@ -119,7 +121,7 @@ Prioritize user outcomes in this order:
 
 1. Read `THREE_HOUR_WORK_LOOP.md`, this file, `IMPROVEMENT_BACKLOG.md`, `DECISION_LOG.md`, `QA_CHECKLIST.md`, and relevant product files.
 2. Run `git status`, compare local/remote `main`, inspect the active automation, and verify no concurrent worker is editing the same tree.
-3. Recheck GitHub Pages API, public HTTP, hostname-valid HTTPS, current GitHub Release assets, and package checksum before changing code.
+3. Recheck GitHub Pages API, public HTTP, hostname-valid HTTPS, GitHub prerelease assets, and package checksum before changing code.
 
 ### Phase 1 - Resolve HTTPS Through Support
 
