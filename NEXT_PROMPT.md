@@ -59,11 +59,11 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 ## Public Website And HTTPS
 
 - Public HTTP Renewal Desk currently returns status 200 from GitHub Pages.
-- The public deployment is still behind local `main`: `src/backup-logic.js` returns 404 and the public ZIP checksum is still `ddc238a20ff0d1613ecda0150f3d0df5b0ae93ce6536f6472a8dfc1cbf57a0eb`.
+- GitHub Pages is deployed through commit `2ad0512`: `src/backup-logic.js` returns 200 and the public ZIP checksum matches `eb6c26d46d917cd1677e4574305ca1f6291627cde5c837cc8c889dcb6d410304`.
 - HTTPS still fails host validation because the served certificate does not include `tidyrailstudio.com`.
 - Do not enable Enforce HTTPS until a certificate valid for `tidyrailstudio.com` is served.
-- The GitHub CLI login for `fmraz` was invalid during the latest check, so the Pages API returned 404. Re-authentication with `gh auth login -h github.com` requires the founder to complete the browser/device authorization step.
-- After GitHub authentication is restored, recheck `gh api repos/fmraz/tidyrail-studio/pages`, the latest Pages build, the public backup logic asset, and the public ZIP checksum.
+- Git push works through the configured Git credential, but the GitHub CLI API token for `fmraz` remains invalid. Re-authentication with `gh auth login -h github.com` requires the founder to complete the browser/device authorization step before Pages certificate state can be queried or changed through `gh`.
+- After GitHub CLI authentication is restored, recheck `gh api repos/fmraz/tidyrail-studio/pages` and the latest Pages build before changing certificate settings.
 - If Pages still reports `bad_authz`, use the prepared GitHub Pages Settings reset or support request in `GITHUB_PAGES_SETUP.md`; keep HTTPS enforcement off.
 
 ## Existing Platform State
@@ -90,8 +90,8 @@ Read and follow `THREE_HOUR_WORK_LOOP.md` before making changes. Choose exactly 
 
 1. Check Git status and preserve `NEXT_PROMPT 2.md`.
 2. Restore GitHub CLI authentication with the founder if it remains invalid; do not request or store the founder's password or token.
-3. Verify the latest commit is pushed and GitHub Pages has built it.
-4. Verify public HTTP routes for the app, `src/backup-logic.js`, ZIP, and checksum.
+3. Verify GitHub Pages still serves commit `2ad0512`, the app, `src/backup-logic.js`, ZIP, and checksum.
+4. Query the Pages certificate state after GitHub CLI authentication is restored.
 5. Recheck HTTPS. Enable Enforce HTTPS only after hostname-valid TLS succeeds.
 6. After the founder unlocks the Mac, repeat the synthetic empty-backup file-picker smoke test and verify Cancel, Continue, and Undo; deterministic confirmation tests already pass.
 7. Run the remaining Renewal Desk release-candidate resilience checks: keyboard-only backup/export navigation, delete confirmation, one-time/custom date editing, and a VoiceOver spot check if available.
