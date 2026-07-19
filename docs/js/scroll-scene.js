@@ -1,10 +1,83 @@
 const canvas = document.querySelector("[data-scroll-scene]");
+const fallbackCanvas = document.querySelector("[data-scene-fallback]");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  initScrollScene(canvas);
+if (fallbackCanvas) {
+  drawFallbackScene(fallbackCanvas);
+  window.addEventListener("resize", () => drawFallbackScene(fallbackCanvas), { passive: true });
 }
 
-async function initScrollScene(targetCanvas) {
+if (canvas && !reducedMotion) {
+  const startScene = () => {
+    window.removeEventListener("scroll", startScene);
+    initScrollScene(canvas, fallbackCanvas);
+  };
+  window.addEventListener("scroll", startScene, { once: true, passive: true });
+}
+
+function drawFallbackScene(targetCanvas) {
+  const rect = targetCanvas.getBoundingClientRect();
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+  const width = Math.max(1, Math.floor(rect.width));
+  const height = Math.max(1, Math.floor(rect.height));
+  targetCanvas.width = Math.floor(width * pixelRatio);
+  targetCanvas.height = Math.floor(height * pixelRatio);
+
+  const context = targetCanvas.getContext("2d");
+  if (!context) return;
+  context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  context.clearRect(0, 0, width, height);
+
+  const rails = [
+    { color: "rgba(87, 174, 205, 0.34)", y: 0.55, bend: 0.2, width: 9 },
+    { color: "rgba(210, 165, 82, 0.28)", y: 0.68, bend: 0.28, width: 8 },
+    { color: "rgba(130, 148, 160, 0.22)", y: 0.42, bend: 0.18, width: 5 },
+  ];
+
+  rails.forEach((rail, index) => {
+    const gradient = context.createLinearGradient(0, 0, width, 0);
+    gradient.addColorStop(0, "rgba(255,255,255,0.06)");
+    gradient.addColorStop(0.28, rail.color);
+    gradient.addColorStop(0.72, rail.color);
+    gradient.addColorStop(1, "rgba(255,255,255,0.04)");
+    context.beginPath();
+    context.moveTo(-width * 0.08, height * (rail.y - 0.12));
+    context.bezierCurveTo(
+      width * 0.25,
+      height * (rail.y - rail.bend),
+      width * 0.58,
+      height * (rail.y + rail.bend + index * 0.02),
+      width * 1.08,
+      height * (rail.y - 0.04),
+    );
+    context.strokeStyle = gradient;
+    context.lineWidth = rail.width;
+    context.lineCap = "round";
+    context.stroke();
+  });
+
+  const panelGradient = context.createLinearGradient(0, height * 0.18, 0, height * 0.72);
+  panelGradient.addColorStop(0, "rgba(255,255,255,0.32)");
+  panelGradient.addColorStop(1, "rgba(185,220,246,0.07)");
+  for (let index = 0; index < 4; index += 1) {
+    const panelWidth = Math.min(170, width * 0.15);
+    const panelHeight = Math.min(90, height * 0.1);
+    const x = width * (0.48 + index * 0.12);
+    const y = height * (0.2 + (index % 2) * 0.08);
+    context.beginPath();
+    context.roundRect(x, y, panelWidth, panelHeight, 18);
+    context.fillStyle = panelGradient;
+    context.fill();
+    context.strokeStyle = "rgba(255,255,255,0.48)";
+    context.lineWidth = 1;
+    context.stroke();
+  }
+
+  targetCanvas.dataset.sceneReady = "fallback";
+  targetCanvas.dataset.sceneProgress = "0.0000";
+}
+
+async function initScrollScene(targetCanvas, fallback) {
   let three;
 
   try {
@@ -39,6 +112,7 @@ async function initScrollScene(targetCanvas) {
 
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  targetCanvas.hidden = false;
 
   scene.add(new AmbientLight(0xffffff, 1.8));
 
@@ -91,7 +165,9 @@ async function initScrollScene(targetCanvas) {
 
   const panels = Array.from({ length: 5 }, (_, index) => {
     const panel = new Mesh(new PlaneGeometry(1.1, 0.54), panelMaterial.clone());
-    panel.position.set(-2.5 + index * 1.1, -0.15 + Math.sin(index) * 0.24, -1.15 - index * 0.12);
+    const baseY = -0.15 + Math.sin(index) * 0.24;
+    panel.position.set(-2.5 + index * 1.1, baseY, -1.15 - index * 0.12);
+    panel.userData.baseY = baseY;
     panel.rotation.set(-0.42, 0.34, -0.08 + index * 0.03);
     scene.add(panel);
     return panel;
@@ -142,12 +218,13 @@ async function initScrollScene(targetCanvas) {
     });
 
     panels.forEach((panel, index) => {
-      panel.position.y += Math.sin(clock * 0.7 + index) * 0.0009;
+      panel.position.y = panel.userData.baseY + Math.sin(clock * 0.7 + index) * 0.04;
       panel.rotation.z = -0.08 + index * 0.03 + progress * 0.18;
       panel.material.opacity = 0.22 + Math.sin(progress * Math.PI + index * 0.4) * 0.08;
     });
 
     renderer.render(scene, camera);
+    if (fallback && !fallback.hidden) fallback.hidden = true;
     window.requestAnimationFrame(render);
   }
 

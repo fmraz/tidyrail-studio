@@ -33,6 +33,11 @@
 - Bumped the offline app cache to include the reusable backup validation logic.
 - Added an explicit warning when an empty backup would remove every current item, including the exact affected count and immediate Undo guidance.
 - Bumped the offline app cache after the restore warning update.
+- Fixed focus recovery after editing, renewing, undoing, deleting, or clearing records.
+- Aligned the PWA background and theme colors with the current Renewal Desk visual system.
+- Bumped the offline app cache to `renewal-desk-0.1.9` after the accessibility fix.
+- Added a concise app description for browser, install, and search surfaces.
+- Bumped the offline app cache to `renewal-desk-0.1.10` after the metadata update.
 
 ## 0.1.0 - MVP Release Candidate
 

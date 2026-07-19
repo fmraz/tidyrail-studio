@@ -24,15 +24,15 @@ Product: Renewal Desk
 - [x] Launch checklist
 - [x] QA checklist
 
-## Still Needed Before Public Release
+## Still Needed Before Stable Release
 
-- [ ] Founder-machine fresh browser test.
-- [ ] Optional screen-reader spot check.
+- [x] Fresh-origin desktop and 390px browser tests on the founder machine.
+- [ ] VoiceOver spot check.
 - [x] Company website QA.
 - [x] Domain purchase on VEDOS.
 - [x] GitHub Pages hosting setup.
 - [x] Root DNS public verification for `tidyrailstudio.com`.
-- [ ] GitHub HTTPS certificate provisioning and Enforce HTTPS. Current blocker: GitHub Pages API reports `https_certificate.state: bad_authz`, TLS still serves `*.github.io` instead of `tidyrailstudio.com`, and API reset attempts return `The certificate has not finished being issued`; Enforce HTTPS must remain off until the certificate is valid.
+- [ ] GitHub HTTPS certificate provisioning and Enforce HTTPS. On 2026-07-19 the custom domain was successfully removed and re-added through the Pages API, but GitHub immediately returned `https_certificate.state: bad_authz`; `GITHUB_SUPPORT_HTTPS_REQUEST.md` is prepared and Enforce HTTPS must remain off until hostname validation succeeds.
 - [x] Remove wildcard `*.tidyrailstudio.com` parking records in VEDOS.
 - [x] Public website copy aligned with free-first/no-account release path.
 - [x] Supabase setup checklist prepared without committing secrets.
@@ -43,7 +43,7 @@ Product: Renewal Desk
 - [x] Desktop packaging readiness gates documented without claiming native availability.
 - [x] Tauri desktop scaffold prepared without native availability claims.
 - [x] Tauri platform icon assets generated and checked by desktop preflight.
-- [ ] Public release approval.
+- [x] Founder approval for GitHub source, GitHub Pages, web app, and free ZIP publication.
 
 ## Free-First Requirements
 

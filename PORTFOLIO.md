@@ -7,9 +7,9 @@
 - **Value proposition:** Track subscriptions, warranties, renewals, and expiry dates in one private local dashboard.
 - **Target audience:** Households, freelancers, office workers, students, and families managing recurring admin.
 - **Problem solved:** Important renewals and warranty dates are scattered across inboxes, receipts, notes, and memory.
-- **Core features:** Add items, due dates, categories, costs, notes, receipt status, upcoming dashboard, local search, JSON export/import, CSV export.
+- **Core features:** Add items, due dates, categories, costs, notes, receipt status, upcoming dashboard, local search, recurring Renew with Undo, JSON backup/restore, CSV export, and calendar export.
 - **Current free scope:** Local tracker with unlimited practical use, JSON backup/import, CSV export, and no account requirement.
-- **Deferred ideas:** Calendar export, saved filters, printable report, and receipt attachment support in a future desktop build.
+- **Deferred ideas:** Saved filters, printable report, receipt attachment support, and native notifications in a future desktop or mobile build.
 - **MVP scope:** Static local web app with localStorage, dashboard, item management, search, export/import.
 - **v1.0 scope:** Polished UI, full docs, privacy policy, changelog, roadmap, QA, packaged zip.
 - **Technical stack:** HTML, CSS, vanilla JavaScript for MVP; optional Tauri/macOS wrapper later.

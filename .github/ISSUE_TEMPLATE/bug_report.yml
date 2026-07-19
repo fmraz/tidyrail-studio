@@ -1,0 +1,59 @@
+name: Bug report
+description: Report a reproducible problem in a Tidyrail Studio product.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Tidyrail Studio. Do not include passwords, account tokens, payment information, private documents, or personal renewal records.
+  - type: dropdown
+    id: product
+    attributes:
+      label: Product
+      options:
+        - Renewal Desk web app
+        - Tidyrail Studio website
+        - Renewal Desk download package
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+      placeholder: I expected... Instead...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: List the shortest sequence that reliably shows the issue.
+      placeholder: |
+        1. Open...
+        2. Select...
+        3. See...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and operating system
+      placeholder: Safari 19 on macOS, Chrome on Windows 11, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add a screenshot only after removing private information.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed passwords, tokens, personal records, and other sensitive information.
+          required: true

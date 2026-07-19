@@ -22,15 +22,16 @@ Useful software for everyday loose ends.
 
 ## Visual Direction
 
-- Clean white and soft gray interfaces.
-- Charcoal text, muted teal accents, small amber/red status colors.
-- Compact but readable dashboards.
-- 8px radius or less for cards, panels, and controls.
-- Avoid decorative gradients, purple-blue SaaS styling, beige lifestyle palettes, and glossy AI visuals.
+- Original Liquid Glass direction inspired by the clarity and depth of modern iOS and macOS, without copying Apple branding or protected assets.
+- Cool white and pale silver foundations with graphite text, blue primary actions, teal identity details, and restrained amber/red status colors.
+- Translucent navigation and hierarchy surfaces with visible edges, readable contrast, and blur used only where it improves structure.
+- Compact, scannable dashboards with calm depth, precise spacing, familiar controls, and purposeful motion.
+- Larger radii are reserved for glass shells and primary surfaces; dense data rows and repeated items remain compact.
+- Avoid decorative blobs, excessive gradients, cheap glassmorphism, dark one-note palettes, clutter, and animation that obstructs a task.
+- Respect reduced motion, visible focus, safe areas, 44px touch targets, and text expansion.
 
 ## Product Naming Rules
 
 - Names should explain the job or feel connected to a concrete workflow.
 - Avoid platform names, trademarks, celebrity references, and misleading claims.
 - Avoid names that imply regulated security, legal, medical, tax, or financial guarantees.
-

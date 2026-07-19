@@ -9,7 +9,7 @@
 - [x] Scroll animation changes scene progress.
 - [x] ZIP download link returns a file.
 - [x] Public HTTP site returns GitHub Pages content.
-- [ ] Public HTTPS certificate completed. Current 2026-07-07 GitHub Pages API state: `bad_authz`; TLS still serves `*.github.io`. DNS is correct, HTTP routes are live, Pages build is `built`, a controlled CNAME remove/re-add reset was already pushed through `main` + `/docs`, and a later GitHub Pages API remove/re-add attempt was rejected with `The certificate has not finished being issued`. Enforce HTTPS remains off until GitHub issues the matching certificate.
+- [ ] Public HTTPS certificate completed. Current 2026-07-19 GitHub Pages API state: `bad_authz`; TLS still serves a certificate without `tidyrailstudio.com`. DNS is correct, HTTP routes are live, Pages is `built`, and a successful API remove/re-add immediately reproduced the same ACME failure. Enforce HTTPS remains off; the next action is the prepared GitHub Support handoff.
 - [x] VEDOS wildcard DNS records removed.
 - [x] Mobile menu retested after account/download changes.
 - [x] Public website navigation and sitemap exclude account drafts until backend approval.
@@ -23,6 +23,11 @@
 - [x] GitHub Pages certificate state checked through API after HTTPS failure.
 - [x] GitHub Pages remove/re-add API reset attempted; custom domain remained `tidyrailstudio.com`, HTTP stayed live, and HTTPS still served the wrong certificate.
 - [x] GitHub Pages certificate state rechecked on 2026-07-07; DNS remains correct, HTTP stays live, HTTPS still has the wrong certificate, Pages build is healthy, and Enforce HTTPS remains off.
+- [x] Custom 404 page added and tested locally.
+- [x] Structured audit passed for 294 local references across 22 HTML files.
+- [x] Privacy-safe GitHub bug and feature request forms prepared.
+- [x] Lighthouse audit completed for homepage, product, downloads, and app: performance 94/97/100/100; accessibility, best practices, and SEO 100 on every route.
+- [x] Three.js deferred until first scroll with a nonblank lightweight first-frame canvas and successful fallback-to-WebGL transition QA.
 
 ## Renewal Desk
 
@@ -45,6 +50,8 @@
 - [x] Renewal Desk backup restore rejects foreign, future, oversized, and all-invalid files; confirms replacement; skips unusable records; and supports immediate Undo.
 - [x] Empty backup replacement explicitly states that all current items will be removed and explains immediate Undo.
 - [x] Missing sync-status listener guard fixed after removing the visible sync readiness button from the user flow.
+- [x] Add/Edit/Renew/Undo/Delete focus recovery tested on a clean origin; regenerated actions retain a logical focus target.
+- [x] Backup, calendar, and spreadsheet export status flows retested without console errors.
 - [ ] Cloud sync tested after backend setup.
 
 ## Account System
@@ -110,7 +117,7 @@
 
 - Fresh browser/profile test.
 - Existing data migration or reset test.
-- Manual accessibility pass.
+- [ ] Manual VoiceOver spot check.
 - [x] Responsive desktop and mobile pass for Renewal Desk core flow.
 - [x] Hosted PWA offline reload passed after one successful load on desktop and 390px mobile, with local records and navigation intact.
 - [x] Service worker upgrade from cache `0.1.7` to `0.1.8` passed with old-cache cleanup, preserved records, responsive rendering, and post-update offline reload.

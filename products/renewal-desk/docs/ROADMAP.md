@@ -23,16 +23,17 @@
 
 ## Current Release Candidate Gaps
 
-- No local product QA blockers remain for the static MVP release candidate.
-- Returning-browser stale-cache behavior was fixed by switching the service worker to network-first with cached fallback.
-- Release channel decision brief is prepared in `docs/RELEASE_CHANNEL_DECISION.md`.
-- Public release, account creation, marketplace submission, or external posting still require a concrete approved destination and action.
+- The free web app and static ZIP are publicly available through GitHub Pages over HTTP.
+- Hostname-valid HTTPS is blocked by GitHub Pages certificate state `bad_authz`; account features remain hidden and disabled.
+- Core flows, offline reload, service-worker upgrade, responsive layout, backup safety, calendar export, and focus recovery have automated evidence.
+- A manual VoiceOver spot check remains before the web release is called stable.
+- Native installers remain unavailable until each real package passes signing and target-platform QA.
 - Payment setup, paid downloads, subscriptions, locked Pro features, and artificial limits are out of scope for the current free-first strategy.
 
 ## Later Ideas
 
-- Calendar `.ics` export.
+- Optional account sync after valid HTTPS and two-user RLS isolation QA.
 - Receipt attachment support in a desktop wrapper.
 - Saved views.
 - Multiple currency display setting.
-- Optional Tauri or native macOS wrapper.
+- Signed and notarized macOS package plus tested Windows and Linux installers.

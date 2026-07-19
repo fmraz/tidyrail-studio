@@ -99,7 +99,7 @@ Current behavior:
 - Detects whether a frontend auth config exists.
 - Keeps cloud writes disabled unless `enableRenewalDeskCloudSync: true` is present in the local uncommitted config.
 - Exposes gated Supabase methods for session lookup, row listing, upsert, delete, account export, and deletion request.
-- Exports a sync readiness JSON report for QA and implementation review.
+- Keeps an internal sync-readiness export method for QA and implementation review without exposing technical controls in the ordinary user flow.
 - Keeps the app usable if the adapter fails to load by using a local fallback inside `app.js`.
 
 RLS QA support:
@@ -111,7 +111,7 @@ RLS QA support:
 Local QA status:
 
 - Runtime adapter marker shows `local` on a clean local origin.
-- Export view shows the sync readiness action on desktop and mobile.
+- The public Export view contains only user tasks: backup, restore, spreadsheet export, and calendar export. Sync-readiness output is intentionally not visible.
 - Sync readiness export shows a success status without enabling cloud writes.
 - Scripted sync adapter QA covers local mode, configured-but-disabled mode, explicit cloud test gate mode, local persistence, and cloud row mapping.
 - Console warnings/errors were clear in the tested flow.

@@ -422,3 +422,30 @@ Environment: fresh local origin at `http://127.0.0.1:4333/`, tested with the in-
 - The updated app rendered correctly on desktop and mobile with no horizontal overflow.
 - The post-update offline reload preserved the complete app shell and all stored records.
 - No relevant browser console warnings or errors were captured.
+
+## 2026-07-19 Release Candidate Interaction and Focus QA
+
+Environment: fresh local origins at `http://127.0.0.1:4334/` and `http://127.0.0.1:4335/`, tested with the in-app Browser at 1280x900 and 390x844.
+
+## Checks Run
+
+- Added a record, edited its cost/category/notes, renewed its monthly date, used Undo, and deleted it.
+- Verified backup, calendar, and spreadsheet export actions report success without console errors.
+- Verified dialog entry focus moves to Name and Add returns focus to Add Item.
+- Found and fixed focus loss caused by regenerated Edit, Renew, Delete, and Undo controls.
+- Verified Edit, Renew, and Undo return focus to the equivalent regenerated action; deleting the final record returns focus to Add Item.
+- Checked the dashboard and item dialog at 390px for horizontal overflow, clipping, and active field visibility.
+- Re-ran recurrence, calendar, backup, sync adapter, auth config, public-site, and desktop packaging preflight checks.
+
+## Results
+
+- Core Add/Edit/Renew/Undo/Delete and export flows passed on a fresh origin.
+- Desktop and 390px mobile document widths matched their viewports.
+- The mobile dialog stayed within the viewport and opened with Name focused.
+- No relevant browser console warnings or errors were captured.
+- The in-app Browser does not reliably expose native Blob download events or native dialog cancel behavior. Export payloads and confirmation branches remain covered by deterministic tests and prior fresh-Chrome file-picker QA.
+- The rebuilt package passed archive integrity and all three checksum checks; the current digest is recorded in the external `.sha256` files beside each package copy.
+
+## Remaining Manual Release Check
+
+- VoiceOver spot check on a founder-controlled Mac before calling the web release stable.

@@ -316,7 +316,7 @@ h1 {
   max-width: 680px;
   font-size: clamp(44px, 6vw, 82px);
   line-height: 0.95;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   overflow-wrap: normal;
   text-wrap: balance;
 }
@@ -324,7 +324,7 @@ h1 {
 h2 {
   font-size: clamp(28px, 4vw, 44px);
   line-height: 1.06;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
 }
 
 h3 {
@@ -559,7 +559,7 @@ h3 {
 
 .status.planned {
   background: #fff4df;
-  color: var(--amber);
+  color: #875000;
 }
 
 .product-spotlight {
@@ -1049,7 +1049,7 @@ h3 {
   h1 {
     font-size: clamp(38px, 11.4vw, 48px);
     line-height: 1.02;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     text-wrap: pretty;
   }
 

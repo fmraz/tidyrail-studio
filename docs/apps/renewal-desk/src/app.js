@@ -13,6 +13,7 @@ const state = {
   category: "all",
   view: "dashboard",
   returnFocusTo: null,
+  returnFocusAction: null,
   undoAction: null,
   undoTimer: null,
 };
@@ -88,10 +89,17 @@ elements.form.addEventListener("submit", (event) => {
 });
 
 elements.dialog.addEventListener("close", () => {
-  if (state.returnFocusTo instanceof HTMLElement && document.contains(state.returnFocusTo)) {
-    state.returnFocusTo.focus();
-  }
+  const returnFocusTo = state.returnFocusTo;
+  const returnFocusAction = state.returnFocusAction;
   state.returnFocusTo = null;
+  state.returnFocusAction = null;
+  window.requestAnimationFrame(() => {
+    if (returnFocusTo instanceof HTMLElement && document.contains(returnFocusTo)) {
+      returnFocusTo.focus();
+      return;
+    }
+    focusItemAction(returnFocusAction?.action, returnFocusAction?.id);
+  });
 });
 
 render();
@@ -335,10 +343,12 @@ function renewItem(id) {
   );
   persistItems();
   render();
+  focusItemAction("renew", id);
   showActionToast(`${item.name} now renews on ${formatDate(nextDate)}.`, () => {
     state.items = state.items.map((entry) => (entry.id === id ? previousItem : entry));
     persistItems();
     render();
+    focusItemAction("renew", id);
   });
 }
 
@@ -364,6 +374,13 @@ function hideActionToast() {
 
 function openItemDialog(id = null) {
   state.returnFocusTo = document.activeElement;
+  state.returnFocusAction =
+    document.activeElement instanceof HTMLElement && document.activeElement.dataset.action
+      ? {
+          action: document.activeElement.dataset.action,
+          id: document.activeElement.dataset.id,
+        }
+      : null;
   elements.form.reset();
   elements.itemId.value = "";
   elements.dialogTitle.textContent = id ? "Edit item" : "Add item";
@@ -422,9 +439,12 @@ function deleteItem(id) {
   if (!item) return;
   const confirmed = window.confirm(`Delete "${item.name}" from Renewal Desk?`);
   if (!confirmed) return;
+  const itemIndex = state.items.findIndex((entry) => entry.id === id);
   state.items = state.items.filter((entry) => entry.id !== id);
   persistItems();
   render();
+  const nextItem = state.items[Math.min(itemIndex, state.items.length - 1)];
+  focusItemAction("edit", nextItem?.id);
 }
 
 function clearAllItems() {
@@ -434,6 +454,17 @@ function clearAllItems() {
   state.items = [];
   persistItems();
   render();
+  focusItemAction();
+}
+
+function focusItemAction(action, id) {
+  const target =
+    action && id
+      ? Array.from(document.querySelectorAll(`[data-action="${action}"]`)).find(
+          (button) => button.dataset.id === id,
+        )
+      : null;
+  (target || document.querySelector("#addItemBtn"))?.focus();
 }
 
 function loadSampleData() {

@@ -2,21 +2,30 @@
 
 | Improvement | Priority | Effort | Impact | Risk | Timing |
 |---|---|---:|---:|---:|---|
-| Remove VEDOS wildcard DNS records and enable HTTPS after certificate provisioning | P0 | S | High | Low | Now |
-| Connect Supabase Auth in a private test project | P0 | M | High | Medium | Now, after approval |
-| Add Renewal Desk cloud sync behind RLS | P0 | L | High | Medium | Next |
-| Complete full page/app localization files | P1 | L | Medium | Medium | Next |
-| Build Tauri desktop shell | P1 | L | High | Medium | Later |
-| Prepare macOS .dmg signing/notarization workflow | P1 | M | High | High | Later, requires Apple approval |
-| Add PWA manifest and offline cache | P1 | M | Medium | Low | Next |
-| Export production icon sizes | P2 | M | Medium | Low | Later |
-| Run Lighthouse and accessibility audit | P2 | S | Medium | Low | Next |
-| Prepare GitHub Release draft | P2 | S | Medium | Low | Later |
+| Resolve GitHub Pages `bad_authz` or submit the prepared support request | P0 | S | High | Low | Now |
+| Finish keyboard-only and VoiceOver Renewal Desk RC QA | P0 | M | High | Low | Now |
+| Connect Supabase Auth in a private test project | P1 | M | High | Medium | After HTTPS and approval |
+| Run real two-user Supabase RLS isolation QA | P1 | M | High | Medium | After Supabase setup |
+| Implement explicit first-import and conflict-safe cloud sync | P1 | L | High | High | After RLS passes |
+| Complete English/Czech string extraction and localization architecture | P1 | L | Medium | Medium | After RC QA |
+| Define backward-compatible currency behavior without mixed-currency totals | P1 | M | High | Medium | After RC QA |
+| Prepare signed and notarized public macOS DMG | P1 | M | High | High | Requires Apple approval |
+| Build and smoke-test Windows and Linux packages on target systems | P2 | M | Medium | Medium | After web release |
+| Build iOS/Android shells and useful deadline widgets | P2 | L | Medium | High | After sync is stable |
+| Publish a verified GitHub Release with the static ZIP and checksum | P2 | S | Medium | Low | After final package push |
 
-## Implemented This Session
+## Implemented Foundation
 
 - Mobile navigation scaffold.
 - Account UI scaffold.
 - Download platform detection.
 - Localization language scaffold.
 - Icon concept and deterministic SVG guide.
+- PWA manifest, network-first offline cache, and service-worker upgrade QA.
+- Tauri desktop shell and platform icon assets.
+- Internal Apple Silicon DMG build and QA workflow.
+- Windows and Linux packaging metadata readiness checks.
+- Supabase auth, schema, sync adapter, and two-user RLS test scaffolds kept disabled by default.
+- Release documentation, version sources, platform claims, and package hashes reconciled.
+- Lighthouse, route, link, SEO, responsive, and accessibility audits completed.
+- Privacy-safe GitHub bug and feature request forms.

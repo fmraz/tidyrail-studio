@@ -15,13 +15,13 @@
     <meta property="og:url" content="https://tidyrailstudio.com/" />
     <meta property="og:image" content="https://tidyrailstudio.com/assets/renewal-desk-dashboard.png" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./css/site.css?v=20260628-3" />
+    <link rel="stylesheet" href="./css/site.css?v=20260719-1" />
   </head>
   <body>
     <header class="site-header">
       <nav class="nav" aria-label="Main navigation">
-        <a class="brand" href="./index.html" aria-label="Tidyrail Studio home">
-          <span class="brand-mark">T</span>
+        <a class="brand" href="./index.html">
+          <span class="brand-mark" aria-hidden="true">T</span>
           <span><strong>Tidyrail Studio</strong><span>Free useful tools</span></span>
         </a>
         <div class="nav-links">
@@ -36,7 +36,8 @@
 
     <main>
       <section class="hero cinematic">
-        <canvas class="scroll-scene" data-scroll-scene aria-hidden="true"></canvas>
+        <canvas class="scroll-scene" data-scene-fallback aria-hidden="true"></canvas>
+        <canvas class="scroll-scene" data-scroll-scene aria-hidden="true" hidden></canvas>
         <div class="hero-copy">
           <h1>Utilities that respect your time and your data.</h1>
           <p class="lead">Tidyrail Studio makes free and private tools for everyday admin work, starting with Renewal Desk.</p>
@@ -184,6 +185,6 @@
       </div>
     </footer>
     <script src="./js/site.js?v=20260628-2"></script>
-    <script type="module" src="./js/scroll-scene.js?v=20260628-2"></script>
+    <script type="module" src="./js/scroll-scene.js?v=20260719-1"></script>
   </body>
 </html>

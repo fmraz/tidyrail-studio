@@ -48,7 +48,7 @@ npm run qa:macos-dmg --prefix desktop/renewal-desk
 npm run qa:macos-notarization --prefix desktop/renewal-desk
 ```
 
-Current 2026-07-07 status:
+Current 2026-07-19 status:
 
 - Rust/Cargo were installed through `rustup` in the local user profile after founder approval to continue.
 - `npm run qa:native-prereqs --prefix desktop/renewal-desk` passes with one warning: full Xcode is not selected, only Xcode Command Line Tools are active.
@@ -89,7 +89,7 @@ desktop/renewal-desk/src-tauri/target/release/bundle/dmg/Renewal Desk_0.1.0_aarc
 SHA-256:
 
 ```text
-9e9a9772c2c394dfcf5cc6025d1179923230762547176de6f1c25f781ef7020d
+98d55d03d02fec5726ee55205be78ddc89c0edd165d1a0755e4cf7759f12542f
 ```
 
 Validation commands used:

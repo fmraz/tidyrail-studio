@@ -4,8 +4,8 @@
   "description": "Track renewals, warranties, subscriptions, and expiry dates.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f5f7f7",
-  "theme_color": "#2d817b",
+  "background_color": "#f7faff",
+  "theme_color": "#0a84ff",
   "icons": [
     {
       "src": "./favicon.svg",

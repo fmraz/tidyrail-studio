@@ -30,8 +30,8 @@
 - Aligned the Renewal Desk app visual system with the Tidyrail Studio website glass design and refreshed product screenshots.
 - Extended the Renewal Desk app UI into the full Tidyrail Studio Liquid Glass system across sidebar, topbar, stats, tables, panels, dialog controls, and mobile navigation.
 - Rebuilt the Renewal Desk ZIP package after the app-wide visual refresh and mobile overflow fix.
-- Simplified public website and Renewal Desk app copy around user outcomes: backups, restore, spreadsheet export, account sync coming later, and device-local privacy. Removed unnecessary technical wording from the main user flow and rebuilt the ZIP package; current SHA-256 is `af6db58df222e20443a2f29f9c671845412a74b9a2c5fdf34cc1dd6c55920df7`.
-- Fixed Renewal Desk initialization after removing the visible sync-status button from the user flow, retested Add/Edit/Delete, backup, restore, spreadsheet export, service worker, and 390px mobile dialog behavior, then rebuilt the ZIP package; current SHA-256 is `dc276d3451ce4f7f44c1ffc9dbea2d6bab4d61d71d6749f913473ec931706884`.
+- Simplified public website and Renewal Desk app copy around user outcomes: backups, restore, spreadsheet export, account sync coming later, and device-local privacy. Removed unnecessary technical wording from the main user flow and rebuilt the ZIP package; that build used SHA-256 `af6db58df222e20443a2f29f9c671845412a74b9a2c5fdf34cc1dd6c55920df7`.
+- Fixed Renewal Desk initialization after removing the visible sync-status button from the user flow, retested Add/Edit/Delete, backup, restore, spreadsheet export, service worker, and 390px mobile dialog behavior, then rebuilt the ZIP package; that build used SHA-256 `dc276d3451ce4f7f44c1ffc9dbea2d6bab4d61d71d6749f913473ec931706884`.
 - Added a native packaging prerequisite preflight for Renewal Desk desktop builds. The scaffold and Tauri CLI package pass, while Rust/Cargo are the current blockers before a local macOS `.app` or `.dmg` candidate can be produced.
 - Installed Rust/Cargo locally through `rustup`, enabled ad-hoc signing for internal macOS QA builds, produced a local Apple Silicon `.dmg` candidate, verified it with `hdiutil`, and confirmed the mounted app bundle passes strict local code-signature verification. Public macOS distribution remains blocked until Developer ID signing, notarization, and clean-machine Gatekeeper testing are complete.
 - Added an automated macOS DMG internal QA script and desktop package command, then smoke-tested the mounted DMG app launch and quit flow without promoting the build as a public native release.
@@ -45,3 +45,14 @@
 - Updated the active studio automation from an hourly generic prompt to a focused three-hour product loop driven by `THREE_HOUR_WORK_LOOP.md` and `NEXT_PROMPT.md`.
 - Hardened Renewal Desk backup restore with a versioned format, strict app/version/date/size/record validation, legacy compatibility, replacement confirmation, partial-restore feedback, and immediate Undo.
 - Clarified the destructive empty-backup edge case with an explicit affected-item count and immediate Undo guidance before any current records are removed.
+- Verified returning-user offline reload on desktop and mobile with records and navigation preserved after the server was stopped.
+- Verified a real service-worker upgrade from cache `0.1.7` to `0.1.8`, including old-cache cleanup, preserved local records, responsive rendering, and a post-update offline reload.
+- Published the web app and free ZIP through GitHub Pages; the earlier audited package used SHA-256 `eb6c26d46d917cd1677e4574305ca1f6291627cde5c837cc8c889dcb6d410304`.
+- Reproduced the GitHub Pages `bad_authz` state after a successful custom-domain remove/re-add API reset and prepared an evidence-complete GitHub Support request.
+- Fixed keyboard focus recovery after editing, renewing, undoing, deleting, or clearing Renewal Desk records so regenerated controls do not leave users at the document body.
+- Added a custom website 404 page, privacy-safe GitHub bug and feature request forms, and a repeatable static link/asset audit.
+- Corrected the Tidyrail Studio favicon identity and aligned the Renewal Desk PWA manifest colors with the current Liquid Glass design system.
+- Rebuilt and synchronized the current static package after the focus, metadata, manifest, release-note, and QA updates. Current SHA-256: `b8e99569946a23270e08c0f75fabb5baeb2583a9d75b5d9d9d3366edda1e7756`.
+- Rebuilt the internal Apple Silicon DMG from the same product source and passed the automated DMG QA; internal-only SHA-256: `98d55d03d02fec5726ee55205be78ddc89c0edd165d1a0755e4cf7759f12542f`.
+- Replaced immediate Three.js startup with a lightweight first-frame canvas and scroll-triggered 3D upgrade. Homepage Lighthouse performance improved from 39 to 94 while retaining the scroll-driven scene.
+- Fixed planned-status contrast, brand accessible names, product heading order, and Renewal Desk meta description. Homepage, product, downloads, and app now score 100 for Lighthouse accessibility, best practices, and SEO in the local release audit.

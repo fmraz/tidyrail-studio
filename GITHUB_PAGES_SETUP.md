@@ -4,7 +4,7 @@ Public-facing site: `https://tidyrailstudio.com`
 
 Repository target: `fmraz/tidyrail-studio`
 
-Current status on 2026-07-07:
+Current status on 2026-07-19:
 
 - GitHub repository exists.
 - GitHub Pages is built.
@@ -18,7 +18,8 @@ Current status on 2026-07-07:
 - GitHub Pages API still reports `https_certificate.state: bad_authz` with description: `The ACME authorization is in a bad state. We need to start over.`
 - A same-settings Pages update retry on 2026-06-26 returned `The certificate has not finished being issued`; Enforce HTTPS must remain off.
 - TLS verification on 2026-07-07 still served a `*.github.io` certificate instead of a certificate covering `tidyrailstudio.com`.
-- A GitHub Pages API remove/re-add reset attempt on 2026-07-07 was rejected with `The certificate has not finished being issued`, leaving the custom domain unchanged and HTTP live.
+- On 2026-07-19, the Pages API successfully removed the custom domain, cleared the custom certificate state, and accepted `tidyrailstudio.com` again. GitHub immediately returned the same `bad_authz` state, confirming that another repeated API reset is not useful.
+- `GITHUB_SUPPORT_HTTPS_REQUEST.md` contains the current evidence and founder-ready support message.
 
 ## Deployment Model
 
@@ -67,7 +68,9 @@ Manual UI steps:
 7. Wait for the certificate state to move away from `bad_authz`.
 8. Do not enable "Enforce HTTPS" until `https://tidyrailstudio.com/` serves a certificate valid for `tidyrailstudio.com`.
 
-If the UI refuses the reset or the certificate remains `bad_authz`, contact GitHub Support with this concise report:
+The controlled API reset has now completed and `bad_authz` returned immediately. Do not repeat resets in a loop. Submit `GITHUB_SUPPORT_HTTPS_REQUEST.md` through GitHub Support while continuing local release work.
+
+Earlier concise report retained for history:
 
 ```text
 Repository: fmraz/tidyrail-studio

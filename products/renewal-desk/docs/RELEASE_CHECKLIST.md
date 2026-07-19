@@ -17,4 +17,6 @@
 - [x] CSV content QA.
 - [x] Fresh packaged zip smoke test.
 - [x] Release channel decision brief prepared.
-- [ ] Concrete external release channel approved before public release.
+- [x] GitHub Pages and direct free ZIP distribution approved and publicly available.
+- [ ] Hostname-valid HTTPS enabled for the custom domain.
+- [ ] VoiceOver spot check completed.

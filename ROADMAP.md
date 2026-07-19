@@ -4,33 +4,33 @@
 
 ### Phase 1: Foundation
 
-- Define company name, positioning, product philosophy, quality standards, and ethical rules.
-- Create product backlog and scoring system.
-- Select first 3-5 products.
-- Set up recurring 3-hour work loop.
+- [x] Define company name, positioning, product philosophy, quality standards, and ethical rules.
+- [x] Create product backlog and scoring system.
+- [x] Select the initial portfolio backlog.
+- [x] Set up one active recurring 3-hour work loop.
 
 ### Phase 2: Renewal Desk MVP
 
-- Build local-first static app.
-- Implement item creation, editing, deletion, search, dashboard, localStorage, JSON import/export, and CSV export.
-- Write README, privacy policy draft, changelog, roadmap, FAQ, known limitations, and release checklist.
-- Run manual QA across core flows.
+- [x] Build the local-first static app.
+- [x] Implement core tracking, recurrence, search, local persistence, safe backup/restore, CSV, and calendar export.
+- [x] Write product, privacy, support, release, and maintenance documentation.
+- [x] Run automated and browser QA across core flows, offline reload, service-worker update, and mobile layout.
 
 ### Phase 3: Renewal Desk Free Public Release
 
-- Polish UI and responsive layout.
-- Add sample data/reset flow.
-- Prepare company website and product page.
-- Prepare launch posts and short demo scripts.
-- Package as downloadable zip.
-- Buy/configure domain and hosting only after founder approval and manual payment.
-- Publish the free website and free download only after founder approval.
+- [x] Polish Liquid Glass UI and responsive layout.
+- [x] Add sample data, renewal completion, Undo, and recovery flows.
+- [x] Publish the company website, web app, and static ZIP through GitHub Pages.
+- [x] Configure `tidyrailstudio.com` DNS and custom-domain files.
+- [ ] Resolve GitHub Pages `bad_authz` and enforce hostname-valid HTTPS.
+- [ ] Complete a manual VoiceOver spot check.
 
 ### Phase 4: Desktop Packaging
 
-- Prepare Tauri packaging for macOS, Windows, and Linux if technically feasible.
-- Keep direct download as the first desktop distribution channel.
-- Prepare store metadata without submitting.
+- [x] Prepare Tauri packaging and internal Apple Silicon DMG QA.
+- [x] Prepare Windows/Linux metadata and platform preflight checks.
+- [ ] Sign, notarize, and clean-machine test a macOS DMG.
+- [ ] Build and smoke-test Windows and Linux packages on their target systems.
 
 ### Phase 5: Second Product
 
@@ -39,6 +39,4 @@
 
 ## Current Priority
 
-Primary focus: finish Renewal Desk as a free product, finish the Tidyrail Studio website, complete GitHub Pages HTTPS provisioning, and prepare public free distribution. Account drafts stay out of public navigation and discovery until a backend is approved.
-
-Latest Renewal Desk QA note: the app package now uses a network-first service worker with cached fallback to avoid stale app-shell behavior for returning browsers. Local product QA remains clear; public release still waits on founder approval and stable HTTPS.
+Primary focus: escalate the evidence-complete GitHub Pages HTTPS failure, finish the remaining VoiceOver release check, and keep Renewal Desk documentation/package evidence current. Account drafts stay out of public navigation and discovery until valid HTTPS, approved Supabase configuration, and two-user RLS QA pass.

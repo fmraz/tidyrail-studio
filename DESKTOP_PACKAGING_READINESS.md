@@ -52,7 +52,7 @@ Payment blocker: Apple Developer Program membership and signing setup require fo
 Current local candidate:
 
 - Path: `desktop/renewal-desk/src-tauri/target/release/bundle/dmg/Renewal Desk_0.1.0_aarch64.dmg`
-- SHA-256: `9e9a9772c2c394dfcf5cc6025d1179923230762547176de6f1c25f781ef7020d`
+- SHA-256: `98d55d03d02fec5726ee55205be78ddc89c0edd165d1a0755e4cf7759f12542f`
 - `hdiutil verify`: passed.
 - Mounted bundle contains `Renewal Desk.app`, an `Applications` symlink, `.VolumeIcon.icns`, and `.DS_Store`.
 - Bundle identifier: `com.tidyrailstudio.renewaldesk`.

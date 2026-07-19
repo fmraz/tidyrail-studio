@@ -1,0 +1,42 @@
+name: Feature request
+description: Suggest a focused improvement that saves time or reduces confusion.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: dropdown
+    id: product
+    attributes:
+      label: Product
+      options:
+        - Renewal Desk
+        - Tidyrail Studio website
+        - Future product idea
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem should this solve?
+      description: Explain the task, delay, mistake, or confusion you experience today.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: What would a useful outcome look like?
+      description: Focus on the result rather than a specific technical implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Current workaround
+      description: How do you handle this today, if at all?
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: This request does not contain passwords, tokens, personal records, or other sensitive information.
+          required: true

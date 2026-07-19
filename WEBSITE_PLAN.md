@@ -87,11 +87,15 @@ No paid newsletter service now. The first version includes a mailto-based update
 - Language selector and language detection are scaffolded.
 - Public pages include referrer policy, theme-color, and mobile format-detection metadata.
 - GitHub Pages custom domain is configured, but HTTPS certificate provisioning is still pending at GitHub.
+- A custom 404 page and repeatable internal link/asset audit are present.
+- GitHub bug and feature request forms explicitly warn users not to share sensitive data.
+- Homepage uses a lightweight first-frame canvas and loads the full Three.js scene on first scroll, preserving the premium motion while keeping initial loading fast.
+- The 2026-07-19 local Lighthouse release audit scored 94/100/100/100 for performance and 100 across accessibility, best practices, and SEO on all four audited routes.
 
 ## Next Website Priorities
 
-1. Recheck the GitHub Pages HTTPS certificate and enable Enforce HTTPS only after the certificate matches `tidyrailstudio.com`.
-2. Connect Supabase Auth in a controlled test setup.
-3. Add full localized copy files.
-4. Improve account dashboard once real backend exists.
-5. Add PWA install prompts only after offline QA.
+1. Submit the prepared evidence to GitHub Support because a clean custom-domain reset immediately reproduces `bad_authz`.
+2. Enable Enforce HTTPS only after the certificate matches `tidyrailstudio.com`, then recheck every critical route.
+3. Complete a manual VoiceOver spot check and performance audit.
+4. Connect Supabase Auth only after valid HTTPS and explicit backend approval.
+5. Complete English/Czech localization before expanding the remaining locale catalog.
